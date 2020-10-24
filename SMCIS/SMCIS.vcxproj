@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9F6FE2FC-7332-467A-9173-822BE9F9AE3F}</ProjectGuid>
+    <RootNamespace>SMCIS</RootNamespace>
+    <Keyword>MFCProj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <ValidateAllParameters>true</ValidateAllParameters>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0804</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\BitmapTitle.bmp" />
+    <None Include="res\ChargeInfoView.ico" />
+    <None Include="res\info.bmp" />
+    <None Include="res\magnifier_32x32.ico" />
+    <None Include="res\MainFrame.bmp" />
+    <None Include="res\next.ico" />
+    <None Include="res\password.ico" />
+    <None Include="res\previous.ico" />
+    <None Include="res\SMCIS.ico" />
+    <None Include="res\SMCIS.rc2" />
+    <None Include="res\SMCISDoc.ico" />
+    <None Include="res\Toolbar.bmp" />
+    <None Include="res\Toolbar256.bmp" />
+    <None Include="res\user.ico" />
+    <None Include="UserImages.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChangePasswordDlg.h" />
+    <ClInclude Include="ChargeDetTypeDlg.h" />
+    <ClInclude Include="ChargeInfoDoc.h" />
+    <ClInclude Include="ChargeInfoView.h" />
+    <ClInclude Include="ChargeLogMgntDoc.h" />
+    <ClInclude Include="ChargeLogMgntView.h" />
+    <ClInclude Include="ChargeMaintenanceDlg.h" />
+    <ClInclude Include="ChargeMaintenanceDoc.h" />
+    <ClInclude Include="ChargeMaintenanceView.h" />
+    <ClInclude Include="ChildFrm.h" />
+    <ClInclude Include="DetCountStatDoc.h" />
+    <ClInclude Include="DetCountStatDoc2.h" />
+    <ClInclude Include="DetCountStatView.h" />
+    <ClInclude Include="DetCountStatView2.h" />
+    <ClInclude Include="FeeTablesDoc.h" />
+    <ClInclude Include="FeeTablesView.h" />
+    <ClInclude Include="LoginDlg.h" />
+    <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MiscellaneousChargesDlg.h" />
+    <ClInclude Include="MiscellaneousTollWindowDlg.h" />
+    <ClInclude Include="Resource.h" />
+    <ClInclude Include="SMCIS.h" />
+    <ClInclude Include="SMCISDoc.h" />
+    <ClInclude Include="SMCISView.h" />
+    <ClInclude Include="StaffManagementDoc.h" />
+    <ClInclude Include="StaffManagementViem.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="TollWindowDlg.h" />
+    <ClInclude Include="ToolTipListCtrl.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ChangePasswordDlg.cpp" />
+    <ClCompile Include="ChargeDetTypeDlg.cpp" />
+    <ClCompile Include="ChargeInfoDoc.cpp" />
+    <ClCompile Include="ChargeInfoView.cpp" />
+    <ClCompile Include="ChargeLogMgntDoc.cpp" />
+    <ClCompile Include="ChargeLogMgntView.cpp" />
+    <ClCompile Include="ChargeMaintenanceDlg.cpp" />
+    <ClCompile Include="ChargeMaintenanceDoc.cpp" />
+    <ClCompile Include="ChargeMaintenanceView.cpp" />
+    <ClCompile Include="ChildFrm.cpp" />
+    <ClCompile Include="DetCountStatDoc.cpp" />
+    <ClCompile Include="DetCountStatDoc2.cpp" />
+    <ClCompile Include="DetCountStatView.cpp" />
+    <ClCompile Include="DetCountStatView2.cpp" />
+    <ClCompile Include="FeeTablesDoc.cpp" />
+    <ClCompile Include="FeeTablesView.cpp" />
+    <ClCompile Include="LoginDlg.cpp" />
+    <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MiscellaneousChargesDlg.cpp" />
+    <ClCompile Include="MiscellaneousTollWindowDlg.cpp" />
+    <ClCompile Include="SMCIS.cpp" />
+    <ClCompile Include="SMCISDoc.cpp" />
+    <ClCompile Include="SMCISView.cpp" />
+    <ClCompile Include="StaffManagementDoc.cpp" />
+    <ClCompile Include="StaffManagementViem.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="TollWindowDlg.cpp" />
+    <ClCompile Include="ToolTipListCtrl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SMCIS.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="SMCIS.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

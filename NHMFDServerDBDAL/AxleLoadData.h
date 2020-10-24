@@ -1,0 +1,256 @@
+/*
+* Copyright (c) 佛山市南华仪器股份有限公司
+* All rights reserved.
+*
+* 文件名称：AxleLoadData.h
+* 文件标识：
+* 描述：轴重数据表模型
+*
+* 版本：1.0
+* 日期：20xx-xx-xx
+* 作者：Cyx
+*
+*
+* 历史信息：
+*
+* 版本：1.0.0beta1
+* 日期：20xx-xx-xx
+* 作者：Cyx
+* 描述：正在开发
+*/
+
+
+#if !defined (NHMFDSERVERDBMODEL_AXLELOADDATA_H)
+#define NHMFDSERVERDBMODEL_AXLELOADDATA_H
+
+#include <string>
+
+struct SAxleLoadData
+{
+	// 自动编号
+	std::wstring strAutoID;
+	// 日志编号(年月日时分秒IP)
+	std::wstring strRunningNumber;
+	// 检测时间起(年月日时分秒)(Det: Detect; Beg: Begin; 下同)
+	std::wstring strDetBegTime;
+	// 检测时间止(年月日时分秒)
+	std::wstring strDetEndTime;
+	// 检测线编号
+	std::wstring strLineNumber;
+	// 一轴左轮静态轮重值[kg](L: Left; Stat: Static; 下同)
+	std::wstring strAxle1LStatLoad;
+	// 一轴右轮静态轮重值[kg](R: Right; 下同)
+	std::wstring strAxle1RStatLoad;
+	// 二轴左轮静态轮重值[kg]
+	std::wstring strAxle2LStatLoad;
+	// 二轴右轮静态轮重值[kg]
+	std::wstring strAxle2RStatLoad;
+	// 三轴左轮静态轮重值[kg]
+	std::wstring strAxle3LStatLoad;
+	// 三轴右轮静态轮重值[kg]
+	std::wstring strAxle3RStatLoad;
+	// 四轴左轮静态轮重值[kg]
+	std::wstring strAxle4LStatLoad;
+	// 四轴右轮静态轮重值[kg]
+	std::wstring strAxle4RStatLoad;
+	// 五轴左轮静态轮重值[kg]
+	std::wstring strAxle5LStatLoad;
+	// 五轴右轮静态轮重值[kg]
+	std::wstring strAxle5RStatLoad;
+	// 六轴左轮静态轮重值[kg]
+	std::wstring strAxle6LStatLoad;
+	// 六轴右轮静态轮重值[kg]
+	std::wstring strAxle6RStatLoad;
+	// 一轴左轮静态轮重值[daN]
+	std::wstring strAxle1LStatLoadN;
+	// 一轴右轮静态轮重值[daN]
+	std::wstring strAxle1RStatLoadN;
+	// 二轴左轮静态轮重值[daN]
+	std::wstring strAxle2LStatLoadN;
+	// 二轴右轮静态轮重值[daN]
+	std::wstring strAxle2RStatLoadN;
+	// 三轴左轮静态轮重值[daN]
+	std::wstring strAxle3LStatLoadN;
+	// 三轴右轮静态轮重值[daN]
+	std::wstring strAxle3RStatLoadN;
+	// 四轴左轮静态轮重值[daN]
+	std::wstring strAxle4LStatLoadN;
+	// 四轴右轮静态轮重值[daN]
+	std::wstring strAxle4RStatLoadN;
+	// 五轴左轮静态轮重值[daN]
+	std::wstring strAxle5LStatLoadN;
+	// 五轴右轮静态轮重值[daN]
+	std::wstring strAxle5RStatLoadN;
+	// 六轴左轮静态轮重值[daN]
+	std::wstring strAxle6LStatLoadN;
+	// 六轴右轮静态轮重值[daN]
+	std::wstring strAxle6RStatLoadN;
+	// 一轴左轮动态轮重值[kg](Dyn: Dynamic; 下同)
+	std::wstring strAxle1LDynLoad;
+	// 一轴右轮动态轮重值[kg]
+	std::wstring strAxle1RDynLoad;
+	// 二轴左轮动态轮重值[kg]
+	std::wstring strAxle2LDynLoad;
+	// 二轴右轮动态轮重值[kg]
+	std::wstring strAxle2RDynLoad;
+	// 三轴左轮动态轮重值[kg]
+	std::wstring strAxle3LDynLoad;
+	// 三轴右轮动态轮重值[kg]
+	std::wstring strAxle3RDynLoad;
+	// 四轴左轮动态轮重值[kg]
+	std::wstring strAxle4LDynLoad;
+	// 四轴右轮动态轮重值[kg]
+	std::wstring strAxle4RDynLoad;
+	// 五轴左轮动态轮重值[kg]
+	std::wstring strAxle5LDynLoad;
+	// 五轴右轮动态轮重值[kg]
+	std::wstring strAxle5RDynLoad;
+	// 六轴左轮动态轮重值[kg]
+	std::wstring strAxle6LDynLoad;
+	// 六轴右轮动态轮重值[kg]
+	std::wstring strAxle6RDynLoad;
+	// 一轴左轮动态轮重值[daN]
+	std::wstring strAxle1LDynLoadN;
+	// 一轴右轮动态轮重值[daN]
+	std::wstring strAxle1RDynLoadN;
+	// 二轴左轮动态轮重值[daN]
+	std::wstring strAxle2LDynLoadN;
+	// 二轴右轮动态轮重值[daN]
+	std::wstring strAxle2RDynLoadN;
+	// 三轴左轮动态轮重值[daN]
+	std::wstring strAxle3LDynLoadN;
+	// 三轴右轮动态轮重值[daN]
+	std::wstring strAxle3RDynLoadN;
+	// 四轴左轮动态轮重值[daN]
+	std::wstring strAxle4LDynLoadN;
+	// 四轴右轮动态轮重值[daN]
+	std::wstring strAxle4RDynLoadN;
+	// 五轴左轮动态轮重值[daN]
+	std::wstring strAxle5LDynLoadN;
+	// 五轴右轮动态轮重值[daN]
+	std::wstring strAxle5RDynLoadN;
+	// 六轴左轮动态轮重值[daN]
+	std::wstring strAxle6LDynLoadN;
+	// 六轴右轮动态轮重值[daN]
+	std::wstring strAxle6RDynLoadN;
+	// 一轴左轮加载轮重值[kg]
+	std::wstring strAxle1LLoadLoad;
+	// 一轴右轮加载轮重值[kg]
+	std::wstring strAxle1RLoadLoad;
+	// 二轴左轮加载轮重值[kg]
+	std::wstring strAxle2LLoadLoad;
+	// 二轴右轮加载轮重值[kg]
+	std::wstring strAxle2RLoadLoad;
+	// 三轴左轮加载轮重值[kg]
+	std::wstring strAxle3LLoadLoad;
+	// 三轴右轮加载轮重值[kg]
+	std::wstring strAxle3RLoadLoad;
+	// 四轴左轮加载轮重值[kg]
+	std::wstring strAxle4LLoadLoad;
+	// 四轴右轮加载轮重值[kg]
+	std::wstring strAxle4RLoadLoad;
+	// 五轴左轮加载轮重值[kg]
+	std::wstring strAxle5LLoadLoad;
+	// 五轴右轮加载轮重值[kg]
+	std::wstring strAxle5RLoadLoad;
+	// 六轴左轮加载轮重值[kg]
+	std::wstring strAxle6LLoadLoad;
+	// 六轴右轮加载轮重值[kg]
+	std::wstring strAxle6RLoadLoad;
+	// 一轴左轮复合台轮重值[kg]
+	std::wstring strAxle1LComLoad;
+	// 一轴右轮复合台轮重值[kg]
+	std::wstring strAxle1RComLoad;
+	// 二轴左轮复合台轮重值[kg]
+	std::wstring strAxle2LComLoad;
+	// 二轴右轮复合台轮重值[kg]
+	std::wstring strAxle2RComLoad;
+	// 三轴左轮复合台轮重值[kg]
+	std::wstring strAxle3LComLoad;
+	// 三轴右轮复合台轮重值[kg]
+	std::wstring strAxle3RComLoad;
+	// 四轴左轮复合台轮重值[kg]
+	std::wstring strAxle4LComLoad;
+	// 四轴右轮复合台轮重值[kg]
+	std::wstring strAxle4RComLoad;
+	// 五轴左轮复合台轮重值[kg]
+	std::wstring strAxle5LComLoad;
+	// 五轴右轮复合台轮重值[kg]
+	std::wstring strAxle5RComLoad;
+	// 六轴左轮复合台轮重值[kg]
+	std::wstring strAxle6LComLoad;
+	// 六轴右轮复合台轮重值[kg]
+	std::wstring strAxle6RComLoad;
+	// 一轴左轮复合台轮重值[daN]
+	std::wstring strAxle1LComLoadN;
+	// 一轴右轮复合台轮重值[daN]
+	std::wstring strAxle1RComLoadN;
+	// 二轴左轮复合台轮重值[daN]
+	std::wstring strAxle2LComLoadN;
+	// 二轴右轮复合台轮重值[daN]
+	std::wstring strAxle2RComLoadN;
+	// 三轴左轮复合台轮重值[daN]
+	std::wstring strAxle3LComLoadN;
+	// 三轴右轮复合台轮重值[daN]
+	std::wstring strAxle3RComLoadN;
+	// 四轴左轮复合台轮重值[daN]
+	std::wstring strAxle4LComLoadN;
+	// 四轴右轮复合台轮重值[daN]
+	std::wstring strAxle4RComLoadN;
+	// 五轴左轮复合台轮重值[daN]
+	std::wstring strAxle5LComLoadN;
+	// 五轴右轮复合台轮重值[daN]
+	std::wstring strAxle5RComLoadN;
+	// 六轴左轮复合台轮重值[daN]
+	std::wstring strAxle6LComLoadN;
+	// 六轴右轮复合台轮重值[daN]
+	std::wstring strAxle6RComLoadN;
+	// 一轴曲线,单位:kg(曲线数据存储格式:“[左轮重]#[右轮重]$[左轮重]#[右轮重]$…$”)
+	std::string strAxle1Curve;
+	// 二轴曲线,单位:kg
+	std::string strAxle2Curve;
+	// 三轴曲线,单位:kg
+	std::string strAxle3Curve;
+	// 四轴曲线,单位:kg
+	std::string strAxle4Curve;
+	// 五轴曲线,单位:kg
+	std::string strAxle5Curve;
+	// 六轴曲线,单位:kg
+	std::string strAxle6Curve;
+	// 是否使用动态轮重[kg](Dyn: 动态)
+	std::wstring strUseDynLoad;
+	// 整车轮重值[kg](Veh: Vehicle)
+	std::wstring strVehLoad;
+	// 整车轮重值[daN]
+	std::wstring strVehLoadN;
+	// 挂车轮重值[kg]
+	std::wstring strTrailerLoad;
+	// 挂车轮重值[daN]
+	std::wstring strTrailerLoadN;
+	// 列车轮重值[kg]
+	std::wstring strTrainLoad;
+	// 列车轮重值[daN]
+	std::wstring strTrainLoadN;
+	// 是否设备检测整备质量
+	std::wstring strIsEquDet_UM;
+	// 整备质量[kg]
+	std::wstring strUnladenMass;
+	// 整备质量判定(0-合格,1-不合格)
+	std::wstring strUnladenMassJudge;
+	// 牵引车整备质量[kg]
+	std::wstring strTractorUnladenMass;
+	// 列车整备质量[kg]
+	std::wstring strTrainUnladenMass;
+	// 和谐
+	std::wstring strHarmon;
+	// 备注
+	std::wstring strRemark;
+	// 保留1
+	std::wstring strReserved1;
+	// 保留2
+	std::wstring strReserved2;
+	// 保留3
+	std::wstring strReserved3;
+};
+
+#endif

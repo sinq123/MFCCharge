@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="第三方类">
+      <UniqueIdentifier>{313f81a7-a6d8-4fc8-bc61-cf1dc6d36566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="导出文件">
+      <UniqueIdentifier>{3d1a626b-01b8-4fa5-afb4-8cc81d93a8ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProDoc">
+      <UniqueIdentifier>{547b7de8-1171-4a6b-a41a-5e2e808310fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AES">
+      <UniqueIdentifier>{d5a9e32f-12e0-494d-a576-abb7327dc8ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NHLogAPI">
+      <UniqueIdentifier>{6d4514ba-b534-4f9f-a332-b0e58bd4f7bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NHXmlOperator">
+      <UniqueIdentifier>{a61a465a-d776-4ef5-a009-ad29c49b9fe5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NHXmlOperator\TinyXML">
+      <UniqueIdentifier>{fccf705c-c3a6-4ede-b80c-7a75bf15cfcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NHSQLServerDBO">
+      <UniqueIdentifier>{9d42372a-bd11-49a3-96a2-376843234cff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NHCommonAPI.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="IniFile.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="AES.cpp">
+      <Filter>AES</Filter>
+    </ClCompile>
+    <ClCompile Include="NHLogAPI.cpp">
+      <Filter>NHLogAPI</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinystr.cpp">
+      <Filter>NHXmlOperator\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxml.cpp">
+      <Filter>NHXmlOperator\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlerror.cpp">
+      <Filter>NHXmlOperator\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="TinyXML\tinyxmlparser.cpp">
+      <Filter>NHXmlOperator\TinyXML</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlReader.cpp">
+      <Filter>NHXmlOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlWriter.cpp">
+      <Filter>NHXmlOperator</Filter>
+    </ClCompile>
+    <ClCompile Include="NHSQLServerDBO.cpp">
+      <Filter>NHSQLServerDBO</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NHCommonAPI.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="NHWin32Lib.h">
+      <Filter>导出文件</Filter>
+    </ClInclude>
+    <ClInclude Include="IniFile.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AES.h">
+      <Filter>AES</Filter>
+    </ClInclude>
+    <ClInclude Include="kutfconv.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="NHLogAPI.h">
+      <Filter>NHLogAPI</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinystr.h">
+      <Filter>NHXmlOperator\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="TinyXML\tinyxml.h">
+      <Filter>NHXmlOperator\TinyXML</Filter>
+    </ClInclude>
+    <ClInclude Include="KPathParser.h">
+      <Filter>NHXmlOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlReader.h">
+      <Filter>NHXmlOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlWriter.h">
+      <Filter>NHXmlOperator</Filter>
+    </ClInclude>
+    <ClInclude Include="NHSQLServerDBO.h">
+      <Filter>NHSQLServerDBO</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="VersionInfo.txt">
+      <Filter>ProDoc</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+    <None Include="ProjectDescription.txt">
+      <Filter>ProDoc</Filter>
+    </None>
+    <None Include="msado60_Backcompat_i386.tlb">
+      <Filter>NHSQLServerDBO</Filter>
+    </None>
+  </ItemGroup>
+</Project>

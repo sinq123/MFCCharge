@@ -1,0 +1,246 @@
+/*
+* Copyright (c) 佛山市南华仪器股份有限公司
+* All rights reserved.
+*
+* 文件名称：VehModel.h
+* 文件标识：
+* 描述：车型信息表模型
+*
+* 版本：1.0
+* 日期：20xx-xx-xx
+* 作者：Cyx
+*
+*
+* 历史信息：
+*
+* 版本：1.0.0beta1
+* 日期：20xx-xx-xx
+* 作者：Cyx
+* 描述：正在开发
+*/
+
+
+#if !defined (NHMFDSERVERDBMODEL_VEHMODEL_H)
+#define NHMFDSERVERDBMODEL_VEHMODEL_H
+
+#include <string>
+
+struct SVehModel
+{
+	// 自动编号
+	std::wstring strAutoID;
+	// 车型序号
+	std::wstring strVehModelSN;
+	// 车辆类型代码
+	std::wstring strVehTypeCode;
+	// 车辆类型
+	std::wstring strVehType;
+	// 制造国
+	std::wstring strManufactureCountry;
+	// 制造厂家
+	std::wstring strManufacturer;
+	// 品牌
+	std::wstring strBrand;
+	// 型号
+	std::wstring strModel;
+	// 配置代号
+	std::wstring strConfigCode;
+	// 是否摩托车
+	std::wstring strIsMoto;
+	// 有无驾驶室
+	std::wstring strHasCab;
+	// 车身颜色代码
+	std::wstring strColorCode;
+	// 车身颜色
+	std::wstring strColor;
+	// 底盘型号
+	std::wstring strChassisModel;
+	// 发动机制造厂家
+	std::wstring strEngineManufacturer;
+	// 发动机型号
+	std::wstring strEngineModel;
+	// 发动机冲程数
+	std::wstring strEngineStroke;
+	// 排量[ml]
+	std::wstring strDisplacement;
+	// 额定功率[kW]
+	std::wstring strRatedPower;
+	// 额定扭矩转速[r/min]
+	std::wstring strRatedTorqueRev;
+	// 额定扭矩功率[kW]
+	std::wstring strRTP;
+	// 最大净功率[kW]
+	std::wstring strMaximumNetPower;
+	// 额定转速[r/min]
+	std::wstring strRatedRev;
+	// 汽缸数
+	std::wstring strCylinderNumber;
+	// 燃油泵型式
+	std::wstring strFuelPumpMode;
+	// 有无催化转化器
+	std::wstring strHasCatalyticConverter;
+	// 供油方式
+	std::wstring strOilSupMode;
+	// 进气方式
+	std::wstring strAirIntakeMode;
+	// 燃料类别代码1
+	std::wstring strFuelTypeCode;
+	// 燃料类别1
+	std::wstring strFuelType;
+	// 燃料规格1
+	std::wstring strFuelMark;
+	// 燃料类别代码2
+	std::wstring strFuelTypeCode2;
+	// 燃料类别2
+	std::wstring strFuelType2;
+	// 燃料规格2
+	std::wstring strFuelMark2;
+	// 燃料类别代码3
+	std::wstring strFuelTypeCode3;
+	// 燃料类别3
+	std::wstring strFuelType3;
+	// 燃料规格3
+	std::wstring strFuelMark3;
+	// 百公里油耗理想值[L/100km](Con：Consumption；下同)
+	std::wstring strFuelConValue;
+	// 总质量[kg]
+	std::wstring strMaximumTotalMass;
+	// 整备质量[kg]
+	std::wstring strUnladenMass;
+	// 核定载质量[kg]
+	std::wstring strRatedLoadingMass;
+	// 准牵引总质量[kg]
+	std::wstring strPermittedTowingMass;
+	// 核定载客
+	std::wstring strRatedPassengerCapacity;
+	// 驾驶室共乘
+	std::wstring strCabAltogetherRides;
+	// 前轮距[mm]
+	std::wstring strFrontTread;
+	// 后轮距[mm]
+	std::wstring strRearTread;
+	// 轴距[mm]
+	std::wstring strWheelbase;
+	// 轴数
+	std::wstring strAxleNumber;
+	// 驱动型式
+	std::wstring strDriveType;
+	// 驱动轴数
+	std::wstring strDriveAxleNumber;
+	// 驱动轴位(用英文逗号分隔,最后一项不用加英文逗号)
+	std::wstring strDriveAxle;
+	// 驱动轴空载质量[kg]
+	std::wstring strDriveAxleEmpMass;
+	// 双前轴
+	std::wstring strDBFrontAxle;
+	// 双转向轴(DB: double, Ste: Steering; 下同)
+	std::wstring strDBSteShaft;
+	// 双轴驱动
+	std::wstring strDBDrive;
+	// 前轴数
+	std::wstring strFrontAxleNumber;
+	// 转向轴数
+	std::wstring strSteShaftNumber;
+	// 驻车数
+	std::wstring strPBNumber;
+	// 驻车轴位(用英文逗号分隔,最后一项不用加英文逗号)
+	std::wstring strPBAxle;
+	// 并装轴数
+	std::wstring strCloseAxleNumber;
+	// 并装轴型式
+	std::wstring strCloseAxleType;
+	// 变速器型式
+	std::wstring strGearBoxType;
+	// 档位数
+	std::wstring strGearsNumber;
+	// 最高车速[km]
+	std::wstring strMaximumVelocity;
+	// 是否独立悬架(true-独立悬架,false-非独立悬架)
+	std::wstring strIsIndependentSuspension;
+	// 后轴钢板弹簧片数
+	std::wstring strRearAxleSpringPieces;
+	// 转向型式代码
+	std::wstring strSteeringTypeCode;
+	// 转向型式
+	std::wstring strSteeringType;
+	// 轮胎数
+	std::wstring strTyreNumber;
+	// 轮胎规格
+	std::wstring strTyreSpecification;
+	// 轮胎气压[mPa]
+	std::wstring strTyrePressure;
+	// 轮胎帘线排列(子午线、斜交线)
+	std::wstring strTyreCordArrange;
+	// 制动力源(气压制动,液压制动)
+	std::wstring strSBForceSource;
+	// 前照灯制（0-无,1-一灯,2-二灯,4-四灯）
+	std::wstring strHeadLightSystem;
+	// 远光能否单独调整(Ind :Individually;)
+	std::wstring strHLCanIndAdjusted;
+	// 栏板高度[mm]
+	std::wstring strBoxHeight;
+	// 车箱长度[mm]
+	std::wstring strCompartmentLength;
+	// 车箱宽度[mm]
+	std::wstring strCompartmentWidth;
+	// 整车高度[mm]
+	std::wstring strVehHeight;
+	// 整车长度[mm]
+	std::wstring strVehLength;
+	// 整车宽度[mm]
+	std::wstring strVehWidth;
+	// 外廓尺寸特征
+	std::wstring strDimFeature;
+	// 排气管数
+	std::wstring strExhaPipeNum;
+	// 牵引力控制系统(0-无,1-可摘除,2-不可摘除)
+	std::wstring strTCS;
+	// 是否载客车
+	std::wstring strIsPassengerVeh;
+	// 排放标准
+	std::wstring strEmiStandard;
+	// 车辆诊断系统(OBD)
+	std::wstring strOBD;
+	// 防抱制动系统(ABS)
+	std::wstring strABS;
+	// 额定扭矩[Nm]
+	std::wstring strRatedTorque;
+	// 额定扭矩车速[km/h]
+	std::wstring strRatedTorqueVelocity;
+	// 额定扭矩功率比[%]
+	std::wstring strRatedTorquePowerRto;
+	// 额定功率比[%]
+	std::wstring strRatedPowerRto;
+	// 车辆系列
+	std::wstring strVehSeries; 
+	// 左转向轮左转角[度]
+	std::wstring strLWheLSteAng; 
+	// 右转向轮左转角[度]
+	std::wstring strRWheLSteAng; 
+	// 左转向轮右转角[度]
+	std::wstring strLWheRSteAng; 
+	// 右转向轮右转角[度]
+	std::wstring strRWheRSteAng; 
+	// 客车类型等级
+	std::wstring strPasVehTypeClass;
+	// 货车车身型式
+	std::wstring strGooVehBodyType;
+	// 牵引车满载总质量[kg]
+	std::wstring strTtFullTotalMass;
+	// 满载等速50km/h油耗[L/100km]
+	std::wstring strFlCsFc50;
+	// 满载等速60km/h油耗[L/100km]
+	std::wstring strFlCsFc60;
+	// 最近更新时间(年月日时分秒)
+	std::wstring strUpdateTime;
+	// 备注
+	std::wstring strRemark;
+	// 保留1
+	std::wstring strReserved1;
+	// 保留2
+	std::wstring strReserved2;
+	// 保留3
+	std::wstring strReserved3;
+};
+
+#endif

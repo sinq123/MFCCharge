@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="导出文件">
+      <UniqueIdentifier>{386d8020-30a9-4cbb-b19a-442aca1c87ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="第三方类">
+      <UniqueIdentifier>{80a8fc0c-42cf-4e5e-8758-2cdd52f4f837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ProDoc">
+      <UniqueIdentifier>{9a85f2cd-91ea-4cb4-aa93-2837f82b2833}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NHLib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BtnST.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorListCtrl.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="DialogZoom.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageWnd.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoButton.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="Label.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="MathLabel.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="NumericEdit.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ScriptHeaderCtrl.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadeStatic.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ShadeTitle.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticEX.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="StdioFileEx.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ThemeHelperST.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="WinXPButtonST.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="XTOutlookBarEx.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="AMSEdit.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="FormViewZoom.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="CCheckSK.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="XMessageBox.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="SxGroupBox.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="XPGroupBox.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ComboBoxExt.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="ComboBoxExtList.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicExcel.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="GridCtrl.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="GridDropTarget.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleTip.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="InPlaceEdit.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+    <ClCompile Include="NHEdit.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NHLib.def">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="res\NHLib.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="ProjectDescription.txt">
+      <Filter>ProDoc</Filter>
+    </None>
+    <None Include="VersionInfo.txt">
+      <Filter>ProDoc</Filter>
+    </None>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NHLib.h">
+      <Filter>导出文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BtnST.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorListCtrl.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="DialogZoom.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageWnd.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoButton.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="Label.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="MathLabel.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="NHGDIPlusInit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="NumericEdit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ScriptHeaderCtrl.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadeStatic.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ShadeTitle.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleIni.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticEX.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="StdioFileEx.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ThemeHelperST.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="WinXPButtonST.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="XTOutlookBarEx.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="AMSEdit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="FormViewZoom.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="CCheckSK.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="XMessageBox.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="SxGroupBox.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="XPGroupBox.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboBoxExt.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="ComboBoxExtList.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicExcel.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="CellRange.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="GridCtrl.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="GridDropTarget.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleTip.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="InPlaceEdit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="MemDCEx.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="NHColorEdit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="NHEdit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="NHLib.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

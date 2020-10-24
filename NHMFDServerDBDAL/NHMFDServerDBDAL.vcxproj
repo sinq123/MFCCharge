@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{AC7B9F51-CDB9-4CE8-856B-62BE3241F803}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>NHMFDServerDBDAL</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>$(ProjectName)_D</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;NHMFDSERVERDBDAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;NHMFDSERVERDBDAL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ProjectDescription.txt" />
+    <None Include="ReadMe.txt" />
+    <None Include="VersionInfo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ASMData.h" />
+    <ClInclude Include="ASMDataService.h" />
+    <ClInclude Include="ASMProData.h" />
+    <ClInclude Include="ASMProDataService.h" />
+    <ClInclude Include="AxleLoadData.h" />
+    <ClInclude Include="AxleLoadDataService.h" />
+    <ClInclude Include="BrakeCurveData.h" />
+    <ClInclude Include="BrakeCurveDataService.h" />
+    <ClInclude Include="BrakeData.h" />
+    <ClInclude Include="BrakeDataService.h" />
+    <ClInclude Include="Charge.h" />
+    <ClInclude Include="ChargeService.h" />
+    <ClInclude Include="Charge_DetType.h" />
+    <ClInclude Include="Charge_DetTypeService.h" />
+    <ClInclude Include="Charge_Log_Record.h" />
+    <ClInclude Include="Charge_Log_RecordService.h" />
+    <ClInclude Include="DBVersion.h" />
+    <ClInclude Include="DBVersionService.h" />
+    <ClInclude Include="DemLog.h" />
+    <ClInclude Include="DemLogService.h" />
+    <ClInclude Include="DetAmount.h" />
+    <ClInclude Include="DetAmountService.h" />
+    <ClInclude Include="DetItem.h" />
+    <ClInclude Include="DetItemService.h" />
+    <ClInclude Include="DetLog.h" />
+    <ClInclude Include="DetLogService.h" />
+    <ClInclude Include="DetPeriod.h" />
+    <ClInclude Include="DetPeriodService.h" />
+    <ClInclude Include="DetPhoto.h" />
+    <ClInclude Include="DetPhotoService.h" />
+    <ClInclude Include="DetStandard.h" />
+    <ClInclude Include="DetStandardService.h" />
+    <ClInclude Include="DetStandard_MService.h" />
+    <ClInclude Include="DetStandard_M.h" />
+    <ClInclude Include="DetTimes.h" />
+    <ClInclude Include="DetTimesService.h" />
+    <ClInclude Include="DetType.h" />
+    <ClInclude Include="DetTypeService.h" />
+    <ClInclude Include="DimensionData.h" />
+    <ClInclude Include="DimensionDataService.h" />
+    <ClInclude Include="DISData.h" />
+    <ClInclude Include="DISDataService.h" />
+    <ClInclude Include="DISProData.h" />
+    <ClInclude Include="DISProDataService.h" />
+    <ClInclude Include="EmployeeInfo.h" />
+    <ClInclude Include="EmployeeInfoService.h" />
+    <ClInclude Include="Emp_Degree.h" />
+    <ClInclude Include="Emp_DegreeService.h" />
+    <ClInclude Include="Emp_Diploma.h" />
+    <ClInclude Include="Emp_DiplomaService.h" />
+    <ClInclude Include="Emp_Post.h" />
+    <ClInclude Include="Emp_PostService.h" />
+    <ClInclude Include="Emp_Role.h" />
+    <ClInclude Include="Emp_RoleService.h" />
+    <ClInclude Include="Emp_TechLevel.h" />
+    <ClInclude Include="Emp_TechLevelService.h" />
+    <ClInclude Include="Emp_TechTitle.h" />
+    <ClInclude Include="Emp_TechTitleService.h" />
+    <ClInclude Include="Emp_TrainingInfo.h" />
+    <ClInclude Include="Emp_TrainingInfoService.h" />
+    <ClInclude Include="FAOPAData.h" />
+    <ClInclude Include="FAOPADataService.h" />
+    <ClInclude Include="FASMOData.h" />
+    <ClInclude Include="FASMODataService.h" />
+    <ClInclude Include="Fee_Items.h" />
+    <ClInclude Include="Fee_ItemService.h" />
+    <ClInclude Include="GADataRecord.h" />
+    <ClInclude Include="GADataRecordService.h" />
+    <ClInclude Include="GADataUploadStatus.h" />
+    <ClInclude Include="GADataUploadStatusService.h" />
+    <ClInclude Include="GAPhotoUploadStatus.h" />
+    <ClInclude Include="GAPhotoUploadStatusService.h" />
+    <ClInclude Include="GAVideoRecord.h" />
+    <ClInclude Include="GAVideoRecordService.h" />
+    <ClInclude Include="HeadLightData.h" />
+    <ClInclude Include="HeadLightDataService.h" />
+    <ClInclude Include="HisLineInfo.h" />
+    <ClInclude Include="HisLineInfoService.h" />
+    <ClInclude Include="HisStationInfo.h" />
+    <ClInclude Include="HisStationInfoService.h" />
+    <ClInclude Include="HisVehInfo.h" />
+    <ClInclude Include="HisVehInfoService.h" />
+    <ClInclude Include="InsCom.h" />
+    <ClInclude Include="InsComService.h" />
+    <ClInclude Include="LineInfo.h" />
+    <ClInclude Include="LineInfoService.h" />
+    <ClInclude Include="Line_BKDetMode.h" />
+    <ClInclude Include="Line_BKDetModeService.h" />
+    <ClInclude Include="Line_ControlMode.h" />
+    <ClInclude Include="Line_ControlModeService.h" />
+    <ClInclude Include="Line_DVEDetMode.h" />
+    <ClInclude Include="Line_DVEDetModeService.h" />
+    <ClInclude Include="Line_EquStatus.h" />
+    <ClInclude Include="Line_EquStatusService.h" />
+    <ClInclude Include="Line_GVEDetMode.h" />
+    <ClInclude Include="Line_GVEDetModeService.h" />
+    <ClInclude Include="Line_HLDetMode.h" />
+    <ClInclude Include="Line_HLDetModeService.h" />
+    <ClInclude Include="Line_LineType.h" />
+    <ClInclude Include="Line_LineTypeService.h" />
+    <ClInclude Include="Line_PlatformBKMode.h" />
+    <ClInclude Include="Line_PlatformBKModeService.h" />
+    <ClInclude Include="Line_RollerBKEquMode1.h" />
+    <ClInclude Include="Line_RollerBKEquMode1Service.h" />
+    <ClInclude Include="Line_RollerBKEquMode2.h" />
+    <ClInclude Include="Line_RollerBKEquMode2Service.h" />
+    <ClInclude Include="LUGDOWNData.h" />
+    <ClInclude Include="LUGDOWNDataService.h" />
+    <ClInclude Include="LUGDOWNProData.h" />
+    <ClInclude Include="LUGDOWNProDataService.h" />
+    <ClInclude Include="MainCorp.h" />
+    <ClInclude Include="MainCorpService.h" />
+    <ClInclude Include="ManualData.h" />
+    <ClInclude Include="ManualDataService.h" />
+    <ClInclude Include="ManualData_MFD.h" />
+    <ClInclude Include="ManualData_MFDService.h" />
+    <ClInclude Include="ManualData_STD.h" />
+    <ClInclude Include="ManualData_STDService.h" />
+    <ClInclude Include="ManualDetItem.h" />
+    <ClInclude Include="ManualDetItemService.h" />
+    <ClInclude Include="Miscellaneous_Charges.h" />
+    <ClInclude Include="Miscellaneous_ChargesService.h" />
+    <ClInclude Include="NHMFDServerDBDAL.h" />
+    <ClInclude Include="NHMFDServerDBModel.h" />
+    <ClInclude Include="NHMFDServerDBService.h" />
+    <ClInclude Include="OtherData.h" />
+    <ClInclude Include="OtherDataService.h" />
+    <ClInclude Include="PowerData.h" />
+    <ClInclude Include="PublicationInfo.h" />
+    <ClInclude Include="PublicationInfoService.h" />
+    <ClInclude Include="Rating.h" />
+    <ClInclude Include="RatingService.h" />
+    <ClInclude Include="RoadData.h" />
+    <ClInclude Include="RPPData.h" />
+    <ClInclude Include="RunningParameter.h" />
+    <ClInclude Include="SpeakerData.h" />
+    <ClInclude Include="SpeakerDataService.h" />
+    <ClInclude Include="PowerDataService.h" />
+    <ClInclude Include="RoadDataService.h" />
+    <ClInclude Include="RPPDataService.h" />
+    <ClInclude Include="RunningParameterService.h" />
+    <ClInclude Include="SpeedometerData.h" />
+    <ClInclude Include="SpeedometerDataService.h" />
+    <ClInclude Include="StationInfo.h" />
+    <ClInclude Include="StationInfoService.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SteerabilityData.h" />
+    <ClInclude Include="SteerabilityDataService.h" />
+    <ClInclude Include="SuspensionData.h" />
+    <ClInclude Include="SuspensionDataService.h" />
+    <ClInclude Include="SystemLog.h" />
+    <ClInclude Include="SystemLogService.h" />
+    <ClInclude Include="T1.h" />
+    <ClInclude Include="T1Service.h" />
+    <ClInclude Include="T2.h" />
+    <ClInclude Include="T2Service.h" />
+    <ClInclude Include="targetver.h" />
+    <ClInclude Include="Toll_Operator.h" />
+    <ClInclude Include="Toll_OperatorService.h" />
+    <ClInclude Include="VehInfo.h" />
+    <ClInclude Include="VehInfoService.h" />
+    <ClInclude Include="VehModel.h" />
+    <ClInclude Include="VehModelService.h" />
+    <ClInclude Include="Veh_Address.h" />
+    <ClInclude Include="Veh_AddressService.h" />
+    <ClInclude Include="Veh_AirIntakeMode.h" />
+    <ClInclude Include="Veh_AirIntakeModeService.h" />
+    <ClInclude Include="Veh_Color.h" />
+    <ClInclude Include="Veh_ColorService.h" />
+    <ClInclude Include="Veh_DriveType.h" />
+    <ClInclude Include="Veh_DriveTypeService.h" />
+    <ClInclude Include="Veh_EmiStandard.h" />
+    <ClInclude Include="Veh_EmiStandardService.h" />
+    <ClInclude Include="Veh_EPSign.h" />
+    <ClInclude Include="Veh_EPSignService.h" />
+    <ClInclude Include="Veh_ExhaPipeNum.h" />
+    <ClInclude Include="Veh_ExhaPipeNumService.h" />
+    <ClInclude Include="Veh_FuelMark.h" />
+    <ClInclude Include="Veh_FuelMarkService.h" />
+    <ClInclude Include="Veh_FuelPumpMode.h" />
+    <ClInclude Include="Veh_FuelPumpModeService.h" />
+    <ClInclude Include="Veh_FuelType.h" />
+    <ClInclude Include="Veh_FuelTypeService.h" />
+    <ClInclude Include="Veh_GearBoxType.h" />
+    <ClInclude Include="Veh_GearBoxTypeService.h" />
+    <ClInclude Include="Veh_GearsNumber.h" />
+    <ClInclude Include="Veh_GearsNumberService.h" />
+    <ClInclude Include="Veh_OilSupMode.h" />
+    <ClInclude Include="Veh_OilSupModeService.h" />
+    <ClInclude Include="Veh_PlateType.h" />
+    <ClInclude Include="Veh_PlateTypeService.h" />
+    <ClInclude Include="Veh_SBForceSource.h" />
+    <ClInclude Include="Veh_SBForceSourceService.h" />
+    <ClInclude Include="Veh_SteeringType.h" />
+    <ClInclude Include="Veh_SteeringTypeService.h" />
+    <ClInclude Include="Veh_UseCharacter.h" />
+    <ClInclude Include="Veh_UseCharacterService.h" />
+    <ClInclude Include="Veh_UsePhase.h" />
+    <ClInclude Include="Veh_UsePhaseService.h" />
+    <ClInclude Include="Veh_VehClass.h" />
+    <ClInclude Include="Veh_VehClassService.h" />
+    <ClInclude Include="Veh_VehStatus.h" />
+    <ClInclude Include="Veh_VehStatusService.h" />
+    <ClInclude Include="Veh_VehType.h" />
+    <ClInclude Include="Veh_VehTypeService.h" />
+    <ClInclude Include="VMASData.h" />
+    <ClInclude Include="VMASDataService.h" />
+    <ClInclude Include="VMASProData.h" />
+    <ClInclude Include="VMASProDataService.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ASMDataService.cpp" />
+    <ClCompile Include="ASMProDataService.cpp" />
+    <ClCompile Include="AxleLoadDataService.cpp" />
+    <ClCompile Include="BrakeCurveDataService.cpp" />
+    <ClCompile Include="BrakeDataService.cpp" />
+    <ClCompile Include="ChargeService.cpp" />
+    <ClCompile Include="Charge_DetTypeService.cpp" />
+    <ClCompile Include="Charge_Log_RecordService.cpp" />
+    <ClCompile Include="DBVersionService.cpp" />
+    <ClCompile Include="DemLogService.cpp" />
+    <ClCompile Include="DetAmountService.cpp" />
+    <ClCompile Include="DetItemService.cpp" />
+    <ClCompile Include="DetLogService.cpp" />
+    <ClCompile Include="DetPeriodService.cpp" />
+    <ClCompile Include="DetPhotoService.cpp" />
+    <ClCompile Include="DetStandardService.cpp" />
+    <ClCompile Include="DetStandard_MService.cpp" />
+    <ClCompile Include="DetTimesService.cpp" />
+    <ClCompile Include="DetTypeService.cpp" />
+    <ClCompile Include="DimensionDataService.cpp" />
+    <ClCompile Include="DISDataService.cpp" />
+    <ClCompile Include="DISProDataService.cpp" />
+    <ClCompile Include="EmployeeInfoService.cpp" />
+    <ClCompile Include="Emp_DegreeService.cpp" />
+    <ClCompile Include="Emp_DiplomaService.cpp" />
+    <ClCompile Include="Emp_PostService.cpp" />
+    <ClCompile Include="Emp_RoleService.cpp" />
+    <ClCompile Include="Emp_TechLevelService.cpp" />
+    <ClCompile Include="Emp_TechTitleService.cpp" />
+    <ClCompile Include="Emp_TrainingInfoService.cpp" />
+    <ClCompile Include="FAOPADataService.cpp" />
+    <ClCompile Include="FASMODataService.cpp" />
+    <ClCompile Include="Fee_ItemService.cpp" />
+    <ClCompile Include="GADataRecordService.cpp" />
+    <ClCompile Include="GADataUploadStatusService.cpp" />
+    <ClCompile Include="GAPhotoUploadStatusService.cpp" />
+    <ClCompile Include="GAVideoRecordService.cpp" />
+    <ClCompile Include="HeadLightDataService.cpp" />
+    <ClCompile Include="HisLineInfoService.cpp" />
+    <ClCompile Include="HisStationInfoService.cpp" />
+    <ClCompile Include="HisVehInfoService.cpp" />
+    <ClCompile Include="InsComService.cpp" />
+    <ClCompile Include="LineInfoService.cpp" />
+    <ClCompile Include="Line_BKDetModeService.cpp" />
+    <ClCompile Include="Line_ControlModeService.cpp" />
+    <ClCompile Include="Line_DVEDetModeService.cpp" />
+    <ClCompile Include="Line_EquStatusService.cpp" />
+    <ClCompile Include="Line_GVEDetModeService.cpp" />
+    <ClCompile Include="Line_HLDetModeService.cpp" />
+    <ClCompile Include="Line_LineTypeService.cpp" />
+    <ClCompile Include="Line_PlatformBKModeService.cpp" />
+    <ClCompile Include="Line_RollerBKEquMode1Service.cpp" />
+    <ClCompile Include="Line_RollerBKEquMode2Service.cpp" />
+    <ClCompile Include="LUGDOWNDataService.cpp" />
+    <ClCompile Include="LUGDOWNProDataService.cpp" />
+    <ClCompile Include="MainCorpService.cpp" />
+    <ClCompile Include="ManualDataService.cpp" />
+    <ClCompile Include="ManualData_MFDService.cpp" />
+    <ClCompile Include="ManualData_STDService.cpp" />
+    <ClCompile Include="ManualDetItemService.cpp" />
+    <ClCompile Include="Miscellaneous_ChargesService.cpp" />
+    <ClCompile Include="NHMFDServerDBDAL.cpp" />
+    <ClCompile Include="NHMFDServerDBService.cpp" />
+    <ClCompile Include="OtherDataService.cpp" />
+    <ClCompile Include="PublicationInfoService.cpp" />
+    <ClCompile Include="RatingService.cpp" />
+    <ClCompile Include="SpeakerDataService.cpp" />
+    <ClCompile Include="PowerDataService.cpp" />
+    <ClCompile Include="RoadDataService.cpp" />
+    <ClCompile Include="RPPDataService.cpp" />
+    <ClCompile Include="RunningParameterService.cpp" />
+    <ClCompile Include="SpeedometerDataService.cpp" />
+    <ClCompile Include="StationInfoService.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="SteerabilityDataService.cpp" />
+    <ClCompile Include="SuspensionDataService.cpp" />
+    <ClCompile Include="SystemLogService.cpp" />
+    <ClCompile Include="T1Service.cpp" />
+    <ClCompile Include="T2Service.cpp" />
+    <ClCompile Include="Toll_OperatorService.cpp" />
+    <ClCompile Include="VehInfoService.cpp" />
+    <ClCompile Include="VehModelService.cpp" />
+    <ClCompile Include="Veh_AddressService.cpp" />
+    <ClCompile Include="Veh_AirIntakeModeService.cpp" />
+    <ClCompile Include="Veh_ColorService.cpp" />
+    <ClCompile Include="Veh_DriveTypeService.cpp" />
+    <ClCompile Include="Veh_EmiStandardService.cpp" />
+    <ClCompile Include="Veh_EPSignService.cpp" />
+    <ClCompile Include="Veh_ExhaPipeNumService.cpp" />
+    <ClCompile Include="Veh_FuelMarkService.cpp" />
+    <ClCompile Include="Veh_FuelPumpModeService.cpp" />
+    <ClCompile Include="Veh_FuelTypeService.cpp" />
+    <ClCompile Include="Veh_GearBoxTypeService.cpp" />
+    <ClCompile Include="Veh_GearsNumberService.cpp" />
+    <ClCompile Include="Veh_OilSupModeService.cpp" />
+    <ClCompile Include="Veh_PlateTypeService.cpp" />
+    <ClCompile Include="Veh_SBForceSourceService.cpp" />
+    <ClCompile Include="Veh_SteeringTypeService.cpp" />
+    <ClCompile Include="Veh_UseCharacterService.cpp" />
+    <ClCompile Include="Veh_UsePhaseService.cpp" />
+    <ClCompile Include="Veh_VehClassService.cpp" />
+    <ClCompile Include="Veh_VehStatusService.cpp" />
+    <ClCompile Include="Veh_VehTypeService.cpp" />
+    <ClCompile Include="VMASDataService.cpp" />
+    <ClCompile Include="VMASProDataService.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

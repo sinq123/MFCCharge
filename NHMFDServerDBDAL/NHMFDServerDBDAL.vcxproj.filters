@@ -1,0 +1,984 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ProDoc">
+      <UniqueIdentifier>{4864e773-ab90-4dbb-ad1b-3463ba73733a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Export">
+      <UniqueIdentifier>{b4d2a500-40e6-49e6-a38c-1fa58117f955}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DAL">
+      <UniqueIdentifier>{7ef0d121-8d38-42aa-aa1e-d369c829c111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{ab1ec31f-6ac6-4aa5-9680-408aef694676}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="ProjectDescription.txt">
+      <Filter>ProDoc</Filter>
+    </None>
+    <None Include="VersionInfo.txt">
+      <Filter>ProDoc</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NHMFDServerDBDAL.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="ASMDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ASMProDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="AxleLoadDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="BrakeCurveDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="BrakeDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DBVersionService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DemLogService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetAmountService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetItemService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetLogService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetPeriodService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetPhotoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetStandardService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetTimesService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DISDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_DegreeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_DiplomaService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_PostService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_RoleService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_TechLevelService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_TechTitleService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_TrainingInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="EmployeeInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="FAOPADataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="FASMODataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadLightDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="HisLineInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="HisStationInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_BKDetModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_ControlModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_DVEDetModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_EquStatusService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_GVEDetModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_HLDetModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_LineTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_PlatformBKModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_RollerBKEquMode1Service.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_RollerBKEquMode2Service.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="LineInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualDetItemService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RPPDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningParameterService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeedometerDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="StationInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="SteerabilityDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="SuspensionDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemLogService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_AirIntakeModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_ColorService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_DriveTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_EmiStandardService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_EPSignService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_ExhaPipeNumService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_FuelMarkService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_FuelPumpModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_FuelTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_GearBoxTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_GearsNumberService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_OilSupModeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_PlateTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_SBForceSourceService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_SteeringTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_UseCharacterService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_UsePhaseService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_VehStatusService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_VehTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="NHMFDServerDBService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="VehModelService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="VehInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="HisVehInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeakerDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RatingService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCorpService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="T1Service.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="T2Service.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DimensionDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualData_STDService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="GADataUploadStatusService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="GAPhotoUploadStatusService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="GAVideoRecordService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_VehClassService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="GADataRecordService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="InsComService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ASMData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ASMProData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="AxleLoadData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="BrakeCurveData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="BrakeData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DBVersion.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DemLog.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetAmount.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetItem.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetLog.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetPeriod.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetPhoto.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetStandard.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetTimes.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DimensionData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DISData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_Degree.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_Diploma.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_Post.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_Role.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_TechLevel.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_TechTitle.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Emp_TrainingInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="EmployeeInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FAOPAData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="FASMOData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GADataRecord.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GADataUploadStatus.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GAPhotoUploadStatus.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GAVideoRecord.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="HeadLightData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="HisLineInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="HisStationInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="HisVehInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="InsCom.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_BKDetMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_ControlMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_DVEDetMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_EquStatus.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_GVEDetMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_HLDetMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_LineType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_PlatformBKMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_RollerBKEquMode1.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Line_RollerBKEquMode2.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="LineInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="MainCorp.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualData_STD.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualDetItem.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="OtherData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Rating.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RoadData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RPPData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningParameter.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeakerData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeedometerData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="StationInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SteerabilityData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SuspensionData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemLog.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="T1.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="T2.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_AirIntakeMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_Color.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_DriveType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_EmiStandard.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_EPSign.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_ExhaPipeNum.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_FuelMark.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_FuelPumpMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_FuelType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_GearBoxType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_GearsNumber.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_OilSupMode.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_PlateType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_SBForceSource.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_SteeringType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_UseCharacter.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_UsePhase.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_VehClass.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_VehStatus.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_VehType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="VehInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="VehModel.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="NHMFDServerDBModel.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="DISProData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DISProDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualData_MFD.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ManualData_MFDService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="LUGDOWNData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="LUGDOWNProData.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="LUGDOWNDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="LUGDOWNProDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="VMASData.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="VMASDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="VMASProData.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="VMASProDataService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="DetStandard_M.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DetStandard_MService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_Address.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Veh_AddressService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicationInfo.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="PublicationInfoService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Charge.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Fee_Items.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Toll_Operator.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Toll_OperatorService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Fee_ItemService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Miscellaneous_Charges.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Miscellaneous_ChargesService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Charge_Log_Record.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Charge_Log_RecordService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Charge_DetType.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Charge_DetTypeService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NHMFDServerDBDAL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ASMDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ASMProDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="AxleLoadDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="BrakeCurveDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="BrakeDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DBVersionService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DemLogService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetAmountService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetItemService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetLogService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetPeriodService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetPhotoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetStandardService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetTimesService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DISDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_DegreeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_DiplomaService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_PostService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_RoleService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_TechLevelService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_TechTitleService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Emp_TrainingInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="EmployeeInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="FAOPADataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="FASMODataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="HeadLightDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="HisLineInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="HisStationInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_BKDetModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_ControlModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_DVEDetModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_EquStatusService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_GVEDetModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_HLDetModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_LineTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_PlatformBKModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_RollerBKEquMode1Service.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Line_RollerBKEquMode2Service.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="LineInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualDetItemService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RoadDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RPPDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningParameterService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeedometerDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="StationInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="SteerabilityDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="SuspensionDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="SystemLogService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_AirIntakeModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_ColorService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_DriveTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_EmiStandardService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_EPSignService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_ExhaPipeNumService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_FuelMarkService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_FuelPumpModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_FuelTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_GearBoxTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_GearsNumberService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_OilSupModeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_PlateTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_SBForceSourceService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_SteeringTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_UseCharacterService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_UsePhaseService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_VehStatusService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_VehTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="NHMFDServerDBService.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="VehModelService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="VehInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="HisVehInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeakerDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="OtherDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RatingService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="MainCorpService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="T1Service.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="T2Service.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DimensionDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualData_STDService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="GADataUploadStatusService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="GAPhotoUploadStatusService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="GAVideoRecordService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_VehClassService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="GADataRecordService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="InsComService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DISProDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ManualData_MFDService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="LUGDOWNDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="LUGDOWNProDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="VMASDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="VMASProDataService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="DetStandard_MService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Veh_AddressService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="PublicationInfoService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Toll_OperatorService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Fee_ItemService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Miscellaneous_ChargesService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Charge_Log_RecordService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Charge_DetTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

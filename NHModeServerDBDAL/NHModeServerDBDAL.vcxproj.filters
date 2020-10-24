@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Export">
+      <UniqueIdentifier>{5c85c534-aebc-4e06-90cd-d0157652004f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{ef6ede18-fa14-43fc-8cce-c3e56408faa2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DAL">
+      <UniqueIdentifier>{68fefbba-de61-48ab-9e55-ecd3a1bafdf3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="NHModeServerDBModel.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="NHModeServerDBDAL.h">
+      <Filter>Export</Filter>
+    </ClInclude>
+    <ClInclude Include="NHModeServerDBService.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfASM.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfASM_Zip.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfDIS.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfDIS_Zip.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfVMAS.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfVMAS_Zip.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLog.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfASM_ZipService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfASMService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfDIS_ZipService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfDISService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfVMAS_ZipService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="RealTimeDataOfVMASService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfASM.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfDIS.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfFSUNHT.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfFSUYD.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfLUGDOWN.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfVMAS.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfASMService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfDISService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfFSUNHTService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfFSUYDService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfLUGDOWNService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfVMASService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLogService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfOBD.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultOfOBDService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NHModeServerDBDAL.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="NHModeServerDBService.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RealTimeDataOfASM_ZipService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RealTimeDataOfASMService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RealTimeDataOfDIS_ZipService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RealTimeDataOfDISService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RealTimeDataOfVMAS_ZipService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="RealTimeDataOfVMASService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfASMService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfDISService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfFSUNHTService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfFSUYDService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfLUGDOWNService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfVMASService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="TestLogService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultOfOBDService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

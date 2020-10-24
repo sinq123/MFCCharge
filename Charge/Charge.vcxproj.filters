@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="第三方">
+      <UniqueIdentifier>{47201a7f-7a3a-4d0e-a993-c1adc5caede4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="收费Dlg">
+      <UniqueIdentifier>{1ac4e5d8-f834-44e2-a215-466a8adbae25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="查询统计">
+      <UniqueIdentifier>{ba0468bd-5250-4903-88db-b6e92777446a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="res\Charge.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Charge.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\curve_32x32.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\print_32x32.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\save_32x32.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Charge.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolTipListCtrl.h">
+      <Filter>第三方</Filter>
+    </ClInclude>
+    <ClInclude Include="TollWindow.h">
+      <Filter>收费Dlg</Filter>
+    </ClInclude>
+    <ClInclude Include="VehCountStatDlg.h">
+      <Filter>查询统计</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Charge.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolTipListCtrl.cpp">
+      <Filter>第三方</Filter>
+    </ClCompile>
+    <ClCompile Include="TollWindow.cpp">
+      <Filter>收费Dlg</Filter>
+    </ClCompile>
+    <ClCompile Include="VehCountStatDlg.cpp">
+      <Filter>查询统计</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Charge.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

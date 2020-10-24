@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--系统运行参数配置，请勿随意修改，以免造成系统运行异常-->
+
+<Station Number="嘉德检测站">
+  <Line Number="检测线1">
+    <!--检测项目，1：排放检测，2：车速表检测，3：人工检测，4：前照灯检测，5：侧滑检测，6：轴重检测，7：制动检测，8：功率检测，9：声级检测，10：转角检测，11：悬架检测，12： 轮偏检测 -->
+    <Position Number="线1工位1" IP="192.168.168.101" Port="10012">
+      <DetectItem Code="3"/>
+      <DetectItem Code="4"/>
+      <DetectItem Code="5"/>
+    </Position>
+    <Position Number="线1工位2" IP="192.168.168.102" Port="10012">
+      
+      <DetectItem Code="6"/>   
+      <DetectItem Code="7"/>
+      <DetectItem Code="2"/>
+    </Position>
+  </Line>
+</Station>

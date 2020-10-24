@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="View">
+      <UniqueIdentifier>{2c0d5e73-d2f7-46d1-b6a0-23c6cc86e17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\修改密码">
+      <UniqueIdentifier>{d6171cfc-c9ce-48ed-84a2-f26a54377d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\收费">
+      <UniqueIdentifier>{16d9e192-1a61-4d16-a4e4-6cc1cf4a0de6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\登录">
+      <UniqueIdentifier>{aaf13db1-f04c-42d0-a6b6-9b0822c5b8ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\管理">
+      <UniqueIdentifier>{56ab156a-83ec-4a01-a1c8-6d389fcdae58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\管理\人员信息">
+      <UniqueIdentifier>{00c55afe-b4e1-4a76-b893-e875db21f69f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\系统">
+      <UniqueIdentifier>{bf88972f-4fda-4cdb-9666-dd5108d2ba7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\系统\收费维护">
+      <UniqueIdentifier>{c8dce328-95b9-4f93-92b9-fd39be99c947}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="第三方库">
+      <UniqueIdentifier>{b3ca98d0-2cbf-4c2e-b09b-0c06aa8be071}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\收费\收费窗口">
+      <UniqueIdentifier>{9a7dbd0f-0e29-4ec1-97df-24953341411b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\系统\收费维护\收费">
+      <UniqueIdentifier>{99981ef1-282b-4f15-ae70-2169c173ddce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\系统\收费维护\杂项">
+      <UniqueIdentifier>{e0d3d3fe-7da2-4a14-a12b-4849b56f63c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\统计">
+      <UniqueIdentifier>{20ceebbf-c1b1-43c8-8986-ea02fa2a66ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\收费\收费日志查询">
+      <UniqueIdentifier>{fd0e0cb1-199d-40c4-b96c-40509a8fd26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\统计\收费统计">
+      <UniqueIdentifier>{c9448c34-dacb-45ba-9ec7-ecc3944e0de5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\统计\收费统计表格">
+      <UniqueIdentifier>{dd5e3baf-0bed-4ab5-881b-a1c3aec36e7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\系统\收费维护\检测项目">
+      <UniqueIdentifier>{acd201a7-a1ce-4182-86c9-b01eb6055b75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\统计\收费统计2.0">
+      <UniqueIdentifier>{cef745e8-c05a-4ac7-b40a-41f85c1b96ef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="UserImages.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\SMCIS.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\SMCISDoc.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\SMCIS.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Toolbar.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Toolbar256.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\BitmapTitle.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\info.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\MainFrame.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\password.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\user.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\ChargeInfoView.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\magnifier_32x32.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\next.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\previous.ico">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SMCIS.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ChildFrm.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SMCISDoc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SMCISView.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LoginDlg.h">
+      <Filter>View\登录</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangePasswordDlg.h">
+      <Filter>View\修改密码</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeInfoView.h">
+      <Filter>View\收费</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeInfoDoc.h">
+      <Filter>View\收费</Filter>
+    </ClInclude>
+    <ClInclude Include="StaffManagementViem.h">
+      <Filter>View\管理\人员信息</Filter>
+    </ClInclude>
+    <ClInclude Include="StaffManagementDoc.h">
+      <Filter>View\管理\人员信息</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeMaintenanceView.h">
+      <Filter>View\系统\收费维护</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeMaintenanceDoc.h">
+      <Filter>View\系统\收费维护</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolTipListCtrl.h">
+      <Filter>第三方库</Filter>
+    </ClInclude>
+    <ClInclude Include="TollWindowDlg.h">
+      <Filter>View\收费\收费窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeMaintenanceDlg.h">
+      <Filter>View\系统\收费维护\收费</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscellaneousChargesDlg.h">
+      <Filter>View\系统\收费维护\杂项</Filter>
+    </ClInclude>
+    <ClInclude Include="MiscellaneousTollWindowDlg.h">
+      <Filter>View\收费\收费窗口</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeLogMgntView.h">
+      <Filter>View\收费\收费日志查询</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeLogMgntDoc.h">
+      <Filter>View\收费\收费日志查询</Filter>
+    </ClInclude>
+    <ClInclude Include="DetCountStatView.h">
+      <Filter>View\统计\收费统计</Filter>
+    </ClInclude>
+    <ClInclude Include="FeeTablesView.h">
+      <Filter>View\统计\收费统计表格</Filter>
+    </ClInclude>
+    <ClInclude Include="FeeTablesDoc.h">
+      <Filter>View\统计\收费统计表格</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeDetTypeDlg.h">
+      <Filter>View\系统\收费维护\检测项目</Filter>
+    </ClInclude>
+    <ClInclude Include="DetCountStatView2.h">
+      <Filter>View\统计\收费统计2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="DetCountStatDoc.h">
+      <Filter>View\统计\收费统计</Filter>
+    </ClInclude>
+    <ClInclude Include="DetCountStatDoc2.h">
+      <Filter>View\统计\收费统计2.0</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SMCIS.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ChildFrm.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SMCISDoc.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SMCISView.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LoginDlg.cpp">
+      <Filter>View\登录</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeInfoView.cpp">
+      <Filter>View\收费</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangePasswordDlg.cpp">
+      <Filter>View\修改密码</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeInfoDoc.cpp">
+      <Filter>View\收费</Filter>
+    </ClCompile>
+    <ClCompile Include="StaffManagementViem.cpp">
+      <Filter>View\管理\人员信息</Filter>
+    </ClCompile>
+    <ClCompile Include="StaffManagementDoc.cpp">
+      <Filter>View\管理\人员信息</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeMaintenanceView.cpp">
+      <Filter>View\系统\收费维护</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeMaintenanceDoc.cpp">
+      <Filter>View\系统\收费维护</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolTipListCtrl.cpp">
+      <Filter>第三方库</Filter>
+    </ClCompile>
+    <ClCompile Include="TollWindowDlg.cpp">
+      <Filter>View\收费\收费窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeMaintenanceDlg.cpp">
+      <Filter>View\系统\收费维护\收费</Filter>
+    </ClCompile>
+    <ClCompile Include="MiscellaneousChargesDlg.cpp">
+      <Filter>View\系统\收费维护\杂项</Filter>
+    </ClCompile>
+    <ClCompile Include="MiscellaneousTollWindowDlg.cpp">
+      <Filter>View\收费\收费窗口</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeLogMgntView.cpp">
+      <Filter>View\收费\收费日志查询</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeLogMgntDoc.cpp">
+      <Filter>View\收费\收费日志查询</Filter>
+    </ClCompile>
+    <ClCompile Include="DetCountStatView.cpp">
+      <Filter>View\统计\收费统计</Filter>
+    </ClCompile>
+    <ClCompile Include="FeeTablesView.cpp">
+      <Filter>View\统计\收费统计表格</Filter>
+    </ClCompile>
+    <ClCompile Include="FeeTablesDoc.cpp">
+      <Filter>View\统计\收费统计表格</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeDetTypeDlg.cpp">
+      <Filter>View\系统\收费维护\检测项目</Filter>
+    </ClCompile>
+    <ClCompile Include="DetCountStatView2.cpp">
+      <Filter>View\统计\收费统计2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="DetCountStatDoc.cpp">
+      <Filter>View\统计\收费统计</Filter>
+    </ClCompile>
+    <ClCompile Include="DetCountStatDoc2.cpp">
+      <Filter>View\统计\收费统计2.0</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SMCIS.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
