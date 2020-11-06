@@ -124,5 +124,7 @@
 #include "Miscellaneous_Charges.h"
 #include "Charge_Log_Record.h"
 #include "Charge_DetType.h"
+#include "Payee_Maintenance.h"
+#include "Bill_Of_Arrears.h"
 
 #endif

@@ -35,6 +35,9 @@
 #include "DetCountStatDoc2.h"
 #include "DetCountStatView2.h"
 
+#include "BookkeepingCollectionDoc.h"
+#include "BookkeepingCollectionView.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -254,6 +257,14 @@ BOOL CSMCISApp::InitInstance()
 	if (!m_pDetCountStatView2)
 		return FALSE;
 	AddDocTemplate(m_pDetCountStatView2);
+
+	m_pBookkeepingCollectionView = new CMultiDocTemplate(nMenuID,
+		RUNTIME_CLASS(CBookkeepingCollectionDoc),
+		RUNTIME_CLASS(CChildFrame), // 自定义 MDI 子框架
+		RUNTIME_CLASS(CBookkeepingCollectionView));
+	if (!m_pBookkeepingCollectionView)
+		return FALSE;
+	AddDocTemplate(m_pBookkeepingCollectionView);
 
 	// 禁止WIN7多视图缩略图（preview）功能
 	EnableTaskbarInteraction(FALSE);

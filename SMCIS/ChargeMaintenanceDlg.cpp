@@ -368,6 +368,8 @@ void CChargeMaintenanceDlg::InitCtrl()
 	m_btnDataMod.SetFlat(FALSE);
 
 	m_btnDataDel.SetFlat(FALSE);
+
+	m_edAmountOfCharge.AllowNegative();
 }
 
 void CChargeMaintenanceDlg::InitDetType(void)

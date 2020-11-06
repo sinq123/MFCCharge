@@ -67,6 +67,12 @@
     <Filter Include="View\统计\收费统计2.0">
       <UniqueIdentifier>{cef745e8-c05a-4ac7-b40a-41f85c1b96ef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="View\系统\收费维护\单位维护">
+      <UniqueIdentifier>{e8ead43a-a120-4a6e-b62e-6ea7d1984872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="View\收费\欠费单位">
+      <UniqueIdentifier>{7fb5c909-83c8-4c21-90f8-0b82db05cfe4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
@@ -113,6 +119,15 @@
       <Filter>资源文件</Filter>
     </None>
     <None Include="res\previous.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\icon1.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\CheckBoxOff.ico">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\CheckBoxOn.ico">
       <Filter>资源文件</Filter>
     </None>
   </ItemGroup>
@@ -207,6 +222,15 @@
     <ClInclude Include="DetCountStatDoc2.h">
       <Filter>View\统计\收费统计2.0</Filter>
     </ClInclude>
+    <ClInclude Include="PayeeMaintenanceDlg.h">
+      <Filter>View\系统\收费维护\单位维护</Filter>
+    </ClInclude>
+    <ClInclude Include="BookkeepingCollectionView.h">
+      <Filter>View\收费\欠费单位</Filter>
+    </ClInclude>
+    <ClInclude Include="BookkeepingCollectionDoc.h">
+      <Filter>View\收费\欠费单位</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SMCIS.cpp">
@@ -292,6 +316,15 @@
     </ClCompile>
     <ClCompile Include="DetCountStatDoc2.cpp">
       <Filter>View\统计\收费统计2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="PayeeMaintenanceDlg.cpp">
+      <Filter>View\系统\收费维护\单位维护</Filter>
+    </ClCompile>
+    <ClCompile Include="BookkeepingCollectionView.cpp">
+      <Filter>View\收费\欠费单位</Filter>
+    </ClCompile>
+    <ClCompile Include="BookkeepingCollectionDoc.cpp">
+      <Filter>View\收费\欠费单位</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -285,17 +285,19 @@ void CChargeInfoView::OnBnClickedBtnCharges()
 	Dlg.m_strDetType = strDetType;
 	if (IDOK == Dlg.DoModal())
 	{
-		CString strChargeItem, strCharge, strWhy;
+		CString strChargeItem, strCharge, strWhy, strIsArrears, strUnitName;
 		strChargeItem = Dlg.m_strChargeItem;
 		strCharge = Dlg.m_strCharge;
 		strWhy = Dlg.m_strWhy;
+		strIsArrears = Dlg.m_strIsArrears;
+		strUnitName = Dlg.m_strUnitName;
 
 		CString strTemp;
 		CString strMsg;
 		// 号牌号码
 		strTemp = m_lstDetBsnNoCharge.GetItemText(nIndex, 2);
 		strMsg.AppendFormat(L"车牌：%s", strTemp);
-		if (SaveToCharge(strChargeItem, strCharge, strWhy))
+		if (SaveToCharge(strChargeItem, strCharge, strWhy, strIsArrears, strUnitName))
 		{
 			strMsg.AppendFormat(L"保存收费记录成功,");
 
@@ -327,7 +329,21 @@ void CChargeInfoView::OnBnClickedBtnCharges()
 			strMsg.AppendFormat(L"保存收费记录失败");
 		}
 
-		PrintLog(strMsg);
+		//PrintLog(strMsg);
+
+		if (strIsArrears == L"1")
+		{
+			if (SaveArrearsToDB(strUnitName, strCharge))
+			{
+				strMsg.AppendFormat(L",保存欠费记录成功");
+			}
+			else
+			{
+				strMsg.AppendFormat(L",保存欠费记录失败");
+			}
+
+			PrintLog(strMsg);
+		}
 	}
 	// 操作后置为未选择
 	m_lstDetBsnNoCharge.SetSelectionMark(-1);
@@ -1257,7 +1273,7 @@ void CChargeInfoView::ChargeUpdateDetBsnList(void)
 }
 
 
-bool CChargeInfoView::SaveToCharge(const CString& strChargeItem, const CString& strCharge, const CString& strWhy)
+bool CChargeInfoView::SaveToCharge(const CString& strChargeItem, const CString& strCharge, const CString& strWhy, const CString& strIsArrears, const CString& strUnitName)
 {
 
 	const int nIndex = m_lstDetBsnNoCharge.GetSelectionMark();
@@ -1314,6 +1330,15 @@ bool CChargeInfoView::SaveToCharge(const CString& strChargeItem, const CString& 
 	{
 		sCharge.strOperationalOfReason = strWhy.GetString();
 	}
+
+	if (!strIsArrears.IsEmpty())
+	{
+		sCharge.strIsArrears = strIsArrears.GetString();
+		sCharge.strUnitName = strUnitName.GetString();
+		// 欠款记账时，收费金额设置为零
+		sCharge.strAmountOfCharges = L"0";
+	}
+
 	if (0xFFFFFFFF == CChargeService::SetCharge(theApp.m_pConnection, sCharge))
 	{
 		MessageBox(L"保存收费金额失败", DLG_CAPTION);
@@ -1605,4 +1630,52 @@ bool CChargeInfoView::VerifyEmpPerm(const SToll_Operator& sToll_Operator)
 	{
 		return false;
 	}
+}
+
+
+bool CChargeInfoView::SaveArrearsToDB(const CString& strUnitName, const CString& strCharge)
+{
+
+	const int nIndex = m_lstDetBsnNoCharge.GetSelectionMark();
+
+	if (nIndex == -1)
+	{
+		return false;
+	}
+
+	SBillOfArrears sBillOfArrears;
+
+	// 先获取之前的数据
+	CString strSql;
+	strSql.Format(L"SELECT * FROM Bill_Of_Arrears WHERE Unit_Name = '%s'", strUnitName);
+
+	CBillOfArrearsService::GetBillOfArrears(theApp.m_pConnection, strSql, sBillOfArrears);
+
+	// 总未收取金额
+	float fOutstanding_Amount = _wtof(sBillOfArrears.strOutstanding_Amount.c_str()) + _wtof(strCharge);
+	// 总以收取金额
+	float fAmount_Received = _wtof(sBillOfArrears.strAmount_Received.c_str());
+	// 总金额
+	float fTotal_Amount = fOutstanding_Amount + fAmount_Received;
+
+	CString strTemp;
+	sBillOfArrears.strUnit_Name = strUnitName.GetString();
+	strTemp.Format(L"%.4f", fOutstanding_Amount);
+	sBillOfArrears.strOutstanding_Amount = strTemp.GetString();
+	strTemp.Format(L"%.4f", fAmount_Received);
+	sBillOfArrears.strAmount_Received = strTemp.GetString();
+	strTemp.Format(L"%.4f", fTotal_Amount);
+	sBillOfArrears.strTotal_Amount = strTemp.GetString();
+	sBillOfArrears.strUpdate_Time = COleDateTime::GetCurrentTime().Format(_T("%Y-%m-%d %H:%M:%S")).GetString();
+
+	if (0xFFFFFFFF == CBillOfArrearsService::SetBillOfArrears(theApp.m_pConnection, sBillOfArrears))
+	{
+		return false;
+	}
+	else
+	{
+	}
+
+
+	return true;
 }

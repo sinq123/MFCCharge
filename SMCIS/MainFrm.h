@@ -54,6 +54,12 @@ private:
 	afx_msg void OnChangePassword();
 	afx_msg void OnCharge();
 	afx_msg void OnStaffManagement();
+	afx_msg void OnChargeMaintenance();
+	afx_msg void OnChargeStatistics();
+	afx_msg void OnQuery();
+	afx_msg void OnFeeTables();
+	afx_msg void OnChargeStatistics2();
+	afx_msg void OnBookkeepingCollection();
 private:
 	void DrawTitleBmp(CDC *pDC);
 
@@ -90,11 +96,7 @@ private:
 public:
 	// 验证用户权限
 	bool VerifyEmpPerm(const SToll_Operator& sToll_Operator);
-	afx_msg void OnChargeMaintenance();
-	afx_msg void OnChargeStatistics();
-	afx_msg void OnQuery();
-	afx_msg void OnFeeTables();
-	afx_msg void OnChargeStatistics2();
+	
 };
 
 

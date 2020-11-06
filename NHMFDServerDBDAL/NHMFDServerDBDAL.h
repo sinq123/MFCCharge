@@ -106,5 +106,7 @@
 #include "Miscellaneous_ChargesService.h"
 #include "Charge_Log_RecordService.h"
 #include "Charge_DetTypeService.h"
+#include "PayeeMaintenanceService.h"
+#include "Bill_Of_ArrearsService.h"
 
 #endif

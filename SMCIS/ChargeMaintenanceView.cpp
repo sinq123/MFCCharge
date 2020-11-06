@@ -7,6 +7,7 @@
 #include "ChargeMaintenanceDlg.h"
 #include "MiscellaneousChargesDlg.h"
 #include "ChargeDetTypeDlg.h"
+#include "PayeeMaintenanceDlg.h"
 
 #define DLG_CAPTION L"收费维护"
 // CChargeMaintenanceView
@@ -52,6 +53,7 @@ void CChargeMaintenanceView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTN_CHARGE_PARAMETER_MAINTENANCE, m_btnChargeParameterMaintenance);
 	DDX_Control(pDX, IDC_BTN_MISCELLANEOUS_CHARGES, m_btnMiscellaneousCharges);
 	DDX_Control(pDX, IDC_BTN_CHARGE_DETYPE, m_btnChargeDetType);
+	DDX_Control(pDX, IDC_BTN_CHARGE_UNIT_MAINTAIN, m_btnPayeeMaintenance);
 }
 
 BEGIN_MESSAGE_MAP(CChargeMaintenanceView, CFormView)
@@ -59,6 +61,7 @@ BEGIN_MESSAGE_MAP(CChargeMaintenanceView, CFormView)
 	ON_BN_CLICKED(IDC_BTN_CHARGE_PARAMETER_MAINTENANCE, &CChargeMaintenanceView::OnBnClickedBtnChargeParameterMaintenance)
 	ON_BN_CLICKED(IDC_BTN_MISCELLANEOUS_CHARGES, &CChargeMaintenanceView::OnBnClickedBtnMiscellaneousCharges)
 	ON_BN_CLICKED(IDC_BTN_CHARGE_DETYPE, &CChargeMaintenanceView::OnBnClickedBtnChargeDetype)
+	ON_BN_CLICKED(IDC_BTN_CHARGE_UNIT_MAINTAIN, &CChargeMaintenanceView::OnBnClickedBtnChargeUnitMaintain)
 END_MESSAGE_MAP()
 
 
@@ -192,6 +195,7 @@ void CChargeMaintenanceView::InitCtrls(void)
 	m_btnChargeParameterMaintenance.SetFlat(FALSE);
 	m_btnMiscellaneousCharges.SetFlat(FALSE);
 	m_btnChargeDetType.SetFlat(FALSE);
+	m_btnPayeeMaintenance.SetFlat(FALSE);
 }
 
 void CChargeMaintenanceView::SetDlgFont(void)
@@ -227,5 +231,13 @@ void CChargeMaintenanceView::OnBnClickedBtnChargeDetype()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	ChargeDetTypeDlg Dlg;
+	Dlg.DoModal();
+}
+
+
+void CChargeMaintenanceView::OnBnClickedBtnChargeUnitMaintain()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CPayeeMaintenanceDlg Dlg;
 	Dlg.DoModal();
 }

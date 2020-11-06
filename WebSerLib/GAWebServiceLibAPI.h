@@ -163,10 +163,10 @@ public:
 //		const SDetStandard& sDetStandard,
 //		SGAMsg& sMsg,
 //		_ConnectionPtr pConnection = NULL);
-//	// 18C63-机动车检验照片和资料照片信息
-//	bool UploadPhoto(const CStringW& strRunningNumber, const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadPhoto(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, 
-//	const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg);
+	// 18C63-机动车检验照片和资料照片信息
+	bool UploadPhoto(const CStringW& strRunningNumber, const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool UploadPhoto(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, 
+	const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg);
 //	// 18C64-机动车检验结果资料申请审核信息
 //	bool DetAppReview(const CStringW& strRunningNumber, const CStringW& strAppType, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool DetAppReview(const SDetLog& sDetLog, const CStringW& strAppType, SGAMsg& sMsg);

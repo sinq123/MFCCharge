@@ -92,6 +92,8 @@
     <ClInclude Include="ASMProDataService.h" />
     <ClInclude Include="AxleLoadData.h" />
     <ClInclude Include="AxleLoadDataService.h" />
+    <ClInclude Include="Bill_Of_Arrears.h" />
+    <ClInclude Include="Bill_Of_ArrearsService.h" />
     <ClInclude Include="BrakeCurveData.h" />
     <ClInclude Include="BrakeCurveDataService.h" />
     <ClInclude Include="BrakeData.h" />
@@ -213,6 +215,8 @@
     <ClInclude Include="NHMFDServerDBService.h" />
     <ClInclude Include="OtherData.h" />
     <ClInclude Include="OtherDataService.h" />
+    <ClInclude Include="PayeeMaintenanceService.h" />
+    <ClInclude Include="Payee_Maintenance.h" />
     <ClInclude Include="PowerData.h" />
     <ClInclude Include="PublicationInfo.h" />
     <ClInclude Include="PublicationInfoService.h" />
@@ -300,6 +304,7 @@
     <ClCompile Include="ASMDataService.cpp" />
     <ClCompile Include="ASMProDataService.cpp" />
     <ClCompile Include="AxleLoadDataService.cpp" />
+    <ClCompile Include="Bill_Of_ArrearsService.cpp" />
     <ClCompile Include="BrakeCurveDataService.cpp" />
     <ClCompile Include="BrakeDataService.cpp" />
     <ClCompile Include="ChargeService.cpp" />
@@ -361,6 +366,7 @@
     <ClCompile Include="NHMFDServerDBDAL.cpp" />
     <ClCompile Include="NHMFDServerDBService.cpp" />
     <ClCompile Include="OtherDataService.cpp" />
+    <ClCompile Include="PayeeMaintenanceService.cpp" />
     <ClCompile Include="PublicationInfoService.cpp" />
     <ClCompile Include="RatingService.cpp" />
     <ClCompile Include="SpeakerDataService.cpp" />

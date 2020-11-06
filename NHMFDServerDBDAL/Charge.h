@@ -67,6 +67,10 @@ struct SCharge
 	std::wstring strOperationalOfReason;
 	// 收费项目
 	std::wstring strChargeItem;
+	// 是否欠费
+	std::wstring strIsArrears;
+	// 欠费单位
+	std::wstring strUnitName;
 	// 备注
 	std::wstring strRemark;
 	// 保留1

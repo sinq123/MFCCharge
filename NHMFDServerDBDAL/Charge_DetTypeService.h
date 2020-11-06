@@ -1,23 +1,9 @@
-/*
-* Copyright (c) 佛山市南华仪器股份有限公司
-* All rights reserved.
-*
-* 文件名称：Veh_ColorService.h
-* 文件标识：
-* 描述：车身颜色表数据访问层
-*
-* 版本：1.0
-* 日期：20xx-xx-xx
-* 作者：Cyx
-*
-*
-* 历史信息：
-*
-* 版本：1.0.0beta1
-* 日期：20xx-xx-xx
-* 作者：Cyx
-* 描述：正在开发
-*/
+
+
+
+
+
+
 
 
 #ifndef CHARGE_DETTYPE_H

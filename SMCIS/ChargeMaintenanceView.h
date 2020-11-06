@@ -32,7 +32,7 @@ private:
 	CButtonST m_btnChargeParameterMaintenance;
 	CButtonST m_btnMiscellaneousCharges;
 	CButtonST m_btnChargeDetType;
-
+	CButtonST m_btnPayeeMaintenance;
 private:
 	void InitCtrls();
 	// 设置对话框字体
@@ -60,6 +60,7 @@ public:
 	
 	afx_msg void OnBnClickedBtnMiscellaneousCharges();
 	afx_msg void OnBnClickedBtnChargeDetype();
+	afx_msg void OnBnClickedBtnChargeUnitMaintain();
 };
 
 

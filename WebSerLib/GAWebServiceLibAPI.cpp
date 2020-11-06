@@ -16,6 +16,27 @@
 #pragma comment(lib, "..\\Release\\ACIntLib.lib")
 #endif
 
+#include "..\GAInterfaceLib_V1.0\GAInterfaceLib_V1.0.h"
+#ifdef _DEBUG
+#pragma comment(lib, "..\\Debug\\GAInterfaceLib_V1.0_D.lib")
+#else
+#pragma comment(lib, "..\\Release\\GAInterfaceLib_V1.0.lib")
+#endif
+
+#include "..\GAInterfaceLib_V2.0\GAInterfaceLib_V2.0.h"
+#ifdef _DEBUG
+#pragma comment(lib, "..\\Debug\\GAInterfaceLib_V2.0_D.lib")
+#else
+#pragma comment(lib, "..\\Release\\GAInterfaceLib_V2.0.lib")
+#endif
+
+#include "..\GAInterfaceLib_V3.0\GAInterfaceLib_V3.0.h"
+#ifdef _DEBUG
+#pragma comment(lib, "..\\Debug\\GAInterfaceLib_V3.0_D.lib")
+#else
+#pragma comment(lib, "..\\Release\\GAInterfaceLib_V3.0.lib")
+#endif
+
 #include "..\NHWin32Lib\NHWin32Lib.h"
 #ifdef _DEBUG
 #pragma comment(lib, "..\\Debug\\NHWin32Lib_D.lib")
@@ -9307,182 +9328,182 @@ CStringW CGAWebServiceLibAPI::GetPosEquNum(void)
 //#endif
 //}
 
-//bool CGAWebServiceLibAPI::UploadPhoto(const CStringW& strRunningNumber, const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg, _ConnectionPtr pConnection/* = NULL*/)
-//{
-//	// 打开数据连接
-//	bool bCloseDB(false);
-//	if (NULL == pConnection)
-//	{
-//		if (0x00 != CNHSQLServerDBO::OpenDB(pConnection))
-//		{
-//			CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto", L"连接数据库失败。");
-//			return false;
-//		}
-//		bCloseDB = true;
-//	}
-//
-//	bool bSendGA(false);
-//	CString strSQL;
-//
-//	SDetLog sDetLog;
-//	strSQL.Format(L"select * from DetLog where RunningNumber = '%s';", strRunningNumber);
-//	if (0xFFFFFFFF == CDetLogService::GetDetLog(pConnection, strSQL, sDetLog))
-//	{
-//	}
-//
-//	SDetTimes sDetTimes;
-//	strSQL.Format(L"select * from DetTimes where RunningNumber = '%s';", strRunningNumber);
-//	if (0xFFFFFFFF == CDetTimesService::GetDetTimes(pConnection, strSQL, sDetTimes))
-//	{
-//	}
-//
-//	SHisVehInfo sHisVehInfo;
-//	strSQL.Format(L"select * from HisVehInfo where RunningNumber = '%s';", strRunningNumber);
-//	if (0xFFFFFFFF == CHisVehInfoService::GetHisVehInfo(pConnection, strSQL, sHisVehInfo))
-//	{
-//	}
-//
-//	bSendGA = UploadPhoto(sDetLog, sDetTimes, sHisVehInfo, strPhotoPath, strDetItem, strPhotoType, sMsg);
-//
-//	// 写照片上传状态
-//	CStringW strField;
-//	strField.Format(L"UploadPhoto%s", GetGAPhotoNumByType(strPhotoType));
-//	if (bSendGA)
-//	{
-//		CGAPhotoUploadStatusService::SetGAPhotoUploadStatus(pConnection, _wtoi(sDetLog.strDetPeriodID.c_str()), strField.GetString(), 0);
-//	}
-//	else
-//	{
-//		CGAPhotoUploadStatusService::SetGAPhotoUploadStatus(pConnection, _wtoi(sDetLog.strDetPeriodID.c_str()), strField.GetString(), 1);
-//	}
-//
-//	// 关闭数据库连接
-//	if (bCloseDB)
-//	{
-//		CNHSQLServerDBO::CloseDB(pConnection);
-//	}
-//
-//	return bSendGA;
-//}
-//
-//bool CGAWebServiceLibAPI::UploadPhoto(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, 
-//		const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg)
-//{
-//	std::string strCliper;
-//	Base64EncodeRaw(strPhotoPath, strCliper);
-//
-//	CString strPhotoTime;
-//	CFileStatus FileStatus;
-//	if (CFile::GetStatus(strPhotoPath, FileStatus))
-//	{
-//		//创建时间
-//		strPhotoTime = FileStatus.m_ctime.Format(TEXT("%Y-%m-%d %H:%M:%S"));
-//	}
-//	else
-//	{
-//		strPhotoTime = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-//	}
-//
-//	CStringW strPlaNum = HandlePlaNum(sDetLog);
-//
-//	CString strXML, strLog;
-//	strXML += strWriteHead;
-//	strXML.AppendFormat(L"<jylsh>%s</jylsh>", sDetLog.strReportNumber.c_str());
-//	strXML.AppendFormat(L"<jyjgbh>%s</jyjgbh>", m_strStationNum);
-//	strXML.AppendFormat(L"<jcxdh>%s</jcxdh>", m_strLineNum);
-//	strXML.AppendFormat(L"<jycs>%s</jycs>", sDetTimes.strTotalDetTimes.c_str());
-//	strXML.AppendFormat(L"<hphm>%s</hphm>", UrlCodeOrNot(strPlaNum));
-//	strXML.AppendFormat(L"<hpzl>%s</hpzl>", sDetLog.strPlateTypeCode.c_str());
-//	strXML.AppendFormat(L"<clsbdh>%s</clsbdh>", UrlCodeOrNot(sHisVehInfo.strVIN.c_str()));
-//	strLog = strXML;
-//	wchar_t *pwchZP = CNHCommonAPI::ANSIToUnicode(strCliper.c_str());
-//	strXML.AppendFormat(L"<zp>%s</zp>", UrlCodeOrNot(pwchZP));
-//	if (NULL != pwchZP)
-//	{
-//		free(pwchZP);
-//		pwchZP = NULL;
-//	}
-//	strXML.AppendFormat(L"<pssj>%s</pssj>", strPhotoTime);
-//	strLog.AppendFormat(L"<pssj>%s</pssj>", strPhotoTime);
-//	strXML.AppendFormat(L"<jyxm>%s</jyxm>", strDetItem);
-//	strLog.AppendFormat(L"<jyxm>%s</jyxm>", strDetItem);
-//	strXML.AppendFormat(L"<zpzl>%s</zpzl>", strPhotoType);
-//	strLog.AppendFormat(L"<zpzl>%s</zpzl>", strPhotoType);
-//	strXML += strWriteTail;
-//	strLog += strWriteTail;
-//
-//	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto提交", strLog);
-//
-//	std::wstring strXtlb = L"18";
-//	std::wstring strJkxlh = m_strIFSN.GetString();
-//	std::wstring strJkid = L"18C63";
-//	std::wstring strXmlDoc = strXML.GetString();
-//	std::wstring strRetStr;
-//	
-//	std::wstring strCjsqbh = m_strCjsqbh.GetString();
-//	std::wstring strDwjgdm = m_strDwjgdm.GetString();
-//	std::wstring strDwmc = m_strDwmc.GetString();
-//	std::wstring strYhbz = m_strYhbz.GetString();
-//	std::wstring strYhxm = m_strYhxm.GetString();
-//	std::wstring strZdbs = m_strZdbs.GetString();
-//
-//	int nRet(0);
-//	switch (m_nGAVersion)
-//	{
-//	case 1:
-//		{
-//			nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-//		}
-//		break;
-//	case 2:
-//		{
-//			nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-//		}
-//		break;
-//	case 3:
-//		{
-//			nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-//		}
-//		break;
-//	}
-//
-//	if (nRet == 0)
-//	{
-//		strRetStr = (LPCTSTR)DecodeURI(strRetStr.c_str());
-//		CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto接收", strRetStr.c_str());
-//
-//		CXmlReader xmlReader;
-//		if (xmlReader.Parse(strRetStr.c_str()))
-//		{
-//			if (xmlReader.OpenNode(L"root/head/code"))
-//			{
-//				xmlReader.GetNodeContent(sMsg.code);
-//			}
-//
-//			if (xmlReader.OpenNode(L"root/head/message"))
-//			{
-//				xmlReader.GetNodeContent(sMsg.message);
-//				sMsg.message = L"远程:" + sMsg.message;
-//			}
-//
-//			return true;
-//		}
-//		else
-//		{
-//			return false;
-//		}
-//	}
-//	else
-//	{
-//		CString strTemp;
-//		strTemp.Format(L"接口访问失败(返回代码%d)", nRet);
-//		sMsg.code = L"0";
-//		sMsg.message = strTemp;
-//		CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto返回", strTemp);
-//		return false;
-//	}
-//}
-//
+bool CGAWebServiceLibAPI::UploadPhoto(const CStringW& strRunningNumber, const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg, _ConnectionPtr pConnection/* = NULL*/)
+{
+	// 打开数据连接
+	bool bCloseDB(false);
+	if (NULL == pConnection)
+	{
+		if (0x00 != CNHSQLServerDBO::OpenDB(pConnection))
+		{
+			CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto", L"连接数据库失败。");
+			return false;
+		}
+		bCloseDB = true;
+	}
+
+	bool bSendGA(false);
+	CString strSQL;
+
+	SDetLog sDetLog;
+	strSQL.Format(L"select * from DetLog where RunningNumber = '%s';", strRunningNumber);
+	if (0xFFFFFFFF == CDetLogService::GetDetLog(pConnection, strSQL, sDetLog))
+	{
+	}
+
+	SDetTimes sDetTimes;
+	strSQL.Format(L"select * from DetTimes where RunningNumber = '%s';", strRunningNumber);
+	if (0xFFFFFFFF == CDetTimesService::GetDetTimes(pConnection, strSQL, sDetTimes))
+	{
+	}
+
+	SHisVehInfo sHisVehInfo;
+	strSQL.Format(L"select * from HisVehInfo where RunningNumber = '%s';", strRunningNumber);
+	if (0xFFFFFFFF == CHisVehInfoService::GetHisVehInfo(pConnection, strSQL, sHisVehInfo))
+	{
+	}
+
+	bSendGA = UploadPhoto(sDetLog, sDetTimes, sHisVehInfo, strPhotoPath, strDetItem, strPhotoType, sMsg);
+
+	// 写照片上传状态
+	CStringW strField;
+	strField.Format(L"UploadPhoto%s", GetGAPhotoNumByType(strPhotoType));
+	if (bSendGA)
+	{
+		CGAPhotoUploadStatusService::SetGAPhotoUploadStatus(pConnection, _wtoi(sDetLog.strDetPeriodID.c_str()), strField.GetString(), 0);
+	}
+	else
+	{
+		CGAPhotoUploadStatusService::SetGAPhotoUploadStatus(pConnection, _wtoi(sDetLog.strDetPeriodID.c_str()), strField.GetString(), 1);
+	}
+
+	// 关闭数据库连接
+	if (bCloseDB)
+	{
+		CNHSQLServerDBO::CloseDB(pConnection);
+	}
+
+	return bSendGA;
+}
+
+bool CGAWebServiceLibAPI::UploadPhoto(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, 
+		const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg)
+{
+	std::string strCliper;
+	Base64EncodeRaw(strPhotoPath, strCliper);
+
+	CString strPhotoTime;
+	CFileStatus FileStatus;
+	if (CFile::GetStatus(strPhotoPath, FileStatus))
+	{
+		//创建时间
+		strPhotoTime = FileStatus.m_ctime.Format(TEXT("%Y-%m-%d %H:%M:%S"));
+	}
+	else
+	{
+		strPhotoTime = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+	}
+
+	CStringW strPlaNum = HandlePlaNum(sDetLog);
+
+	CString strXML, strLog;
+	strXML += strWriteHead;
+	strXML.AppendFormat(L"<jylsh>%s</jylsh>", sDetLog.strReportNumber.c_str());
+	strXML.AppendFormat(L"<jyjgbh>%s</jyjgbh>", m_strStationNum);
+	strXML.AppendFormat(L"<jcxdh>%s</jcxdh>", m_strLineNum);
+	strXML.AppendFormat(L"<jycs>%s</jycs>", sDetTimes.strTotalDetTimes.c_str());
+	strXML.AppendFormat(L"<hphm>%s</hphm>", UrlCodeOrNot(strPlaNum));
+	strXML.AppendFormat(L"<hpzl>%s</hpzl>", sDetLog.strPlateTypeCode.c_str());
+	strXML.AppendFormat(L"<clsbdh>%s</clsbdh>", UrlCodeOrNot(sHisVehInfo.strVIN.c_str()));
+	strLog = strXML;
+	wchar_t *pwchZP = CNHCommonAPI::ANSIToUnicode(strCliper.c_str());
+	strXML.AppendFormat(L"<zp>%s</zp>", UrlCodeOrNot(pwchZP));
+	if (NULL != pwchZP)
+	{
+		free(pwchZP);
+		pwchZP = NULL;
+	}
+	strXML.AppendFormat(L"<pssj>%s</pssj>", strPhotoTime);
+	strLog.AppendFormat(L"<pssj>%s</pssj>", strPhotoTime);
+	strXML.AppendFormat(L"<jyxm>%s</jyxm>", strDetItem);
+	strLog.AppendFormat(L"<jyxm>%s</jyxm>", strDetItem);
+	strXML.AppendFormat(L"<zpzl>%s</zpzl>", strPhotoType);
+	strLog.AppendFormat(L"<zpzl>%s</zpzl>", strPhotoType);
+	strXML += strWriteTail;
+	strLog += strWriteTail;
+
+	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto提交", strLog);
+
+	std::wstring strXtlb = L"18";
+	std::wstring strJkxlh = m_strIFSN.GetString();
+	std::wstring strJkid = L"18C63";
+	std::wstring strXmlDoc = strXML.GetString();
+	std::wstring strRetStr;
+	
+	std::wstring strCjsqbh = m_strCjsqbh.GetString();
+	std::wstring strDwjgdm = m_strDwjgdm.GetString();
+	std::wstring strDwmc = m_strDwmc.GetString();
+	std::wstring strYhbz = m_strYhbz.GetString();
+	std::wstring strYhxm = m_strYhxm.GetString();
+	std::wstring strZdbs = m_strZdbs.GetString();
+
+	int nRet(0);
+	switch (m_nGAVersion)
+	{
+	case 1:
+		{
+			nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 2:
+		{
+			nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+		}
+		break;
+	case 3:
+		{
+			nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+		}
+		break;
+	}
+
+	if (nRet == 0)
+	{
+		strRetStr = (LPCTSTR)DecodeURI(strRetStr.c_str());
+		CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto接收", strRetStr.c_str());
+
+		CXmlReader xmlReader;
+		if (xmlReader.Parse(strRetStr.c_str()))
+		{
+			if (xmlReader.OpenNode(L"root/head/code"))
+			{
+				xmlReader.GetNodeContent(sMsg.code);
+			}
+
+			if (xmlReader.OpenNode(L"root/head/message"))
+			{
+				xmlReader.GetNodeContent(sMsg.message);
+				sMsg.message = L"远程:" + sMsg.message;
+			}
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		CString strTemp;
+		strTemp.Format(L"接口访问失败(返回代码%d)", nRet);
+		sMsg.code = L"0";
+		sMsg.message = strTemp;
+		CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadPhoto返回", strTemp);
+		return false;
+	}
+}
+
 //bool CGAWebServiceLibAPI::DetAppReview(const CStringW& strRunningNumber, const CStringW& strAppType, SGAMsg& sMsg, _ConnectionPtr pConnection/* = NULL*/)
 //{
 //	// 打开数据连接

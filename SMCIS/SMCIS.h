@@ -155,6 +155,8 @@ public:
 	CMultiDocTemplate* m_pDetCountStatView2;
 	// 收费日志查询
 	CMultiDocTemplate* m_pChargeLogMgntView;
+	//记账收款
+	CMultiDocTemplate* m_pBookkeepingCollectionView;
 };
 
 extern CSMCISApp theApp;

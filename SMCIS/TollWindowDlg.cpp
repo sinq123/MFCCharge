@@ -56,6 +56,9 @@ void CTollWindowDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTN_EXPRESS_CHARGE2, m_btnExpressCharge2);
 	DDX_Control(pDX, IDC_BTN_EXPRESS_CHARGE3, m_btnExpressCharge3);
 	DDX_Control(pDX, IDC_BTN_EXPRESS_CHARGE4, m_btnExpressCharge4);
+
+	DDX_Control(pDX, IDC_COM_UNIT_NAME, m_chUnitName);
+	DDX_Control(pDX, IDC_CK_IS_ARREARS, m_chkIsArrears);
 }
 
 
@@ -66,6 +69,7 @@ BEGIN_MESSAGE_MAP(CTollWindowDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_EXPRESS_CHARGE2, &CTollWindowDlg::OnBnClickedBtnExpressCharge2)
 	ON_BN_CLICKED(IDC_BTN_EXPRESS_CHARGE3, &CTollWindowDlg::OnBnClickedBtnExpressCharge3)
 	ON_BN_CLICKED(IDC_BTN_EXPRESS_CHARGE4, &CTollWindowDlg::OnBnClickedBtnExpressCharge4)
+	ON_BN_CLICKED(IDC_CK_IS_ARREARS, &CTollWindowDlg::OnBnClickedCkIsArrears)
 END_MESSAGE_MAP()
 
 
@@ -117,6 +121,21 @@ void CTollWindowDlg::OnBnClickedOk()
 			}
 			m_edWhy.GetWindowTextW(strWhy);
 			m_strWhy = strWhy;
+
+			if (m_chkIsArrears.GetCheck() > 0)
+			{
+				// 欠费判断
+				CString strUnitName;
+				m_chUnitName.GetWindowTextW(strUnitName);
+				if (strUnitName.IsEmpty())
+				{
+					MessageBox(L"欠费单位不能为空");
+					return;
+				}
+				m_strUnitName = strUnitName;
+				m_strIsArrears = L"1";
+
+			}
 		}
 		break;
 
@@ -202,6 +221,9 @@ void CTollWindowDlg::InitCtrls(void)
 {
 	SetDlgFont();
 
+	m_chUnitName.ShowWindow(SW_HIDE);
+	m_chkIsArrears.ShowWindow(SW_HIDE);
+
 	switch(m_nDDT)
 	{
 	case DDT_Charge:
@@ -233,6 +255,8 @@ void CTollWindowDlg::InitCtrls(void)
 			m_btnExpressCharge3.EnableWindow(TRUE);
 			m_btnExpressCharge4.ShowWindow(SW_SHOW);
 			m_btnExpressCharge4.EnableWindow(TRUE);
+
+			m_chkIsArrears.ShowWindow(SW_SHOW);
 		}
 		break;
 
@@ -355,6 +379,12 @@ void CTollWindowDlg::InitCtrls(void)
 
 	m_btnExpressCharge4.SetWindowTextW(L"过失-退办重做");
 	m_btnExpressCharge4.SetFlat(FALSE);
+
+	m_edCharge.AllowNegative();
+
+	m_chkIsArrears.SetIcon(IDI_ICON_CHK_BOX_ON, IDI_ICON_CHK_BOX_OFF);
+	m_chkIsArrears.DrawBorder(FALSE);
+	m_chkIsArrears.SetAlign(CButtonST::ST_ALIGN_HORIZ_RIGHT);
 }
 
 void CTollWindowDlg::SetDlgFont(void)
@@ -389,6 +419,18 @@ bool CTollWindowDlg::InitChargeItem(void)
 		if (str == m_strDetType)
 		{
 			m_cbChargeItem.AddString(iter->strTypeOfCharge.c_str());
+		}
+	}
+
+	strSql.Format(L" select * from Payee_Maintenance order by AutoID asc ");
+	std::list<SPayeeMaintenance> lsPayeeMaintenance;
+	if (CPayeeMaintenanceService::GetPayeeMaintenance(theApp.m_pConnection, strSql, lsPayeeMaintenance) != 0xFFFFFFFF)
+	{
+		m_chUnitName.AddString(L"");
+		std::list<SPayeeMaintenance>::const_iterator iter = lsPayeeMaintenance.begin();
+		for ( ; iter != lsPayeeMaintenance.end(); iter++)
+		{
+			m_chUnitName.AddString(iter->strUnitName.c_str());
 		}
 	}
 
@@ -474,5 +516,18 @@ bool CTollWindowDlg::VerifyEmpPerm(const SToll_Operator& sToll_Operator)
 	else
 	{
 		return false;
+	}
+}
+
+void CTollWindowDlg::OnBnClickedCkIsArrears()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	if (m_chkIsArrears.GetCheck() > 0)
+	{
+		m_chUnitName.ShowWindow(SW_SHOW);
+	}
+	else
+	{
+		m_chUnitName.ShowWindow(SW_HIDE);
 	}
 }

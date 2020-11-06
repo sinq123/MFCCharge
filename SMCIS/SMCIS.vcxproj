@@ -98,6 +98,9 @@
     <None Include="ReadMe.txt" />
     <None Include="res\BitmapTitle.bmp" />
     <None Include="res\ChargeInfoView.ico" />
+    <None Include="res\CheckBoxOff.ico" />
+    <None Include="res\CheckBoxOn.ico" />
+    <None Include="res\icon1.ico" />
     <None Include="res\info.bmp" />
     <None Include="res\magnifier_32x32.ico" />
     <None Include="res\MainFrame.bmp" />
@@ -113,6 +116,8 @@
     <None Include="UserImages.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BookkeepingCollectionDoc.h" />
+    <ClInclude Include="BookkeepingCollectionView.h" />
     <ClInclude Include="ChangePasswordDlg.h" />
     <ClInclude Include="ChargeDetTypeDlg.h" />
     <ClInclude Include="ChargeInfoDoc.h" />
@@ -133,6 +138,7 @@
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MiscellaneousChargesDlg.h" />
     <ClInclude Include="MiscellaneousTollWindowDlg.h" />
+    <ClInclude Include="PayeeMaintenanceDlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SMCIS.h" />
     <ClInclude Include="SMCISDoc.h" />
@@ -145,6 +151,8 @@
     <ClInclude Include="ToolTipListCtrl.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BookkeepingCollectionDoc.cpp" />
+    <ClCompile Include="BookkeepingCollectionView.cpp" />
     <ClCompile Include="ChangePasswordDlg.cpp" />
     <ClCompile Include="ChargeDetTypeDlg.cpp" />
     <ClCompile Include="ChargeInfoDoc.cpp" />
@@ -165,6 +173,7 @@
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MiscellaneousChargesDlg.cpp" />
     <ClCompile Include="MiscellaneousTollWindowDlg.cpp" />
+    <ClCompile Include="PayeeMaintenanceDlg.cpp" />
     <ClCompile Include="SMCIS.cpp" />
     <ClCompile Include="SMCISDoc.cpp" />
     <ClCompile Include="SMCISView.cpp" />

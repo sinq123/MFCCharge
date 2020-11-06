@@ -510,6 +510,36 @@ DWORD CChargeService::FieldToStruct(const _RecordsetPtr &pRecordset, SCharge &sC
 	}
 	sCharge.strChargeItem = wchBuf;
 
+	// 是否欠费
+	// IsArrears
+	v.ChangeType(VT_NULL);
+	ZeroMemory(wchBuf, sizeof(wchBuf));
+	GetFieldValue(pRecordset, v, L"IsArrears");
+	if (VT_NULL!=v.vt && VT_EMPTY!=v.vt)
+	{
+		_snwprintf_s(wchBuf, _countof(wchBuf), _TRUNCATE, L"%s", (wchar_t*)(_bstr_t)v);
+	}
+	else
+	{
+		wcsncpy_s(wchBuf, _countof(wchBuf), L"", _TRUNCATE);
+	}
+	sCharge.strIsArrears = wchBuf;
+
+	// 欠费单位
+	// UnitName
+	v.ChangeType(VT_NULL);
+	ZeroMemory(wchBuf, sizeof(wchBuf));
+	GetFieldValue(pRecordset, v, L"UnitName");
+	if (VT_NULL!=v.vt && VT_EMPTY!=v.vt)
+	{
+		_snwprintf_s(wchBuf, _countof(wchBuf), _TRUNCATE, L"%s", (wchar_t*)(_bstr_t)v);
+	}
+	else
+	{
+		wcsncpy_s(wchBuf, _countof(wchBuf), L"", _TRUNCATE);
+	}
+	sCharge.strUnitName = wchBuf;
+
 	// 备注
 	// Remark
 	v.ChangeType(VT_NULL);
@@ -847,6 +877,33 @@ DWORD CChargeService::StructToField(const _RecordsetPtr &pRecordset, const SChar
 		v.ChangeType(VT_NULL);
 	}
 	PutFieldValue(pRecordset, v, L"ChargeItem");
+
+	// 是否欠费
+	// IsArrears
+	str = sCharge.strIsArrears;
+	if (L"" != str)
+	{
+		v = (_variant_t)str.c_str();
+	}
+	else
+	{
+		v.ChangeType(VT_NULL);
+	}
+	PutFieldValue(pRecordset, v, L"IsArrears");
+
+	// 欠费单位
+	// ChargeItem
+	str = sCharge.strUnitName;
+	if (L"" != str)
+	{
+		v = (_variant_t)str.c_str();
+	}
+	else
+	{
+		v.ChangeType(VT_NULL);
+	}
+	PutFieldValue(pRecordset, v, L"UnitName");
+
 	// 备注
 	// Remark
 	str = sCharge.strRemark;

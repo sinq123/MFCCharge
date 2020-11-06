@@ -663,6 +663,18 @@
     <ClInclude Include="Charge_DetTypeService.h">
       <Filter>DAL</Filter>
     </ClInclude>
+    <ClInclude Include="Payee_Maintenance.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="PayeeMaintenanceService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
+    <ClInclude Include="Bill_Of_Arrears.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Bill_Of_ArrearsService.h">
+      <Filter>DAL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -978,6 +990,12 @@
       <Filter>DAL</Filter>
     </ClCompile>
     <ClCompile Include="Charge_DetTypeService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="PayeeMaintenanceService.cpp">
+      <Filter>DAL</Filter>
+    </ClCompile>
+    <ClCompile Include="Bill_Of_ArrearsService.cpp">
       <Filter>DAL</Filter>
     </ClCompile>
   </ItemGroup>

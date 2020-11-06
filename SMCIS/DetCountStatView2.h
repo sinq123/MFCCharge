@@ -74,7 +74,11 @@ private:
 	void GetChargeStatToZX(int& nRow);
 	// 获取杂项的单价金额
 	CString GetZXUnitValue(const CString& strDetType, const CString& strDetTypeCode, const CString& strChargeItem);
-
+	// 记账统计
+	void Bookkeeping(int& nRow);
+	// 获取该单位未收款金额
+	CString GetUnit_Outstanding_Amount(const CString& strUnitName);
+	
 };
 
 

@@ -364,6 +364,9 @@ void CDetCountStatView2::OnBnClickedBtnStat()
 	GetChargeStatToZX(nRow);
 	mapRow[nRow] = nRow;
 
+	// 记账收费
+	Bookkeeping(nRow);
+	mapRow[nRow] = nRow;
 	// 记录最后一行；
 	int nlast(0);
 	// 记录总金额；
@@ -785,4 +788,150 @@ void CDetCountStatView2::GetChargeStatToZX(int& nRow)
 
 	}
 
+}
+
+CString CDetCountStatView2::GetUnit_Outstanding_Amount(const CString& strUnitName)
+{
+	CString strRet(L"-");
+
+	CString strSql;
+	strSql.Format(L"SELECT * FROM Bill_Of_Arrears WHERE Unit_Name = '%s'", strUnitName);
+
+	SBillOfArrears sBillOfArrears;
+	if (0x01 == CBillOfArrearsService::GetBillOfArrears(theApp.m_pConnection, strSql.GetString(), sBillOfArrears))
+	{
+		strRet.Format(L"%.2f", _wtof(sBillOfArrears.strOutstanding_Amount.c_str()));
+	}
+
+	return strRet;
+}
+
+void CDetCountStatView2::Bookkeeping(int& nRow)
+{
+	// 获取统计起止时间
+	COleDateTime odtBeginTime(COleDateTime::GetCurrentTime());
+	COleDateTime odtEndTime(COleDateTime::GetCurrentTime());
+	m_dtcBegTime.GetTime(odtBeginTime);
+	m_dtcEndTime.GetTime(odtEndTime);
+
+	CString strSql;
+
+	strSql.AppendFormat(L" select * ");
+	strSql.AppendFormat(L" from Charge ");
+	strSql.AppendFormat(L" where ChargeingStatus <> '%s' ", DS_NoCharge); // 不能是未收费
+	strSql.AppendFormat(L" and PlateNumber = '%s' ", L"记账收费");// 记账收费
+	strSql.AppendFormat(L" and (ChargingTime between '%s' and '%s') ", odtBeginTime.Format(L"%Y-%m-%d 00:00:00"), odtEndTime.Format(L"%Y-%m-%d 23:59:59"));
+
+	strSql.AppendFormat(L" order by AutoID");
+
+	_RecordsetPtr pRecordset(NULL);
+
+	if (0x00 != CNHSQLServerDBO::OpenQuery(theApp.m_pConnection, pRecordset, strSql))
+	{
+		// 打开查询失败
+		MessageBox(L"查询数据库失败,请检查网络连接!", L"查询统计", MB_OK|MB_ICONWARNING);
+		return ;
+	}
+
+	struct StatStru
+	{
+		// 该单位收款总金额
+		float fAmountOfCharges;
+		// 该单位收款次数
+		int nTotNum;
+		// 该单位未收取金额
+		float fOutstanding_Amount;
+
+		StatStru() {ZeroMemory(this, sizeof(StatStru));}
+	};
+	std::map<CStringW,StatStru> mapStaResult; // 统计结果
+
+	CString str(L"");
+	_variant_t v;
+
+	while (!pRecordset->adoEOF)
+	{
+		//
+		CStringW Category;
+		v.ChangeType(VT_NULL);
+		CNHSQLServerDBO::GetFieldValue(pRecordset, v, _T("ChargeItem"));
+		if (VT_NULL!=v.vt && VT_EMPTY!=v.vt)
+		{
+			Category = (wchar_t*)(_bstr_t)v;
+		}
+		else
+		{
+			Category = L"";
+		}
+
+		const int nCount = (int)mapStaResult.count(Category);
+		if (0 == nCount)
+		{
+			// 没有关键字，先插空值
+			StatStru ss;
+			mapStaResult[Category] = ss;
+		}
+
+		// 该单位收款次数
+		mapStaResult[Category].nTotNum++;
+		// 该单位收款总金额
+		float fAmountOfCharges(0.0f);
+		v.ChangeType(VT_NULL);
+		CNHSQLServerDBO::GetFieldValue(pRecordset, v, _T("AmountOfCharges"));
+		if (VT_NULL!=v.vt && VT_EMPTY!=v.vt)
+		{
+			fAmountOfCharges = static_cast<float>(v);
+		}
+		mapStaResult[Category].fAmountOfCharges = fAmountOfCharges + mapStaResult[Category].fAmountOfCharges;
+
+		pRecordset->MoveNext();
+	}
+
+	// 获取实收到账金额
+	//float fAmountReceived(0.0f);
+	//std::map<CStringW,StatStru>::iterator iter;
+	//for (iter=mapStaResult.begin(); iter!=mapStaResult.end(); ++iter)
+	//{
+	//	// 获取该单位欠款金额
+	//	iter->second.fOutstanding_Amount = GetUnit_Outstanding_Amount(iter->first);
+	//}
+
+	float fAOC(0.0f);
+	std::map<CStringW,StatStru>::iterator iter;
+	for (iter=mapStaResult.begin(); iter!=mapStaResult.end(); ++iter)
+	{
+		CString strTemp;
+		nRow++;
+		m_pGridCtrl->InsertRow(L"记账收费");
+		m_pGridCtrl->SetItemText(nRow, 1, L"记账收费");
+		m_pGridCtrl->SetItemText(nRow, 2, iter->first);
+		m_pGridCtrl->SetItemState(nRow, 2, GVIS_READONLY);
+		m_pGridCtrl->SetItemText(nRow, 3, L"-");
+		m_pGridCtrl->SetItemState(nRow, 3, GVIS_READONLY);
+		strTemp.Format(L"%d", iter->second.nTotNum);
+		m_pGridCtrl->SetItemText(nRow, 4, L"-");
+		m_pGridCtrl->SetItemState(nRow, 4, GVIS_READONLY);
+		strTemp.Format(L"%.2f", iter->second.fAmountOfCharges);
+		m_pGridCtrl->SetItemText(nRow, 5, strTemp);
+		m_pGridCtrl->SetItemState(nRow, 5, GVIS_READONLY);
+		fAOC += iter->second.fAmountOfCharges;
+	}
+
+	if (mapStaResult.size() > 0)
+	{
+		CString strTemp;
+		nRow++;
+		strTemp.Format(L"%s统计", L"记账收费");
+		m_pGridCtrl->InsertRow(strTemp);
+		m_pGridCtrl->SetFixedCellCombine(nRow,0,0,1);
+		m_pGridCtrl->SetCellCombine(nRow,2,0,1);
+		m_pGridCtrl->SetCellCombine(nRow,4,0,1);
+		strTemp.Format(L"%.2f", fAOC);
+		m_pGridCtrl->SetItemText(nRow, 4, strTemp);
+		m_pGridCtrl->SetItemState(nRow, 2, GVIS_READONLY);
+		m_pGridCtrl->SetItemState(nRow, 4, GVIS_READONLY);
+		strTemp.Format(L"%s至%s", odtBeginTime.Format(L"%Y-%m-%d"), odtEndTime.Format(L"%Y-%m-%d"));
+		m_pGridCtrl->SetItemText(1, 0, strTemp);
+
+	}
 }

@@ -16,6 +16,7 @@
 #include "ChargeLogMgntView.h"
 #include "FeeTablesView.h"
 #include "DetCountStatView2.h"
+#include "BookkeepingCollectionView.h"
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -46,6 +47,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWndEx)
 	ON_COMMAND(ID_QUERY, &CMainFrame::OnQuery)
 	ON_COMMAND(ID_FEE_TABLES, &CMainFrame::OnFeeTables)
 	ON_COMMAND(ID_CHARGE_STATISTICS2, &CMainFrame::OnChargeStatistics2)
+	ON_COMMAND(ID_BOOKKEEPING_COLLECTION, &CMainFrame::OnBookkeepingCollection)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -730,6 +732,39 @@ void CMainFrame::OnChargeStatistics2()
 	}
 
 	// 要求取消权限锁定
+	//if (!VerifyEmpPerm(theApp.m_sToll_Operator))
+	//{
+	//	return;
+	//}
+
+	pDocTemplate->OpenDocumentFile(NULL);
+}
+
+
+void CMainFrame::OnBookkeepingCollection()
+{
+	// TODO: 在此添加命令处理程序代码
+	CDocTemplate *pDocTemplate = ((CSMCISApp *)AfxGetApp())->m_pBookkeepingCollectionView;
+	POSITION posDT = pDocTemplate->GetFirstDocPosition();
+	m_pMenu = CMenu::FromHandle(((CMultiDocTemplate*)pDocTemplate)->m_hMenuShared);
+	InitMenu();
+
+	while (posDT != NULL)
+	{
+		CDocument *pDoc = pDocTemplate->GetNextDoc(posDT);
+
+		POSITION posView = pDoc->GetFirstViewPosition();
+		while (NULL != posView)
+		{
+			CView *pView = pDoc->GetNextView(posView);
+			if (pView->IsKindOf(RUNTIME_CLASS(CBookkeepingCollectionView)))
+			{ 
+				pView->GetParentFrame()->ActivateFrame();
+				return;
+			}
+		}
+	}
+
 	//if (!VerifyEmpPerm(theApp.m_sToll_Operator))
 	//{
 	//	return;

@@ -29,6 +29,11 @@ public:
 	CString m_strCharge;
 	CString m_strWhy;
 	CString m_strChargeItem;
+
+	// 是否欠费
+	CString m_strIsArrears;
+	// 欠费单位
+	CString m_strUnitName;
 private:
 	afx_msg void OnBnClickedOk();
 	virtual BOOL OnInitDialog();
@@ -54,6 +59,9 @@ private:
 	CButtonST m_btnExpressCharge2;
 	CButtonST m_btnExpressCharge3;
 	CButtonST m_btnExpressCharge4;
+
+	CComboBox m_chUnitName;
+	CButtonST m_chkIsArrears;
 private:
 	// 通用对话框字体
 	CFont m_fontDlgFont;
@@ -69,4 +77,6 @@ private:
 	bool InitChargeItem(void);
 
 	bool VerifyEmpPerm(const SToll_Operator& sToll_Operator);
+public:
+	afx_msg void OnBnClickedCkIsArrears();
 };

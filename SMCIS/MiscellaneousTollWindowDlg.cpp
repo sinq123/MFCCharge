@@ -127,6 +127,8 @@ void CMiscellaneousTollWindowDlg::InitCtrls(void)
 {
 	SetDlgFont();
 	InitChargeItem();
+
+	m_edCharge.AllowNegative();
 }
 
 void CMiscellaneousTollWindowDlg::SetDlgFont(void)

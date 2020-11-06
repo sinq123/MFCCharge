@@ -281,6 +281,8 @@ void CMiscellaneousChargesDlg::InitCtrl()
 	m_btnDataMod.SetFlat(FALSE);
 
 	m_btnDataDel.SetFlat(FALSE);
+
+	m_edAmountOfCharge.AllowNegative();
 }
 
 void CMiscellaneousChargesDlg::SetDlgFont(void)

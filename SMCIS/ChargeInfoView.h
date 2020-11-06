@@ -133,7 +133,7 @@ private:
 	void ChargeUpdateDetBsnList(void);
 
 private:
-	bool SaveToCharge(const CString& strChargeItem, const CString& strCharge, const CString& strWhy);
+	bool SaveToCharge(const CString& strChargeItem, const CString& strCharge, const CString& strWhy, const CString& strIsArrears, const CString& strUnitName);
 	// 修改Detlog状态
 	// strRunNum 日志编号
 	// strMsg 返回失败信息
@@ -154,6 +154,12 @@ private:
 public:
 	afx_msg void OnBnClickedBtnDeleteRecord();
 	bool VerifyEmpPerm(const SToll_Operator& sToll_Operator);
+
+private:
+	// 欠款保存
+	// strUnitName 欠款单位
+	// strCharge 欠款(收费)金额
+	bool SaveArrearsToDB(const CString& strUnitName, const CString& strCharge);
 };
 
 
