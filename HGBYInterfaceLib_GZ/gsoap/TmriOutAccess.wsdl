@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.hg-banner.com.cn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.hg-banner.com.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.hg-banner.com.cn/">
+      <s:element name="queryObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="queryObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryObjectOutRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cjsqbh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwjgdm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhbz" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhxm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zdbs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sendXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryObjectOutRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryObjectOutRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryObjectOutResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cjsqbh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwjgdm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhbz" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhxm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zdbs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sendXmlDoc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryObjectOutResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryObjectOutResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WriteXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="writeObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteObjectOutRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cjsqbh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwjgdm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhbz" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhxm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zdbs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sendXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteObjectOutRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WriteObjectOutRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteObjectOutResult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cjsqbh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwjgdm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhbz" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhxm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zdbs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="requestid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sendXmlDoc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteObjectOutResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WriteObjectOutResultResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uploadLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="log" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="uploadLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uploadLogResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="queryObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:queryObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:queryObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryObjectOutRequest" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryObjectOutRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutResultSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryObjectOutResult" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutResultSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryObjectOutResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:writeObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:writeObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:WriteObjectOutRequest" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:WriteObjectOutRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutResultSoapIn">
+    <wsdl:part name="parameters" element="tns:WriteObjectOutResult" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutResultSoapOut">
+    <wsdl:part name="parameters" element="tns:WriteObjectOutResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="uploadLogSoapIn">
+    <wsdl:part name="parameters" element="tns:uploadLog" />
+  </wsdl:message>
+  <wsdl:message name="uploadLogSoapOut">
+    <wsdl:part name="parameters" element="tns:uploadLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutRequestHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutRequestHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutResultHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="requestid" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+    <wsdl:part name="resultXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutResultHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="WriteXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutRequestHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutRequestHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutResultHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="requestid" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+    <wsdl:part name="resultXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutResultHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uploadLogHttpGetIn">
+    <wsdl:part name="log" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uploadLogHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutRequestHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutRequestHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutResultHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="requestid" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+    <wsdl:part name="resultXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryObjectOutResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="WriteXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutRequestHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutRequestHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutResultHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="requestid" type="s:string" />
+    <wsdl:part name="sendXmlDoc" type="s:string" />
+    <wsdl:part name="resultXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WriteObjectOutResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="uploadLogHttpPostIn">
+    <wsdl:part name="log" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="uploadLogHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TmriOutAccessSoap">
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类接口</wsdl:documentation>
+      <wsdl:input message="tns:queryObjectOutSoapIn" />
+      <wsdl:output message="tns:queryObjectOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类请求接口</wsdl:documentation>
+      <wsdl:input message="tns:QueryObjectOutRequestSoapIn" />
+      <wsdl:output message="tns:QueryObjectOutRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类结果接口</wsdl:documentation>
+      <wsdl:input message="tns:QueryObjectOutResultSoapIn" />
+      <wsdl:output message="tns:QueryObjectOutResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类接口</wsdl:documentation>
+      <wsdl:input message="tns:writeObjectOutSoapIn" />
+      <wsdl:output message="tns:writeObjectOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类请求接口</wsdl:documentation>
+      <wsdl:input message="tns:WriteObjectOutRequestSoapIn" />
+      <wsdl:output message="tns:WriteObjectOutRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类结果接口</wsdl:documentation>
+      <wsdl:input message="tns:WriteObjectOutResultSoapIn" />
+      <wsdl:output message="tns:WriteObjectOutResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传日志</wsdl:documentation>
+      <wsdl:input message="tns:uploadLogSoapIn" />
+      <wsdl:output message="tns:uploadLogSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TmriOutAccessHttpGet">
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类接口</wsdl:documentation>
+      <wsdl:input message="tns:queryObjectOutHttpGetIn" />
+      <wsdl:output message="tns:queryObjectOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类请求接口</wsdl:documentation>
+      <wsdl:input message="tns:QueryObjectOutRequestHttpGetIn" />
+      <wsdl:output message="tns:QueryObjectOutRequestHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类结果接口</wsdl:documentation>
+      <wsdl:input message="tns:QueryObjectOutResultHttpGetIn" />
+      <wsdl:output message="tns:QueryObjectOutResultHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类接口</wsdl:documentation>
+      <wsdl:input message="tns:writeObjectOutHttpGetIn" />
+      <wsdl:output message="tns:writeObjectOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类请求接口</wsdl:documentation>
+      <wsdl:input message="tns:WriteObjectOutRequestHttpGetIn" />
+      <wsdl:output message="tns:WriteObjectOutRequestHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类结果接口</wsdl:documentation>
+      <wsdl:input message="tns:WriteObjectOutResultHttpGetIn" />
+      <wsdl:output message="tns:WriteObjectOutResultHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传日志</wsdl:documentation>
+      <wsdl:input message="tns:uploadLogHttpGetIn" />
+      <wsdl:output message="tns:uploadLogHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TmriOutAccessHttpPost">
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类接口</wsdl:documentation>
+      <wsdl:input message="tns:queryObjectOutHttpPostIn" />
+      <wsdl:output message="tns:queryObjectOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类请求接口</wsdl:documentation>
+      <wsdl:input message="tns:QueryObjectOutRequestHttpPostIn" />
+      <wsdl:output message="tns:QueryObjectOutRequestHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统查询类结果接口</wsdl:documentation>
+      <wsdl:input message="tns:QueryObjectOutResultHttpPostIn" />
+      <wsdl:output message="tns:QueryObjectOutResultHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类接口</wsdl:documentation>
+      <wsdl:input message="tns:writeObjectOutHttpPostIn" />
+      <wsdl:output message="tns:writeObjectOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类请求接口</wsdl:documentation>
+      <wsdl:input message="tns:WriteObjectOutRequestHttpPostIn" />
+      <wsdl:output message="tns:WriteObjectOutRequestHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">机动车检验监管系统写入类结果接口</wsdl:documentation>
+      <wsdl:input message="tns:WriteObjectOutResultHttpPostIn" />
+      <wsdl:output message="tns:WriteObjectOutResultHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">上传日志</wsdl:documentation>
+      <wsdl:input message="tns:uploadLogHttpPostIn" />
+      <wsdl:output message="tns:uploadLogHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TmriOutAccessSoap" type="tns:TmriOutAccessSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="queryObjectOut">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/queryObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/QueryObjectOutRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/QueryObjectOutResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/writeObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/WriteObjectOutRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/WriteObjectOutResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <soap:operation soapAction="http://www.hg-banner.com.cn/uploadLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriOutAccessSoap12" type="tns:TmriOutAccessSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="queryObjectOut">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/queryObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/QueryObjectOutRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/QueryObjectOutResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/writeObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/WriteObjectOutRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/WriteObjectOutResult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <soap12:operation soapAction="http://www.hg-banner.com.cn/uploadLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriOutAccessHttpGet" type="tns:TmriOutAccessHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="queryObjectOut">
+      <http:operation location="/queryObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <http:operation location="/QueryObjectOutRequest" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <http:operation location="/QueryObjectOutResult" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <http:operation location="/writeObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <http:operation location="/WriteObjectOutRequest" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <http:operation location="/WriteObjectOutResult" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <http:operation location="/uploadLog" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriOutAccessHttpPost" type="tns:TmriOutAccessHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="queryObjectOut">
+      <http:operation location="/queryObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutRequest">
+      <http:operation location="/QueryObjectOutRequest" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryObjectOutResult">
+      <http:operation location="/QueryObjectOutResult" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <http:operation location="/writeObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutRequest">
+      <http:operation location="/WriteObjectOutRequest" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteObjectOutResult">
+      <http:operation location="/WriteObjectOutResult" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="uploadLog">
+      <http:operation location="/uploadLog" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TmriOutAccess">
+    <wsdl:port name="TmriOutAccessSoap" binding="tns:TmriOutAccessSoap">
+      <soap:address location="http://localhost:10020/TmriOutAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriOutAccessSoap12" binding="tns:TmriOutAccessSoap12">
+      <soap12:address location="http://localhost:10020/TmriOutAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriOutAccessHttpGet" binding="tns:TmriOutAccessHttpGet">
+      <http:address location="http://localhost:10020/TmriOutAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriOutAccessHttpPost" binding="tns:TmriOutAccessHttpPost">
+      <http:address location="http://localhost:10020/TmriOutAccess.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

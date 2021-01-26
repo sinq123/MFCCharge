@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice.webservice.egintra.com" xmlns:soapenc11="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.webservice.egintra.com" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap11="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc12="http://www.w3.org/2003/05/soap-encoding">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://webservice.webservice.egintra.com">
+<xsd:element name="writeObjectOut">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="xtlb" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="jkxlh" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="jkid" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="jylsh" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="cjbh" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="yhbz" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="dwmc" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="dwjgdm" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="yhxm" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="zdbs" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="writeXml" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="writeObjectOutResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="queryObjectOut">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="xtlb" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="jkxlh" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="jkid" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="jylsh" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="cjbh" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="yhbz" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="dwmc" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="dwjgdm" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="yhxm" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="zdbs" nillable="true" type="xsd:string"/>
+<xsd:element maxOccurs="1" minOccurs="1" name="queryXml" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+<xsd:element name="queryObjectOutResponse">
+<xsd:complexType>
+<xsd:sequence>
+<xsd:element maxOccurs="1" minOccurs="1" name="out" nillable="true" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+</xsd:element>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="writeObjectOutRequest">
+    <wsdl:part name="parameters" element="tns:writeObjectOut">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutResponse">
+    <wsdl:part name="parameters" element="tns:queryObjectOutResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutRequest">
+    <wsdl:part name="parameters" element="tns:queryObjectOut">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutResponse">
+    <wsdl:part name="parameters" element="tns:writeObjectOutResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CyjgNewWebservicePortType">
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:input name="writeObjectOutRequest" message="tns:writeObjectOutRequest">
+    </wsdl:input>
+      <wsdl:output name="writeObjectOutResponse" message="tns:writeObjectOutResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:input name="queryObjectOutRequest" message="tns:queryObjectOutRequest">
+    </wsdl:input>
+      <wsdl:output name="queryObjectOutResponse" message="tns:queryObjectOutResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CyjgNewWebserviceHttpBinding" type="tns:CyjgNewWebservicePortType">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="writeObjectOut">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="writeObjectOutRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="writeObjectOutResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="queryObjectOutRequest">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryObjectOutResponse">
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CyjgNewWebservice">
+    <wsdl:port name="CyjgNewWebserviceHttpPort" binding="tns:CyjgNewWebserviceHttpBinding">
+      <wsdlsoap:address location="http://192.168.117.242:8280/cyjg-webapp/service/CyjgNewWebservice"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

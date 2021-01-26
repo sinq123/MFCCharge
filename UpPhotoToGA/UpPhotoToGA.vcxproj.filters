@@ -22,6 +22,7 @@
     <None Include="res\UpPhotoToGA.ico">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="2.xml" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="UpPhotoToGA.h">

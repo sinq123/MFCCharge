@@ -26,9 +26,9 @@
 
 #include "..\NHLib\NHLib.h"
 #ifdef _DEBUG
-#pragma comment(lib, "..\\Debug\\NHLib_D.lib")
+#pragma comment(lib, "..\\Debug\\MYLib_D.lib")
 #else
-#pragma comment(lib, "..\\Release\\NHLib.lib")
+#pragma comment(lib, "..\\Release\\MYLib.lib")
 #endif
 
 #include "..\NHModeServerDBDAL\NHModeServerDBDAL.h"
@@ -40,9 +40,9 @@
 
 #include "..\NHNetLib\NHNetLib.h"
 #ifdef _DEBUG
-#pragma comment(lib, "..\\Debug\\NHNetLib_D.lib")
+#pragma comment(lib, "..\\Debug\\MYNetLib_D.lib")
 #else
-#pragma comment(lib, "..\\Release\\NHNetLib.lib")
+#pragma comment(lib, "..\\Release\\MYNetLib.lib")
 #endif
 
 // CChargeApp:

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="queryObjectOutNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cjsqbh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwjgdm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhbz" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhxm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zdbs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryObjectOutNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="queryObjectOutNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeObjectOutNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="cjsqbh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwjgdm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dwmc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhbz" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="yhxm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zdbs" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WriteXmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeObjectOutNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="writeObjectOutNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="queryObjectOutNewSoapIn">
+    <wsdl:part name="parameters" element="tns:queryObjectOutNew" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutNewSoapOut">
+    <wsdl:part name="parameters" element="tns:queryObjectOutNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutNewSoapIn">
+    <wsdl:part name="parameters" element="tns:writeObjectOutNew" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutNewSoapOut">
+    <wsdl:part name="parameters" element="tns:writeObjectOutNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutNewHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="QueryXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutNewHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutNewHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="WriteXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutNewHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutNewHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="QueryXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutNewHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutNewHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="cjsqbh" type="s:string" />
+    <wsdl:part name="dwjgdm" type="s:string" />
+    <wsdl:part name="dwmc" type="s:string" />
+    <wsdl:part name="yhbz" type="s:string" />
+    <wsdl:part name="yhxm" type="s:string" />
+    <wsdl:part name="zdbs" type="s:string" />
+    <wsdl:part name="WriteXmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutNewHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TmriJaxRpcOutNewAccessSoap">
+    <wsdl:operation name="queryObjectOutNew">
+      <wsdl:input message="tns:queryObjectOutNewSoapIn" />
+      <wsdl:output message="tns:queryObjectOutNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <wsdl:input message="tns:writeObjectOutNewSoapIn" />
+      <wsdl:output message="tns:writeObjectOutNewSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TmriJaxRpcOutNewAccessHttpGet">
+    <wsdl:operation name="queryObjectOutNew">
+      <wsdl:input message="tns:queryObjectOutNewHttpGetIn" />
+      <wsdl:output message="tns:queryObjectOutNewHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <wsdl:input message="tns:writeObjectOutNewHttpGetIn" />
+      <wsdl:output message="tns:writeObjectOutNewHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TmriJaxRpcOutNewAccessHttpPost">
+    <wsdl:operation name="queryObjectOutNew">
+      <wsdl:input message="tns:queryObjectOutNewHttpPostIn" />
+      <wsdl:output message="tns:queryObjectOutNewHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <wsdl:input message="tns:writeObjectOutNewHttpPostIn" />
+      <wsdl:output message="tns:writeObjectOutNewHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TmriJaxRpcOutNewAccessSoap" type="tns:TmriJaxRpcOutNewAccessSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="queryObjectOutNew">
+      <soap:operation soapAction="http://tempuri.org/queryObjectOutNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <soap:operation soapAction="http://tempuri.org/writeObjectOutNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriJaxRpcOutNewAccessSoap12" type="tns:TmriJaxRpcOutNewAccessSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="queryObjectOutNew">
+      <soap12:operation soapAction="http://tempuri.org/queryObjectOutNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <soap12:operation soapAction="http://tempuri.org/writeObjectOutNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriJaxRpcOutNewAccessHttpGet" type="tns:TmriJaxRpcOutNewAccessHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="queryObjectOutNew">
+      <http:operation location="/queryObjectOutNew" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <http:operation location="/writeObjectOutNew" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriJaxRpcOutNewAccessHttpPost" type="tns:TmriJaxRpcOutNewAccessHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="queryObjectOutNew">
+      <http:operation location="/queryObjectOutNew" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOutNew">
+      <http:operation location="/writeObjectOutNew" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TmriJaxRpcOutNewAccess">
+    <wsdl:port name="TmriJaxRpcOutNewAccessSoap" binding="tns:TmriJaxRpcOutNewAccessSoap">
+      <soap:address location="http://190.168.27.2/jcxws/TmriOutNewAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriJaxRpcOutNewAccessSoap12" binding="tns:TmriJaxRpcOutNewAccessSoap12">
+      <soap12:address location="http://190.168.27.2/jcxws/TmriOutNewAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriJaxRpcOutNewAccessHttpGet" binding="tns:TmriJaxRpcOutNewAccessHttpGet">
+      <http:address location="http://190.168.27.2/jcxws/TmriOutNewAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriJaxRpcOutNewAccessHttpPost" binding="tns:TmriJaxRpcOutNewAccessHttpPost">
+      <http:address location="http://190.168.27.2/jcxws/TmriOutNewAccess.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

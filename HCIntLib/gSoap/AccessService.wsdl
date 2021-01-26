@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="QueryService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WriteServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WriteServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="webEncodeUTF8">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="str" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="webEncodeUTF8Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="webEncodeUTF8Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="webDecodeUTF8">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="str" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="webDecodeUTF8Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="webDecodeUTF8Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBase64">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="byt" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBase64Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBase64Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="QueryServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryService" />
+  </wsdl:message>
+  <wsdl:message name="QueryServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="WriteServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:WriteService" />
+  </wsdl:message>
+  <wsdl:message name="WriteServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:WriteServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="webEncodeUTF8SoapIn">
+    <wsdl:part name="parameters" element="tns:webEncodeUTF8" />
+  </wsdl:message>
+  <wsdl:message name="webEncodeUTF8SoapOut">
+    <wsdl:part name="parameters" element="tns:webEncodeUTF8Response" />
+  </wsdl:message>
+  <wsdl:message name="webDecodeUTF8SoapIn">
+    <wsdl:part name="parameters" element="tns:webDecodeUTF8" />
+  </wsdl:message>
+  <wsdl:message name="webDecodeUTF8SoapOut">
+    <wsdl:part name="parameters" element="tns:webDecodeUTF8Response" />
+  </wsdl:message>
+  <wsdl:message name="GetBase64SoapIn">
+    <wsdl:part name="parameters" element="tns:GetBase64" />
+  </wsdl:message>
+  <wsdl:message name="GetBase64SoapOut">
+    <wsdl:part name="parameters" element="tns:GetBase64Response" />
+  </wsdl:message>
+  <wsdl:portType name="AccessServiceSoap">
+    <wsdl:operation name="QueryService">
+      <wsdl:input message="tns:QueryServiceSoapIn" />
+      <wsdl:output message="tns:QueryServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteService">
+      <wsdl:input message="tns:WriteServiceSoapIn" />
+      <wsdl:output message="tns:WriteServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="webEncodeUTF8">
+      <wsdl:input message="tns:webEncodeUTF8SoapIn" />
+      <wsdl:output message="tns:webEncodeUTF8SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="webDecodeUTF8">
+      <wsdl:input message="tns:webDecodeUTF8SoapIn" />
+      <wsdl:output message="tns:webDecodeUTF8SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBase64">
+      <wsdl:input message="tns:GetBase64SoapIn" />
+      <wsdl:output message="tns:GetBase64SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AccessServiceSoap" type="tns:AccessServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="QueryService">
+      <soap:operation soapAction="http://tempuri.org/QueryService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteService">
+      <soap:operation soapAction="http://tempuri.org/WriteService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="webEncodeUTF8">
+      <soap:operation soapAction="http://tempuri.org/webEncodeUTF8" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="webDecodeUTF8">
+      <soap:operation soapAction="http://tempuri.org/webDecodeUTF8" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBase64">
+      <soap:operation soapAction="http://tempuri.org/GetBase64" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AccessServiceSoap12" type="tns:AccessServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="QueryService">
+      <soap12:operation soapAction="http://tempuri.org/QueryService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteService">
+      <soap12:operation soapAction="http://tempuri.org/WriteService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="webEncodeUTF8">
+      <soap12:operation soapAction="http://tempuri.org/webEncodeUTF8" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="webDecodeUTF8">
+      <soap12:operation soapAction="http://tempuri.org/webDecodeUTF8" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBase64">
+      <soap12:operation soapAction="http://tempuri.org/GetBase64" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AccessService">
+    <wsdl:port name="AccessServiceSoap" binding="tns:AccessServiceSoap">
+      <soap:address location="http://192.100.9.100:83/Services/AccessService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AccessServiceSoap12" binding="tns:AccessServiceSoap12">
+      <soap12:address location="http://192.100.9.100:83/Services/AccessService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Ini">
+      <UniqueIdentifier>{43dcdbb3-3b9a-4c50-a5de-37729035ea83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="API">
+      <UniqueIdentifier>{723874ea-b081-453f-8003-4a469c1796bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libcURL">
+      <UniqueIdentifier>{38e5cc48-4222-47f8-bebe-f87bc62a6cea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libcURL\include">
+      <UniqueIdentifier>{c9f7885a-7a34-4d69-9c74-b245e85642d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="libcURL\lib">
+      <UniqueIdentifier>{2cdf30ec-2f0b-42f8-9c7c-3dfd5a958d17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{146a52e7-eaa8-4b30-8c61-928e03a72b9b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="ACPostGetLib.def">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="res\ACPostGetLib.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="NHWebServiceLib.ini">
+      <Filter>Ini</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ACPostGetLib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ACPostGetLibAPI.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="URLCode.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="ZBase64.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ACPostGetLib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ACPostGetLibAPI.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\curl.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\curlbuild.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\curlrules.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\curlver.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\easy.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\mprintf.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\multi.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\stdcheaders.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="libcURL\include\typecheck-gcc.h">
+      <Filter>libcURL\include</Filter>
+    </ClInclude>
+    <ClInclude Include="kutfconv.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="URLCode.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="ZBase64.h">
+      <Filter>util</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ACPostGetLib.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="libcURL\lib\libcurl.lib">
+      <Filter>libcURL\lib</Filter>
+    </Library>
+    <Library Include="libcURL\lib\libcurld.lib">
+      <Filter>libcURL\lib</Filter>
+    </Library>
+  </ItemGroup>
+</Project>

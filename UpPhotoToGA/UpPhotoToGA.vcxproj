@@ -94,6 +94,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="2.xml" />
     <None Include="ReadMe.txt" />
     <None Include="res\UpPhotoToGA.ico" />
     <None Include="res\UpPhotoToGA.rc2" />

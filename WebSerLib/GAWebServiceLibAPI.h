@@ -74,8 +74,8 @@ public:
 //	bool DetStart(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool DetStart(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	// 18C55-机动车检验项目开始信息
-//	bool DetItemStart(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool DetItemStart(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool DetItemStart(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool DetItemStart(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	// 18C80-机动车人工检验项目检验结果详细信息(按GB 21861-XXXX)
 //	bool UploadAppData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UploadAppData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SManualData& sManualData, const SManualData_STD& sManualData_STD, const SDimensionData& sDimensionData, const SAxleLoadData& sAxleLoadData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
@@ -123,9 +123,9 @@ public:
 //	bool UploadSideslipData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UploadSideslipData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SSteerabilityData& sSteerabilityData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UpEndSideslipData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool UploadDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool UpEndDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UploadUnladenMassData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UploadUnladenMassData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UpEndUnladenMassData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
@@ -133,9 +133,9 @@ public:
 //	bool UploadRoadData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UploadRoadData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SRoadData& sRoadData, const SDetItem& sDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool UpEndRoadData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C58-机动车检验项目结束信息
-//	bool DetItemEnd(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool DetItemEnd(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	// 18C58-机动车检验项目结束信息
+	bool DetItemEnd(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool DetItemEnd(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	// 18C59-机动车检验过程结束信息
 //	bool DetEnd(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 //	bool DetEnd(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
@@ -229,14 +229,94 @@ public:
 	//bool WriteChargeInfo(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, SGAMsg& sMsg);
 	//// 18C71-机动车检验审核通过信息获取回执
 	//bool VehPassInfoObtainReceipt(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, SGAMsg& sMsg);
-	//// 18C21-读取车管业务流水号
-	//bool GetBusinessNum(const CStringW& strReportNumber, SGABusinessNum &sGABusinessNum, SGAMsg& sMsg);
+	// 18C21-读取车管业务流水号
+	bool GetBusinessNum(const CStringW& strReportNumber, SGABusinessNum &sGABusinessNum, SGAMsg& sMsg);
 	//// 18C07-互联网检验预约信息下载
 	//bool GetIEApptInfo(const CStringW& strApptDate, std::list<SGAIEApptInfo> &lsGAIEApptInfo, SGAMsg& sMsg);
 	//// 18C08-机动车公告技术参数文本信息下载
 	//bool GetVehTecParaTxtInfo(const CStringW& strVehAN, const CStringW& strBrand, const CStringW& strModel, SGAVehTecParaTxtInfo &sGAVehTecParaTxtInfo, SGAMsg& sMsg);
 	//// 18C09-机动车公告技术参数图片信息下载
 	//bool GetVehTecParaPhoInfo(const CStringW& strPhoNum, SGAVehTecParaPhoInfo &sGAVehTecParaPhoInfo, SGAMsg& sMsg);
+
+	// 安车接口开始
+	// 18S01-获取检验流水号
+	bool ACGetNetReportNumber(const SDetLog& sDetLog, const SHisVehInfo& sHisVehInfo, std::wstring &strRunNum, SGAMsg& sMsg);
+	// 触发项目拍照：18S04
+	bool ACVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode, SGAMsg& sMsg, const CStringW& strLineNumber=L"1", _ConnectionPtr pConnection = NULL);
+	bool ACVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, const CStringW& strPhotoCode,  SGAMsg& sMsg, const CStringW& strLineNumber=L"1");
+	// 安车接口结束
+	// 海成接口开始
+	// 18J11-检测工位开始
+	bool HCTestItemStart(const CStringW& strRunningNumber, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HCTestItemStart(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// 18J31-项目拍照触发
+	bool HCVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HCVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, 
+		const CStringW& strPhotoCode, SGAMsg& sMsg);
+	// 18J12-检测工位结束
+	bool HCTestItemEnd(const CStringW& strRunningNumber, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HCTestItemEnd(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// 18C99-机动车外廓二维码照片上传
+	bool HCDim2DPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, 
+		const CStringW& strPhotoCode, const CStringW& strPhotoPath, const SGABusinessNum& sGABusinessNum, SGAMsg& sMsg);
+	// CHK10
+	bool HCTestItemStartCHK10(const CStringW& strRunningNumber, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HCTestItemStartCHK10(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// CHK11
+	bool HCTestItemEndCHK11(const CStringW& strRunningNumber, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HCTestItemEndCHK11(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// 海成接口结束
+	// 长通科技接口开始
+	// 3.4.4 18M14-触发项目拍照
+	bool CTKJVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool CTKJVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, 
+		const CStringW& strPhotoCode, SGAMsg& sMsg);
+	// 长通科技接口结束
+	// 安之畅接口开始
+	// 2.1.视频截取接口
+	bool AZCVehVideo(const CStringW& strRunningNumber, const CStringW& strBeginTimes, const CStringW& strEndTimes, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool AZCVehVideo(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strBeginTimes, 
+		const CStringW& strEndTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// 2.2.工位截图接口
+	bool AZCVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode,  SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool AZCVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes,  const CStringW& strItemCode, const CStringW& strPhotoCode, SGAMsg& sMsg);
+	// 
+	// 安之畅接口结束
+	// 华燕接口开始
+	// 2.7.1.18W55-开始录像
+	bool HYTestItemStart(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strVideoItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HYTestItemStart(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, const CStringW& strVideoItemCode, SGAMsg& sMsg);
+	// 2.7.3.18N63-调取摄像头抓拍照片
+	bool HYVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode, const CStringW& strVideoItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HYVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, 
+		const CStringW& strPhotoCode, const CStringW& strVideoItemCode, SGAMsg& sMsg);
+	// 2.7.2.18W58-结束录像
+	bool HYTestItemEnd(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strVideoItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HYTestItemEnd(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, const CStringW& strVideoItemCode, SGAMsg& sMsg);
+	// 华燕接口结束
+	// 华工邦元开始
+	// 拍照JW006(牵挂同检，流水号不一致问题处理)
+	bool HGBYTakePhotos(const CStringW& strRunningNumber, const CStringW& strDetItem, const CStringW& strPssk, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool HGBYTakePhotos(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, const CStringW& strPssk, SGAMsg& sMsg);
+	// 华工邦元结束
+	// 四川星盾开始
+	// 2.1.3.3.1.1.外廓尺寸数据查询（18J17）
+	bool SCXDGetDimData(const CStringW& strReportNumber,SGAMsg& sMsg);
+	// 2.1.3.3.2.1.检测工位录像开始（18J11）
+	bool SCXDTestItemStart(const CStringW& strRunningNumber, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool SCXDTestItemStart(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// 2.1.3.3.2.2.检测工位录像结束（18J12）
+	bool SCXDTestItemEnd(const CStringW& strRunningNumber, const CStringW& strItemCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool SCXDTestItemEnd(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, SGAMsg& sMsg);
+	// 2.1.3.3.2.4.检测工位摄像头拍照触发（18J31）
+	bool SCXDVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool SCXDVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, 
+		const CStringW& strPhotoCode, SGAMsg& sMsg);
+	// 四川星盾结束
+	// 太原赛斯开始
+	bool TYSSVehPhoto(const CStringW& strRunningNumber, const CStringW& strItemCode, const CStringW& strPhotoCode, SGAMsg& sMsg, const CStringW& strLineNumber=L"1", _ConnectionPtr pConnection = NULL);
+	bool TYSSVehPhoto(const SDetLog &sDetLog, const SHisVehInfo &sHisVehInfo, const SDetTimes &sDetTimes, const CStringW& strItemCode, const CStringW& strPhotoCode,  SGAMsg& sMsg, const CStringW& strLineNumber=L"1");
+	// 太原赛斯结束
 
 public:
 	// 检验机构名称
@@ -266,6 +346,10 @@ public:
 	// 终端标识
 	inline CString GetZdbs() {
 		return m_strZdbs;
+	}
+	// 接口版本
+	inline int GetNetPlatform() {
+		return m_nNetPlatform;
 	}
 
 private:
@@ -305,6 +389,8 @@ private:
 	CStringW m_strModName;
 
 private:
+	// 接口版本
+	int m_nNetPlatform;
 	// 公安接口版本
 	int m_nGAVersion;
 	// WebService地址
@@ -312,6 +398,19 @@ private:
 	char* m_pchURL;
 	// 接口序列号
 	CStringW m_strIFSN;
+
+	// WebService地址 Teo
+	CStringW m_strURL_Two;
+	char* m_pchURL_Two;
+	// 接口序列号 Two
+	CStringW m_strIFSN_Two;
+
+	// WebService地址 Three
+	CStringW m_strURL_Three;
+	char* m_pchURL_Three;
+	// 接口序列号 Two
+	CStringW m_strIFSN_Three;
+
 	// 检验机构编号
 	CStringW m_strStationNum;
 	// 检验机构名称
@@ -333,7 +432,8 @@ private:
 	CStringW m_strYhxm;
 	//终端标识
 	CStringW m_strZdbs;
-
+	//系统类别
+	CStringW m_strSysType;
 private:
 	// 查询XML头
 	CStringW strQueryHead;

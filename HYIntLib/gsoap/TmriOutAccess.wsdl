@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.hyjtkj.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://www.hyjtkj.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.hyjtkj.com/">
+      <s:element name="GetVer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="str" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetVerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVerResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryUTF8XmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="queryObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="queryObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="writeUTF8XmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="writeObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="writeObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NetworkingQueryObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryUTF8XmlJsonDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NetworkingQueryObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NetworkingQueryObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NetworkingWriteObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xtlb" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="WriteUTF8XmlJsonDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NetworkingWriteObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NetworkingWriteObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoginParm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="_CYYID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="mac" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="imie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLoginParmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLoginParmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="zjqueryObjectOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isSucceed" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkxlh" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="jkid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryUTF8XmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="zjqueryObjectOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="zjqueryObjectOutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetVerSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVer" />
+  </wsdl:message>
+  <wsdl:message name="GetVerSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVerResponse" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:queryObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:queryObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:writeObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:writeObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingQueryObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:NetworkingQueryObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingQueryObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:NetworkingQueryObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingWriteObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:NetworkingWriteObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingWriteObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:NetworkingWriteObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginParmSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLoginParm" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginParmSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLoginParmResponse" />
+  </wsdl:message>
+  <wsdl:message name="zjqueryObjectOutSoapIn">
+    <wsdl:part name="parameters" element="tns:zjqueryObjectOut" />
+  </wsdl:message>
+  <wsdl:message name="zjqueryObjectOutSoapOut">
+    <wsdl:part name="parameters" element="tns:zjqueryObjectOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVerHttpGetIn">
+    <wsdl:part name="str" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVerHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryUTF8XmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="writeUTF8XmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingQueryObjectOutHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryUTF8XmlJsonDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingQueryObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingWriteObjectOutHttpGetIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="WriteUTF8XmlJsonDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingWriteObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginParmHttpGetIn">
+    <wsdl:part name="_CYYID" type="s:string" />
+    <wsdl:part name="mac" type="s:string" />
+    <wsdl:part name="imie" type="s:string" />
+    <wsdl:part name="ip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginParmHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="zjqueryObjectOutHttpGetIn">
+    <wsdl:part name="isSucceed" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryUTF8XmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="zjqueryObjectOutHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVerHttpPostIn">
+    <wsdl:part name="str" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetVerHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryUTF8XmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="queryObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="writeUTF8XmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="writeObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingQueryObjectOutHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryUTF8XmlJsonDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingQueryObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingWriteObjectOutHttpPostIn">
+    <wsdl:part name="xtlb" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="WriteUTF8XmlJsonDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="NetworkingWriteObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginParmHttpPostIn">
+    <wsdl:part name="_CYYID" type="s:string" />
+    <wsdl:part name="mac" type="s:string" />
+    <wsdl:part name="imie" type="s:string" />
+    <wsdl:part name="ip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLoginParmHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="zjqueryObjectOutHttpPostIn">
+    <wsdl:part name="isSucceed" type="s:string" />
+    <wsdl:part name="jkxlh" type="s:string" />
+    <wsdl:part name="jkid" type="s:string" />
+    <wsdl:part name="QueryUTF8XmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="zjqueryObjectOutHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="TmriOutAccessSoap">
+    <wsdl:operation name="GetVer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">版本查看</wsdl:documentation>
+      <wsdl:input message="tns:GetVerSoapIn" />
+      <wsdl:output message="tns:GetVerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网查询类1</wsdl:documentation>
+      <wsdl:input message="tns:queryObjectOutSoapIn" />
+      <wsdl:output message="tns:queryObjectOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网写入类1</wsdl:documentation>
+      <wsdl:input message="tns:writeObjectOutSoapIn" />
+      <wsdl:output message="tns:writeObjectOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网查询类2</wsdl:documentation>
+      <wsdl:input message="tns:NetworkingQueryObjectOutSoapIn" />
+      <wsdl:output message="tns:NetworkingQueryObjectOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网写入类2</wsdl:documentation>
+      <wsdl:input message="tns:NetworkingWriteObjectOutSoapIn" />
+      <wsdl:output message="tns:NetworkingWriteObjectOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取登录初始化信息</wsdl:documentation>
+      <wsdl:input message="tns:GetLoginParmSoapIn" />
+      <wsdl:output message="tns:GetLoginParmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">湖北综检联网</wsdl:documentation>
+      <wsdl:input message="tns:zjqueryObjectOutSoapIn" />
+      <wsdl:output message="tns:zjqueryObjectOutSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TmriOutAccessHttpGet">
+    <wsdl:operation name="GetVer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">版本查看</wsdl:documentation>
+      <wsdl:input message="tns:GetVerHttpGetIn" />
+      <wsdl:output message="tns:GetVerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网查询类1</wsdl:documentation>
+      <wsdl:input message="tns:queryObjectOutHttpGetIn" />
+      <wsdl:output message="tns:queryObjectOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网写入类1</wsdl:documentation>
+      <wsdl:input message="tns:writeObjectOutHttpGetIn" />
+      <wsdl:output message="tns:writeObjectOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网查询类2</wsdl:documentation>
+      <wsdl:input message="tns:NetworkingQueryObjectOutHttpGetIn" />
+      <wsdl:output message="tns:NetworkingQueryObjectOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网写入类2</wsdl:documentation>
+      <wsdl:input message="tns:NetworkingWriteObjectOutHttpGetIn" />
+      <wsdl:output message="tns:NetworkingWriteObjectOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取登录初始化信息</wsdl:documentation>
+      <wsdl:input message="tns:GetLoginParmHttpGetIn" />
+      <wsdl:output message="tns:GetLoginParmHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">湖北综检联网</wsdl:documentation>
+      <wsdl:input message="tns:zjqueryObjectOutHttpGetIn" />
+      <wsdl:output message="tns:zjqueryObjectOutHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="TmriOutAccessHttpPost">
+    <wsdl:operation name="GetVer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">版本查看</wsdl:documentation>
+      <wsdl:input message="tns:GetVerHttpPostIn" />
+      <wsdl:output message="tns:GetVerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网查询类1</wsdl:documentation>
+      <wsdl:input message="tns:queryObjectOutHttpPostIn" />
+      <wsdl:output message="tns:queryObjectOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网写入类1</wsdl:documentation>
+      <wsdl:input message="tns:writeObjectOutHttpPostIn" />
+      <wsdl:output message="tns:writeObjectOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网查询类2</wsdl:documentation>
+      <wsdl:input message="tns:NetworkingQueryObjectOutHttpPostIn" />
+      <wsdl:output message="tns:NetworkingQueryObjectOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">联网写入类2</wsdl:documentation>
+      <wsdl:input message="tns:NetworkingWriteObjectOutHttpPostIn" />
+      <wsdl:output message="tns:NetworkingWriteObjectOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取登录初始化信息</wsdl:documentation>
+      <wsdl:input message="tns:GetLoginParmHttpPostIn" />
+      <wsdl:output message="tns:GetLoginParmHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">湖北综检联网</wsdl:documentation>
+      <wsdl:input message="tns:zjqueryObjectOutHttpPostIn" />
+      <wsdl:output message="tns:zjqueryObjectOutHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TmriOutAccessSoap" type="tns:TmriOutAccessSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVer">
+      <soap:operation soapAction="http://www.hyjtkj.com/GetVer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <soap:operation soapAction="http://www.hyjtkj.com/queryObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <soap:operation soapAction="http://www.hyjtkj.com/writeObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <soap:operation soapAction="http://www.hyjtkj.com/NetworkingQueryObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <soap:operation soapAction="http://www.hyjtkj.com/NetworkingWriteObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <soap:operation soapAction="http://www.hyjtkj.com/GetLoginParm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <soap:operation soapAction="http://www.hyjtkj.com/zjqueryObjectOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriOutAccessSoap12" type="tns:TmriOutAccessSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetVer">
+      <soap12:operation soapAction="http://www.hyjtkj.com/GetVer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <soap12:operation soapAction="http://www.hyjtkj.com/queryObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <soap12:operation soapAction="http://www.hyjtkj.com/writeObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <soap12:operation soapAction="http://www.hyjtkj.com/NetworkingQueryObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <soap12:operation soapAction="http://www.hyjtkj.com/NetworkingWriteObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <soap12:operation soapAction="http://www.hyjtkj.com/GetLoginParm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <soap12:operation soapAction="http://www.hyjtkj.com/zjqueryObjectOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriOutAccessHttpGet" type="tns:TmriOutAccessHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetVer">
+      <http:operation location="/GetVer" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <http:operation location="/queryObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <http:operation location="/writeObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <http:operation location="/NetworkingQueryObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <http:operation location="/NetworkingWriteObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <http:operation location="/GetLoginParm" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <http:operation location="/zjqueryObjectOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="TmriOutAccessHttpPost" type="tns:TmriOutAccessHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetVer">
+      <http:operation location="/GetVer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="queryObjectOut">
+      <http:operation location="/queryObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="writeObjectOut">
+      <http:operation location="/writeObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingQueryObjectOut">
+      <http:operation location="/NetworkingQueryObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NetworkingWriteObjectOut">
+      <http:operation location="/NetworkingWriteObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLoginParm">
+      <http:operation location="/GetLoginParm" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="zjqueryObjectOut">
+      <http:operation location="/zjqueryObjectOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TmriOutAccess">
+    <wsdl:port name="TmriOutAccessSoap" binding="tns:TmriOutAccessSoap">
+      <soap:address location="http://192.168.216.16:9022/pnweb/TmriOutAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriOutAccessSoap12" binding="tns:TmriOutAccessSoap12">
+      <soap12:address location="http://192.168.216.16:9022/pnweb/TmriOutAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriOutAccessHttpGet" binding="tns:TmriOutAccessHttpGet">
+      <http:address location="http://192.168.216.16:9022/pnweb/TmriOutAccess.asmx" />
+    </wsdl:port>
+    <wsdl:port name="TmriOutAccessHttpPost" binding="tns:TmriOutAccessHttpPost">
+      <http:address location="http://192.168.216.16:9022/pnweb/TmriOutAccess.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

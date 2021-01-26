@@ -1452,34 +1452,41 @@ bool CChargeInfoView::CancelOfCharge(const CString& strWhy)
 
 		if (sMsg.code.find(L"1") != -1)
 		{
-			_ConnectionPtr pConnection(NULL);
+			//_ConnectionPtr pConnection(NULL);
 
-			// 删除PDA表数据
-			wchar_t wchFilePath[MAX_PATH];
-			ZeroMemory(wchFilePath, sizeof(wchFilePath));
-			if (0x00 == CNHCommonAPI::GetHLDFilePath(L"Config", L"GAWebServiceLib.ini", wchFilePath))
+			//// 删除PDA表数据
+			//wchar_t wchFilePath[MAX_PATH];
+			//ZeroMemory(wchFilePath, sizeof(wchFilePath));
+			//if (0x00 == CNHCommonAPI::GetHLDFilePath(L"Config", L"GAWebServiceLib.ini", wchFilePath))
+			//{
+			//}
+			//CSimpleIni si(wchFilePath);
+			//// 数据库信息
+			//CString strDataSource = si.GetString(L"PDADB", L"DataSource", L"(local)");
+			//CString strInitialCatalog = si.GetString(L"PDADB", L"InitialCatalog", L"PDA_DB");
+			//CString strUserID = si.GetString(L"PDADB", L"UserID", L"sa");
+			//CString strPassword = si.GetString(L"PDADB", L"Password", L"anche@123");
+
+			//if (0x00 == CNHSQLServerDBO::OpenDB(pConnection, strDataSource, strInitialCatalog, strUserID, strPassword))
+			//{
+			//	int nInvolved(0);
+			//	CString strSQL;
+			//	strSQL.Format(L"delete from AC_DATA_WG where jylsh=\'%s\';", sDetLog.strReportNumber.c_str());
+			//	CNHSQLServerDBO::ExecuteDML(pConnection, strSQL, &nInvolved);
+			//	strSQL.Format(L"delete from AC_DATA_DYN where jylsh=\'%s\';", sDetLog.strReportNumber.c_str());
+			//	CNHSQLServerDBO::ExecuteDML(pConnection, strSQL, &nInvolved);
+			//	strSQL.Format(L"delete from AC_DATA_ROAD where jylsh=\'%s\';", sDetLog.strReportNumber.c_str());
+			//	CNHSQLServerDBO::ExecuteDML(pConnection, strSQL, &nInvolved);
+			//}
+
+			//CNHSQLServerDBO::CloseDB(pConnection);
+
+			SACMsg sAcMsg;
+			CACPostGetLibAPI::GetInstance().DeleteVehDetWJ(strRunNum, sAcMsg);
+			if (sAcMsg.code == L"1")
 			{
+				
 			}
-			CSimpleIni si(wchFilePath);
-			// 数据库信息
-			CString strDataSource = si.GetString(L"PDADB", L"DataSource", L"(local)");
-			CString strInitialCatalog = si.GetString(L"PDADB", L"InitialCatalog", L"PDA_DB");
-			CString strUserID = si.GetString(L"PDADB", L"UserID", L"sa");
-			CString strPassword = si.GetString(L"PDADB", L"Password", L"anche@123");
-
-			if (0x00 == CNHSQLServerDBO::OpenDB(pConnection, strDataSource, strInitialCatalog, strUserID, strPassword))
-			{
-				int nInvolved(0);
-				CString strSQL;
-				strSQL.Format(L"delete from AC_DATA_WG where jylsh=\'%s\';", sDetLog.strReportNumber.c_str());
-				CNHSQLServerDBO::ExecuteDML(pConnection, strSQL, &nInvolved);
-				strSQL.Format(L"delete from AC_DATA_DYN where jylsh=\'%s\';", sDetLog.strReportNumber.c_str());
-				CNHSQLServerDBO::ExecuteDML(pConnection, strSQL, &nInvolved);
-				strSQL.Format(L"delete from AC_DATA_ROAD where jylsh=\'%s\';", sDetLog.strReportNumber.c_str());
-				CNHSQLServerDBO::ExecuteDML(pConnection, strSQL, &nInvolved);
-			}
-
-			CNHSQLServerDBO::CloseDB(pConnection);
 		}
 
 		// 南华取消检测

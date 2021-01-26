@@ -120,6 +120,9 @@
     <ClCompile Include="NHEdit.cpp">
       <Filter>第三方类</Filter>
     </ClCompile>
+    <ClCompile Include="CheckComboBox.cpp">
+      <Filter>第三方类</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="NHLib.def">
@@ -249,6 +252,9 @@
       <Filter>第三方类</Filter>
     </ClInclude>
     <ClInclude Include="NHEdit.h">
+      <Filter>第三方类</Filter>
+    </ClInclude>
+    <ClInclude Include="CheckComboBox.h">
       <Filter>第三方类</Filter>
     </ClInclude>
   </ItemGroup>

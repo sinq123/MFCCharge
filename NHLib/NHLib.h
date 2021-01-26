@@ -68,5 +68,7 @@
 #include "MemDCEx.h"
 #include "NHEdit.h"
 #include "NHColorEdit.h"
+#include "CheckComboBox.h"
+
 
 #endif

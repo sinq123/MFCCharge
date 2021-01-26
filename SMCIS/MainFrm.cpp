@@ -431,24 +431,6 @@ void CMainFrame::LogVehInfoToDetSta(const int& nDetType)
 		// 可以要求待检和完成检测的非收费也要纳入
 		strSql.AppendFormat(L" (DetLog.DetStatus = 'TODET' or DetLog.DetStatus = 'FINDET') ");
 		// 设置只是初检
-		//if (nDetType == 1)
-		//{
-		//	// 两检合一
-		//	strSql.AppendFormat(L" and DetLog.DetType is not NULL and DetLog.DetType_M is not NULL ");
-		//	strSql.AppendFormat(L" and DetTimes.TotalDetTimes <= 1 and DetTimes.TotalDetTimes_M <= 1 ");
-		//}
-		//else if (nDetType == 2)
-		//{
-		//	// 安检
-		//	strSql.AppendFormat(L" and DetLog.DetType is not NULL and DetLog.DetType_M is NULL ");
-		//	strSql.AppendFormat(L" and DetTimes.TotalDetTimes <= 1 and (DetTimes.TotalDetTimes_M is NULL or DetTimes.TotalDetTimes_M <= 1) ");
-		//}
-		//else  if (nDetType == 3)
-		//{
-		//	// 综检
-		//	strSql.AppendFormat(L" and DetLog.DetType is NULL and DetLog.DetType_M is not NULL ");
-		//	strSql.AppendFormat(L" and (DetTimes.TotalDetTimes is NULL or DetTimes.TotalDetTimes <= 1) and DetTimes.TotalDetTimes_M <= 1 ");
-		//}
 		strSql.AppendFormat(L" and DetTimes.TotalDetTimes <= 1 and DetTimes.TotalDetTimes_M <= 1 ");
 
 		// 收费表没有该条流水号

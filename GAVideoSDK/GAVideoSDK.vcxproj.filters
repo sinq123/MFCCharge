@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="HCNetSDK">
+      <UniqueIdentifier>{be7822ce-0570-465d-a647-3387654c5553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HCNetSDK\Include">
+      <UniqueIdentifier>{1e8096b5-7502-466b-9507-6cbb7f252013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HCNetSDK\Lib">
+      <UniqueIdentifier>{1d2dd1e4-58da-4a2f-82c1-065f86ac89dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HCNetSDK\开发文档">
+      <UniqueIdentifier>{b0d4142e-e288-4c34-8bf3-9b5b10cbe62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HCNetSDK\Lib\HCNetSDKCom">
+      <UniqueIdentifier>{bf6b57dc-c033-4544-ae55-028c875594f5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HCNetSDK\开发文档\设备网络SDK使用手册.chm">
+      <Filter>HCNetSDK\开发文档</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\AudioRender.dll">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\gdiplus.dll">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCCore.dll">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDK.dll">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\LocalXml.zip">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\PlayCtrl.dll">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\SuperRender.dll">
+      <Filter>HCNetSDK\Lib</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\AudioIntercom.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\DsSdk.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCAlarm.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCCoreDevCfg.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCDisplay.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCGeneralCfgMgr.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCIndustry.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCPlayBack.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCPreview.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\HCVoiceTalk.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\libeay32.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\msvcr90.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\OpenAL32.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\ssleay32.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\StreamTransClient.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+    <None Include="HCNetSDK\Lib\HCNetSDKCom\SystemTransform.dll">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="HCNetSDK\Lib\GdiPlus.lib">
+      <Filter>HCNetSDK\Lib</Filter>
+    </Library>
+    <Library Include="HCNetSDK\Lib\HCCore.lib">
+      <Filter>HCNetSDK\Lib</Filter>
+    </Library>
+    <Library Include="HCNetSDK\Lib\HCNetSDK.lib">
+      <Filter>HCNetSDK\Lib</Filter>
+    </Library>
+    <Library Include="HCNetSDK\Lib\PlayCtrl.lib">
+      <Filter>HCNetSDK\Lib</Filter>
+    </Library>
+    <Library Include="HCNetSDK\Lib\HCNetSDKCom\HCAlarm.lib">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </Library>
+    <Library Include="HCNetSDK\Lib\HCNetSDKCom\HCGeneralCfgMgr.lib">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </Library>
+    <Library Include="HCNetSDK\Lib\HCNetSDKCom\HCPreview.lib">
+      <Filter>HCNetSDK\Lib\HCNetSDKCom</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HCNetSDK\Include\DataType.h">
+      <Filter>HCNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="HCNetSDK\Include\DecodeCardSdk.h">
+      <Filter>HCNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="HCNetSDK\Include\HCNetSDK.h">
+      <Filter>HCNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="HCNetSDK\Include\plaympeg4.h">
+      <Filter>HCNetSDK\Include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

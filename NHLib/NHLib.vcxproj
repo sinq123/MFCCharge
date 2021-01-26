@@ -22,6 +22,7 @@
     <SccProvider>
     </SccProvider>
     <Keyword>MFCDLLProj</Keyword>
+    <ProjectName>MYLib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -120,6 +121,7 @@
     <ClCompile Include="AMSEdit.cpp" />
     <ClCompile Include="BasicExcel.cpp" />
     <ClCompile Include="CCheckSK.cpp" />
+    <ClCompile Include="CheckComboBox.cpp" />
     <ClCompile Include="ComboBoxExt.cpp" />
     <ClCompile Include="ComboBoxExtList.cpp" />
     <ClCompile Include="FormViewZoom.cpp" />
@@ -165,6 +167,7 @@
     <ClInclude Include="BasicExcel.h" />
     <ClInclude Include="CCheckSK.h" />
     <ClInclude Include="CellRange.h" />
+    <ClInclude Include="CheckComboBox.h" />
     <ClInclude Include="ComboBoxExt.h" />
     <ClInclude Include="ComboBoxExtList.h" />
     <ClInclude Include="FormViewZoom.h" />

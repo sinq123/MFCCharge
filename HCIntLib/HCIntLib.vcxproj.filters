@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="API">
+      <UniqueIdentifier>{7db427e1-464e-49a7-9994-44b0f16c4d0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gsoap">
+      <UniqueIdentifier>{4c1a3073-e3cd-495c-bb6d-1375f38a9473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="协议">
+      <UniqueIdentifier>{7ebdfe8e-fc0d-4542-8a73-de0819c63cbc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+    <None Include="HCIntLib.def">
+      <Filter>源文件</Filter>
+    </None>
+    <None Include="res\HCIntLib.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="gSoap\AccessServiceSoap.nsmap">
+      <Filter>gsoap</Filter>
+    </None>
+    <None Include="协议\成都外廓尺寸接口方法说明(V3.2.0.0-20201215).doc">
+      <Filter>协议</Filter>
+    </None>
+    <None Include="协议\机动车检验监管联网平台接口使用手册(20210102修订).doc">
+      <Filter>协议</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HCIntLib.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HCIntLib_API.cpp">
+      <Filter>API</Filter>
+    </ClCompile>
+    <ClCompile Include="gSoap\soapAccessServiceSoapProxy.cpp">
+      <Filter>gsoap</Filter>
+    </ClCompile>
+    <ClCompile Include="gSoap\soapC.cpp">
+      <Filter>gsoap</Filter>
+    </ClCompile>
+    <ClCompile Include="gSoap\stdsoap2.cpp">
+      <Filter>gsoap</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HCIntLib.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HCIntLib_API.h">
+      <Filter>API</Filter>
+    </ClInclude>
+    <ClInclude Include="gSoap\soapAccessServiceSoapProxy.h">
+      <Filter>gsoap</Filter>
+    </ClInclude>
+    <ClInclude Include="gSoap\soapH.h">
+      <Filter>gsoap</Filter>
+    </ClInclude>
+    <ClInclude Include="gSoap\soapStub.h">
+      <Filter>gsoap</Filter>
+    </ClInclude>
+    <ClInclude Include="gSoap\stdsoap2.h">
+      <Filter>gsoap</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="HCIntLib.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

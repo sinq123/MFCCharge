@@ -18,9 +18,9 @@
 
 #include "..\NHLib\NHLib.h"
 #ifdef _DEBUG
-#pragma comment(lib, "..\\Debug\\NHLib_D.lib")
+#pragma comment(lib, "..\\Debug\\MYLib_D.lib")
 #else
-#pragma comment(lib, "..\\Release\\NHLib.lib")
+#pragma comment(lib, "..\\Release\\MYLib.lib")
 #endif
 
 #include "..\NHWin32Lib\NHWin32Lib.h"
@@ -39,9 +39,9 @@
 
 #include "..\NHNetLib\NHNetLib.h"
 #ifdef _DEBUG
-#pragma comment(lib, "..\\Debug\\NHNetLib_D.lib")
+#pragma comment(lib, "..\\Debug\\MYNetLib_D.lib")
 #else
-#pragma comment(lib, "..\\Release\\NHNetLib.lib")
+#pragma comment(lib, "..\\Release\\MYNetLib.lib")
 #endif
 
 #include "..\NHDetCommModu\NHDetCommModu.h"
@@ -50,19 +50,26 @@
 #else
 #pragma comment(lib, "..\\Release\\NHDetCommModu.lib")
 #endif
-
-#include "..\ACPDADB\PDADBDAL.h"
-#ifdef _DEBUG
-#pragma comment(lib, "..\\Debug\\ACPDADB_D.lib")
-#else
-#pragma comment(lib, "..\\Release\\ACPDADB.lib")
-#endif
+//
+//#include "..\ACPDADB\PDADBDAL.h"
+//#ifdef _DEBUG
+//#pragma comment(lib, "..\\Debug\\ACPDADB_D.lib")
+//#else
+//#pragma comment(lib, "..\\Release\\ACPDADB.lib")
+//#endif
 
 #include "..\WebSerLib\GAWebServiceLib.h"
 #ifdef _DEBUG
 #pragma comment(lib, "..\\Debug\\WebSerLib_D.lib")
 #else
 #pragma comment(lib, "..\\Release\\WebSerLib.lib")
+#endif
+
+#include "..\ACPostGetLib\ACPostGetLib.h"
+#ifdef _DEBUG
+#pragma comment(lib, "..\\Debug\\ACPostGetLib_D.lib")
+#else
+#pragma comment(lib, "..\\Release\\ACPostGetLib.lib")
 #endif
 
 // CSMCISApp:
