@@ -6740,6 +6740,14 @@ bool CGAWebServiceLibAPI::UploadDimensionData(const SDetLog& sDetLog, const SDet
 	{
 		strXML.AppendFormat(L"<sqip>%s</sqip>", m_strZdbs);
 	}
+	else if (m_nNetPlatform == 7)
+	{
+		strXML.AppendFormat(L"<sfjsb>%s</sfjsb>", L"1");
+		strXML.AppendFormat(L"<cwkcrgfc>%s</cwkcrgfc>", L"");
+		strXML.AppendFormat(L"<cwkkrgfc>%s</cwkkrgfc>", L"");
+		strXML.AppendFormat(L"<cwkgrgfc>%s</cwkgrgfc>", L"");
+
+	}
 	strXML += strWriteTail;
 
 	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"UploadDimensionDataÃ·Ωª", strXML);

@@ -2377,11 +2377,14 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 	//整备质量限值
 	(si.GetString(L"结果数据", L"整备质量限值", L""));
 	//长度判定
-	sVehDimInfo.bVehLengthJudge = (si.GetString(L"结果数据", L"长度判定", L"")==L"不合格"? false:true);
+	//sVehDimInfo.bVehLengthJudge = (si.GetString(L"结果数据", L"长度判定", L"")==L"不合格"? false:true);
+	sVehDimInfo.bVehLengthJudge = false;
 	//宽度判定
-	sVehDimInfo.bVehWidthJudge = (si.GetString(L"结果数据", L"宽度判定", L"")==L"不合格"? false:true);
+	//sVehDimInfo.bVehWidthJudge = (si.GetString(L"结果数据", L"宽度判定", L"")==L"不合格"? false:true);
+	sVehDimInfo.bVehWidthJudge = false;
 	//高度判定
-	sVehDimInfo.bVehHeightJudge = (si.GetString(L"结果数据", L"高度判定", L"")==L"不合格"? false:true);
+	//sVehDimInfo.bVehHeightJudge = (si.GetString(L"结果数据", L"高度判定", L"")==L"不合格"? false:true);
+	sVehDimInfo.bVehHeightJudge = false;
 	//栏板高度判定
 	(si.GetString(L"结果数据", L"栏板高度判定", L""));
 	//轴距判定
