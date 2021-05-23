@@ -128,6 +128,17 @@ private:
 	SDetStandard m_sDetStandardSen;
 	// 联网平台代号
 	int m_nNetPlatform;
+	// 是否检测轴距
+	bool m_bWheelBase;
+	// 是否检测轴距(新车检测)
+	bool m_bWheelBaseNew;
+	// 是否检测销轴距
+	bool m_bPinbase;
+	// 是否检测销轴距(新车检测)
+	bool m_bPinbaseNew;
+	// 是否修正二维图
+	bool m_bM2D;
+
 	// 
 	CString m_strBodyPhotoPath;
 	CString m_strTopPhotoPath;

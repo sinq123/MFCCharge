@@ -59,185 +59,24 @@ public:
 	void GenLogFile(void);
 
 public:
-//	// 原始写接口
-//	bool WriteObjectOut(const std::wstring& strXtlb, const std::wstring& strJkxlh, const std::wstring& strJkid, const std::wstring& strXmlDoc, SGAMsg& sMsg);
-//
-//public:
-//	// 18C51-机动车检验登录信息
-//	bool VehDetLogin(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool VehDetLogin(const SDetLog& sDetLog, const SVehInfo& sVehInfo, const SDetItem& sDetItem, SGAMsg& sMsg);
-//	bool VehDetLogin(const SDetLog& sDetLog, const SHisVehInfo& sHisVehInfo, const SDetItem& sDetItem, SGAMsg& sMsg);
-//	bool VehDetLogin(const CStringW& strRunningNumber, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool VehDetLogin(const SDetLog& sDetLog, const SVehInfo& sVehInfo, const SDetItem& sDetItem, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, SGAMsg& sMsg);
-//	bool VehDetLogin(const SDetLog& sDetLog, const SHisVehInfo& sHisVehInfo, const SDetItem& sDetItem, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, SGAMsg& sMsg);
-//	// 18C52-机动车检验过程开始信息
-//	bool DetStart(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool DetStart(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C55-机动车检验项目开始信息
+	// 18C55-机动车检验项目开始信息
 	bool DetItemStart(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool DetItemStart(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C80-机动车人工检验项目检验结果详细信息(按GB 21861-XXXX)
-//	bool UploadAppData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAppData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SManualData& sManualData, const SManualData_STD& sManualData_STD, const SDimensionData& sDimensionData, const SAxleLoadData& sAxleLoadData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndAppData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadDynData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadDynData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SManualData& sManualData, const SManualData_STD& sManualData_STD, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndDynData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadChaData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadChaData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SManualData& sManualData, const SManualData_STD& sManualData_STD, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndChaData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C81-仪器设备检验项目检验结果详细信息
-//	bool UploadAxle1BrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle1BrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle2BrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle2BrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle3BrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle3BrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle4BrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle4BrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle5BrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle5BrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle1LoadBrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle1LoadBrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle2LoadBrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle2LoadBrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle3LoadBrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle3LoadBrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle4LoadBrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadAxle4LoadBrakeData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, const SBrakeData& sBrakeData, const SBrakeCurveData& sBrakeCurveData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadPBData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadPBData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SBrakeData& sBrakeData, const SDetItem& sDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndBrakeData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadLeftMaHLData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadLeftMaHLData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHeadLightData& sHeadLightData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadLeftMiHLData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadLeftMiHLData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHeadLightData& sHeadLightData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadRightMaHLData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadRightMaHLData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHeadLightData& sHeadLightData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadRightMiHLData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadRightMiHLData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHeadLightData& sHeadLightData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndHLData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadSMData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadSMData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SSpeedometerData& sSpeedometerData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndSMData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadSideslipData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadSideslipData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SSteerabilityData& sSteerabilityData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndSideslipData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool UploadDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool UpEndDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadUnladenMassData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadUnladenMassData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SAxleLoadData& sAxleLoadData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndUnladenMassData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C54-路试检验信息
-//	bool UploadRoadData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadRoadData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SRoadData& sRoadData, const SDetItem& sDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UpEndRoadData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	// 18C58-机动车检验项目结束信息
 	bool DetItemEnd(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool DetItemEnd(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C59-机动车检验过程结束信息
-//	bool DetEnd(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool DetEnd(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C82-机动车检验结果其他信息
-//	bool UploadOtherData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadOtherData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const SBrakeData& sBrakeData, const SAxleLoadData& sAxleLoadData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	// 18C61-机动车交通事故责任强制保险信息
-//	bool UploadInsurance(const CStringW& strRunningNumber, const CStringW& strInsDocNum, const CStringW& strInsAmount, const CStringW& strInsCompany, const CStringW& strEffDate, const CStringW& strTerDate, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadInsurance(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, 
-//		const CStringW& strInsDocNum, const CStringW& strInsAmount, const CStringW& strInsCompany, const CStringW& strEffDate, const CStringW& strTerDate, SGAMsg& sMsg);
-//	// 18C62-机动车检验判定结果信息
-//	bool UploadDetResult(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool UploadDetResult(const SDetLog& sDetLog,
-//		const SDetTimes& sDetTimes,
-//		const SHisVehInfo& sHisVehInfo,
-//		const SDetPeriod& sDetPeriod,
-//		const SBrakeData& sBKData,
-//		const SManualData_STD& sManData_STD,
-//		const SHeadLightData& sHLData,
-//		const SSteerabilityData& sSteData,
-//		const SSpeedometerData& sSMData,
-//		const SRoadData& sRoadData,
-//		const SDimensionData& sDim,
-//		const SAxleLoadData& sAxleLoadData,
-//		const SDetStandard& sDetStandard,
-//		SGAMsg& sMsg,
-//		_ConnectionPtr pConnection = NULL);
 	// 18C63-机动车检验照片和资料照片信息
 	bool UploadPhoto(const CStringW& strRunningNumber, const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool UploadPhoto(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, 
 	const CStringW& strPhotoPath, const CStringW& strDetItem, const CStringW& strPhotoType, SGAMsg& sMsg);
-//	// 18C64-机动车检验结果资料申请审核信息
-//	bool DetAppReview(const CStringW& strRunningNumber, const CStringW& strAppType, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool DetAppReview(const SDetLog& sDetLog, const CStringW& strAppType, SGAMsg& sMsg);
-//	// 18C65-机动车复检登录信息
-//	bool VehReDetLogin(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-//	bool VehReDetLogin(const SDetLog& sDetLog, const SVehInfo& sVehInfo, const SDetTimes& sDetTimes, const SDetItem& sDetItem, SGAMsg& sMsg);
-//	bool VehReDetLogin(const SDetLog& sDetLog, const SHisVehInfo& sHisVehInfo, const SDetTimes& sDetTimes, const SDetItem& sDetItem, SGAMsg& sMsg);
 	// 18C72-机动车检验业务退办
 	bool BusinessBack(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool BusinessBack(const SDetLog &sDetLog, SGAMsg& sMsg);
-	//// 18C83-机动车排放检验信息
-	//bool UploadEmission(const CStringW& strPlateType, 
-	//	const CStringW& strPlateNumber,
-	//	const CStringW& strBrand,
-	//	const CStringW& strModel,
-	//	const CStringW& strVIN,
-	//	const CStringW& strOwner, 
-	//	const CStringW& strEquName, 
-	//	const CStringW& strEquModel, 
-	//	const CStringW& strEquManufacturer, 
-	//	const CStringW& strEmiDetType, 
-	//	const CStringW& strEmiStandard, 
-	//	const CStringW& strEmiJudge, 
-	//	const CStringW& strStationName, 
-	//	const CStringW& strRepApprover, 
-	//	const CStringW& strEmiDetTime,
-	//	SGAMsg& sMsg);
-
-	//// 18C50-时间同步
-	//bool TimeSync( SGAMsg& sMsg,const CStringW& strRN = L"");
-	//// 18C49-获取机动车基本信息
-	//bool GetVehInfo(const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, const CStringW& strVIN4, SVehInfo &sVehInfo, SGAMsg& sMsg);
-	//// 18C05-获取检验机构工作人员备案信息
-	//bool GetStaffRecordInfo(const CStringW& strID, const CStringW& strName, const CStringW& strUpdateTime, std::list<SGAStaffRecordInfo> &lsGAStaffRecordInfo, SGAMsg& sMsg);
-	//// 18C46-获取车辆所属类别对应检验项目信息
-	//bool GetVehTypeInfoItem(const CStringW& strDetTypeCode, std::list<SGAVehTypeInfoItem> &lsGAVehTypeInfoItem, SGAMsg& sMsg);
-	//// 18C47-获取机动车对应需拍摄照片和人工检验项目信息
-	//bool GetVehPhotoAndManualItem(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, SGAMsg& sMsg);
-	//// 18C01-检验机构备案信息下载
-	//bool GetStationRecordInfo(const CStringW& strUpdateDate, SGAStationRecordInfo &sGAStationRecordInfo, SGAMsg& sMsg);
-	//// 18C02-检测线备案信息下载
-	//bool GetLineRecordInfo(const CStringW& strUpdateDate, std::list<SGALineRecordInfo> &lsGALineRecordInfo, SGAMsg& sMsg);
-	//// 18C06-检验业务信息系统备案信息下载
-	//bool GetBISRecordInfo(const CStringW& strRecordNumber, const CStringW& strUpdateDate, SGABISRecordInfo &sGABISRecordInfo, SGAMsg& sMsg);
-	//// 18C48-获取机动车检验审核不通过原因
-	//bool GetVehNoPassReason(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, const CStringW& strQueryState, SGAVehNoPassReason& sGAVehNoPassReason, SGAMsg& sMsg);
-	//bool GetVehNoPassReason(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, const CStringW& strQueryState, const CStringW& strMaxRetNum,
-	//	std::list<SGAVehNoPassReason> &lsGAVehNoPassReason, SGAMsg& sMsg);
-	//// 18C66-机动车检验登录信息更正
-	//bool VehDetLoginCorr(const CStringW& strRunningNumber, SGAMsg& sMsg, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, _ConnectionPtr pConnection = NULL);
-	//bool VehDetLoginCorr(const SDetLog& sDetLog, const SVehInfo& sVehInfo, const SDetItem& sDetItem, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, SGAMsg& sMsg);
-	//bool VehDetLoginCorr(const SDetLog& sDetLog, const SHisVehInfo& sHisVehInfo, const SDetItem& sDetItem, SGAVehPhotoAndManualItem &sGAVehPhotoAndManualItem, SGAMsg& sMsg);
-	//// 18C67-机动车检验视频异常信息
-	//bool VehDetVideoAbnInfo(const CStringW& strReportNumber, const CStringW& strLineNumber, const CStringW& strDetDate, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, 
-	//	const CStringW& strWarningType, const CStringW& strWarningDes, SGAMsg& sMsg);
-	//// 18C69-检验业务信息系统操作日志
-	//bool DetBusinessSysOpeLog(const CStringW& strUserID, const CStringW& strUserName, const CStringW& strOpeTime, const CStringW& strIPAddr, const CStringW& strOpeType, 
-	//	const CStringW& strOpeResult, const CStringW& strFailReason, const CStringW& strModelName, const CStringW& strOpeCondition, SGAMsg& sMsg);
-	//// 18C70-写入收费信息
-	//bool WriteChargeInfo(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, SGAMsg& sMsg);
-	//// 18C71-机动车检验审核通过信息获取回执
-	//bool VehPassInfoObtainReceipt(const CStringW& strReportNumber, const CStringW& strPlateNumber, const CStringW& strPlateTypeCode, SGAMsg& sMsg);
 	// 18C21-读取车管业务流水号
 	bool GetBusinessNum(const CStringW& strReportNumber, SGABusinessNum &sGABusinessNum, SGAMsg& sMsg);
-	//// 18C07-互联网检验预约信息下载
-	//bool GetIEApptInfo(const CStringW& strApptDate, std::list<SGAIEApptInfo> &lsGAIEApptInfo, SGAMsg& sMsg);
-	//// 18C08-机动车公告技术参数文本信息下载
-	//bool GetVehTecParaTxtInfo(const CStringW& strVehAN, const CStringW& strBrand, const CStringW& strModel, SGAVehTecParaTxtInfo &sGAVehTecParaTxtInfo, SGAMsg& sMsg);
-	//// 18C09-机动车公告技术参数图片信息下载
-	//bool GetVehTecParaPhoInfo(const CStringW& strPhoNum, SGAVehTecParaPhoInfo &sGAVehTecParaPhoInfo, SGAMsg& sMsg);
-
 	// 安车接口开始
 	// 18S01-获取检验流水号
 	bool ACGetNetReportNumber(const SDetLog& sDetLog, const SHisVehInfo& sHisVehInfo, std::wstring &strRunNum, SGAMsg& sMsg);
@@ -351,6 +190,26 @@ public:
 	inline int GetNetPlatform() {
 		return m_nNetPlatform;
 	}
+	// 是否检测轴距
+	inline bool GetWheelBase() {
+		return m_bWheelBase;
+	}
+	// 是否检测轴距(新车检测)
+	inline bool GetWheelBaseNew() {
+		return m_bWheelBaseNew;
+	}
+	// 是否检测销轴距
+	inline bool GetPinbase() {
+		return m_bPinbase;
+	}
+	// 是否检测销轴距(新车检测)
+	inline bool GetPinbaseNew() {
+		return m_bPinbaseNew;
+	}
+	// 是否修正二维图
+	inline bool GetM2D() {
+		return m_bM2D;
+	}
 
 private:
 	// 加载配置文件
@@ -389,6 +248,17 @@ private:
 	CStringW m_strModName;
 
 private:
+	// 是否检测轴距
+	bool m_bWheelBase;
+	// 是否检测轴距(新车检测)
+	bool m_bWheelBaseNew;
+	// 是否检测销轴距
+	bool m_bPinbase;
+	// 是否检测销轴距(新车检测)
+	bool m_bPinbaseNew;
+	// 是否修正二维图
+	bool m_bM2D;
+
 	// 接口版本
 	int m_nNetPlatform;
 	// 公安接口版本

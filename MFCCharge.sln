@@ -181,6 +181,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FFWDIM", "FFWDIM\FFWDIM.vcx
 		{5FC9B6FF-5E2A-43E5-841E-CE206E06E866} = {5FC9B6FF-5E2A-43E5-841E-CE206E06E866}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCoding", "..\..\TestCoding\TestCoding.vcxproj", "{A88526CC-EAA0-F0C3-233C-34AB29010376}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -416,6 +418,12 @@ Global
 		{0A3A0176-2927-4FFB-8F90-BDB46344CCE7}.Release|Win32.Build.0 = Release|Win32
 		{0A3A0176-2927-4FFB-8F90-BDB46344CCE7}.Template|Win32.ActiveCfg = Release|Win32
 		{0A3A0176-2927-4FFB-8F90-BDB46344CCE7}.Template|Win32.Build.0 = Release|Win32
+		{A88526CC-EAA0-F0C3-233C-34AB29010376}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A88526CC-EAA0-F0C3-233C-34AB29010376}.Debug|Win32.Build.0 = Debug|Win32
+		{A88526CC-EAA0-F0C3-233C-34AB29010376}.Release|Win32.ActiveCfg = Release|Win32
+		{A88526CC-EAA0-F0C3-233C-34AB29010376}.Release|Win32.Build.0 = Release|Win32
+		{A88526CC-EAA0-F0C3-233C-34AB29010376}.Template|Win32.ActiveCfg = Release|Win32
+		{A88526CC-EAA0-F0C3-233C-34AB29010376}.Template|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

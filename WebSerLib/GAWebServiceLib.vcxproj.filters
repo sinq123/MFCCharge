@@ -31,7 +31,7 @@
     <None Include="res\GAWebServiceLib.rc2">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="GAWebServiceLib.ini">
+    <None Include="NHWebServiceLib.ini">
       <Filter>Ini</Filter>
     </None>
   </ItemGroup>

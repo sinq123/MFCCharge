@@ -105,7 +105,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="GAWebServiceLib.def" />
-    <None Include="GAWebServiceLib.ini" />
+    <None Include="NHWebServiceLib.ini" />
     <None Include="ReadMe.txt" />
     <None Include="res\GAWebServiceLib.rc2" />
   </ItemGroup>

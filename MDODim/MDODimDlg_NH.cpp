@@ -122,25 +122,13 @@ BOOL CMDODimDlg_NH::OnInitDialog()
 
 	m_nNetPlatform = CGAWebServiceLibAPI::GetInstance().GetNetPlatform();
 
-	//if (m_nNetPlatform != 5 
-	//	&& m_nNetPlatform != 1
-	//	)
-	//{
-	//	m_cbDriver.ShowWindow(SW_HIDE);
-	//	m_cbExternalInspector.ShowWindow(SW_HIDE);
-	//	GetDlgItem(IDC_ST_DRIVER)->ShowWindow(SW_HIDE);
-	//	GetDlgItem(IDC_ST_EXTERNAL_INSPECTOR)->ShowWindow(SW_HIDE);
-	//}
-	// 测试二维图
-	//CString str;
-	//SDetPhoto sSDetPhoto;
-	//sSDetPhoto.strRunningNumber = L"2101201509034E";
-	//sSDetPhoto.strPhoto23SN = L"23";
-	//sSDetPhoto.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-	//str.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, L"2101201509034E");
-	//sSDetPhoto.LoadPhoto23FromFile(str);
-	//CDetPhotoService::SetDetPhoto_NonEmpty(m_pConnection, sSDetPhoto);
-	//
+	m_bWheelBase = CGAWebServiceLibAPI::GetInstance().GetWheelBase();
+	m_bWheelBaseNew = CGAWebServiceLibAPI::GetInstance().GetWheelBaseNew();
+	m_bPinbase = CGAWebServiceLibAPI::GetInstance().GetPinbase();
+	m_bPinbaseNew = CGAWebServiceLibAPI::GetInstance().GetPinbaseNew();
+	m_bM2D = CGAWebServiceLibAPI::GetInstance().GetM2D();
+
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
 }
@@ -334,13 +322,6 @@ void CMDODimDlg_NH::OnBnClickedBtnStartDet()
 	}
 	else if (m_strDimEqu == L"1") // 广泰
 	{
-		//StatusConfig();
-		//if (m_sGTStatus.strStatus.find(L"0") == -1)
-		//{
-		//	MessageBox(L"外廓状态不是在待检状态，不允许检测！");
-		//	m_btnStartDet.EnableWindow(TRUE);
-		//	return;
-		//}
 		DelBegIni();
 
 		CarInfoData();
@@ -1515,8 +1496,12 @@ void CMDODimDlg_NH::ExportData(const bool bIsRemDet/* = false*/)
 		strBegIni.AppendFormat(L"\r\nTrailerMeasure=%s", L"0");
 	}
 
-	//是否使用人工修正
-	strBegIni.AppendFormat(L"\r\nIsUpdateData=%s", L"1");
+	if (m_bM2D)
+	{
+		//是否使用人工修正
+		strBegIni.AppendFormat(L"\r\nIsUpdateData=%s", L"1");
+	}
+	
 		
 	if(!m_strRunningNumberSen.IsEmpty()) // 牵挂同检
 	{
@@ -1697,35 +1682,45 @@ void CMDODimDlg_NH::ExportData(const bool bIsRemDet/* = false*/)
 	strBegIni.AppendFormat(L"\r\nWheelbaseNumber=%d", _wtoi(m_sHisVehInfo.strAxleNumber.c_str()));
 
 	//是否检测销轴距
-#ifdef NH_ALLOW_DET_PIN_BASE
-	if(CNHCommFunc::IsGooVeh(g_pNWDD->m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(g_pNWDD->m_sHisVehInfo) || CNHCommFunc::IsTrailer(g_pNWDD->m_sHisVehInfo))
+	if (m_bPinbase
+		|| (m_bPinbaseNew && (m_sDetLog.strDetType.find(L"注册") != -1))
+		)
 	{
-		strBegIni.AppendFormat(L"\r\nIsPinbase=%d", 1);
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			strBegIni.AppendFormat(L"\r\nIsPinbase=%d", 1);
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\nIsPinbase=%d", 0);
+		}
 	}
 	else
 	{
 		strBegIni.AppendFormat(L"\r\nIsPinbase=%d", 0);
 	}
-#else 
-	strBegIni.AppendFormat(L"\r\nIsPinbase=%d", 0);
-#endif
+
 
 	//销轴距标准值
 	strBegIni.AppendFormat(L"\r\nPinbaseStandard=%d", _wtoi(m_sHisVehInfo.strWheBase01.c_str()));
 
 	//是否检测铀距
-#ifdef NH_ALLOW_DET_WHE_BASE
-	if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
 	{
-		strBegIni.AppendFormat(L"\r\nIsWheelbase=%d", 1);
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			strBegIni.AppendFormat(L"\r\nIsWheelbase=%d", 1);
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\nIsWheelbase=%d", 0);
+		}
 	}
 	else
 	{
 		strBegIni.AppendFormat(L"\r\nIsWheelbase=%d", 0);
 	}
-#else
-	strBegIni.AppendFormat(L"\r\nIsWheelbase=%d", 0);
-#endif
 
 	//12轴距标准值
 	strBegIni.AppendFormat(L"\r\nWheelbaseStandard1=%d", _wtoi(m_sHisVehInfo.strWheBase12.c_str()));
@@ -1853,23 +1848,6 @@ bool CMDODimDlg_NH::ImportData(void)
 		// 车箱长度判断
 		m_sVehDimInfo.bCompartmentLengthJudge = _wtoi(si.GetString(L"DetResult", L"CompartmentLengthJudge", L""))==1?false:true;
 
-		//if (m_bCFG_UpdateData)
-		//{
-		//	// 整车长度原始值
-		//	m_sVehDimInfo.nVehOrigLength = _wtoi(si.GetString(L"OriginalData", L"VehLengthOriginalData", L""));
-		//	// 整车宽度原始值
-		//	m_sVehDimInfo.nVehOrigWidth = _wtoi(si.GetString(L"OriginalData", L"VehWidthOriginalData", L""));
-		//	// 整车高度原始值
-		//	m_sVehDimInfo.nVehOrigHeight = _wtoi(si.GetString(L"OriginalData", L"VehHeightOriginalData", L""));
-
-		//	// 挂整车长度修正说明
-		//	m_sVehDimInfo.strVehLengthUpdateReason = si.GetString(L"UpdatedInfo", L"VehLengthUpdatedInfo", L"");
-		//	// 整车宽度修正说明
-		//	m_sVehDimInfo.strVehWidthUpdateReason = si.GetString(L"UpdatedInfo", L"VehWidthUpdatedInfo", L"");
-		//	// 整车高度修正说明
-		//	m_sVehDimInfo.strVehHeightUpdateReason = si.GetString(L"UpdatedInfo", L"VehHeightUpdatedInfo", L"");
-		//}
-
 		// 挂车长度
 		m_sVehDimInfoSen.nVehLength = _wtoi(si.GetString(L"DetResult", L"TrailerLength", L""));
 		// 挂车长度判断
@@ -1887,22 +1865,42 @@ bool CMDODimDlg_NH::ImportData(void)
 		// 挂车栏板高度判断
 		m_sVehDimInfoSen.bBoxHeightJudge = _wtoi(si.GetString(L"DetResult", L"TrailerBoxHeightJudge", L""))==1?false:true;
 
-		//if (m_bCFG_UpdateData)
-		//{
-		//	// 挂车长度原始值
-		//	m_sVehDimInfoSen.nVehOrigLength = _wtoi(si.GetString(L"OriginalData", L"TrailerLengthOriginalData", L""));
-		//	// 挂车宽度原始值
-		//	m_sVehDimInfoSen.nVehOrigWidth = _wtoi(si.GetString(L"OriginalData", L"TrailerWidthOriginalData", L""));
-		//	// 挂车高度原始值
-		//	m_sVehDimInfoSen.nVehOrigHeight = _wtoi(si.GetString(L"OriginalData", L"TrailerHeightOriginalData", L""));
 
-		//	// 挂车长度修正说明
-		//	m_sVehDimInfoSen.strVehLengthUpdateReason = si.GetString(L"UpdatedInfo", L"TrailerLengthUpdatedInfo", L"");
-		//	// 挂车宽度修正说明
-		//	m_sVehDimInfoSen.strVehWidthUpdateReason = si.GetString(L"UpdatedInfo", L"TrailerWidthUpdatedInfo", L"");
-		//	// 挂车高度修正说明
-		//	m_sVehDimInfoSen.strVehHeightUpdateReason = si.GetString(L"UpdatedInfo", L"TrailerHeightUpdatedInfo", L"");
-		//}
+		if (!m_bM2D)
+		{
+			m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
+			m_sVehDimInfo.bVehLengthJudge = true;
+		
+			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			{
+				m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
+			}
+			else
+			{
+				m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+			}
+
+			m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
+			m_sVehDimInfo.bVehHeightJudge = true;
+
+
+			// 第二车
+			m_sVehDimInfoSen.nVehLength = AnalogData(m_sVehDimInfoSen.nVehLengthUpLimit-1, m_sVehDimInfoSen.nVehLengthLoLimit+1);
+			m_sVehDimInfoSen.bVehLengthJudge = true;
+		
+			if (m_sVehDimInfoSen.nVehWidthUpLimit >= 2550)
+			{
+				m_sVehDimInfoSen.nVehWidth = AnalogData(2549, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+			}
+			else
+			{
+				m_sVehDimInfoSen.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+			}
+
+			m_sVehDimInfoSen.nVehHeight = AnalogData(m_sVehDimInfoSen.nVehHeightUpLimit-1, m_sVehDimInfoSen.nVehHeightLoLimit+1);
+			m_sVehDimInfoSen.bVehHeightJudge = true;
+		}
+
 	}
 	else if(strIsTrailerMeasure == L"3")//测挂车
 	{
@@ -1923,22 +1921,24 @@ bool CMDODimDlg_NH::ImportData(void)
 		// 挂车栏板高度判断
 		m_sVehDimInfo.bBoxHeightJudge = _wtoi(si.GetString(L"DetResult", L"TrailerBoxHeightJudge", L""))==1?false:true;
 
-		//if (m_bCFG_UpdateData)
-		//{
-		//	// 挂车长度原始值
-		//	m_sVehDimInfo.nVehOrigLength = _wtoi(si.GetString(L"OriginalData", L"TrailerLengthOriginalData", L""));
-		//	// 挂车宽度原始值
-		//	m_sVehDimInfo.nVehOrigWidth = _wtoi(si.GetString(L"OriginalData", L"TrailerWidthOriginalData", L""));
-		//	// 挂车高度原始值
-		//	m_sVehDimInfo.nVehOrigHeight = _wtoi(si.GetString(L"OriginalData", L"TrailerHeightOriginalData", L""));
+		if (!m_bM2D)
+		{
+			m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
+			m_sVehDimInfo.bVehLengthJudge = true;
+		
+			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			{
+				m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
+			}
+			else
+			{
+				m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+			}
 
-		//	// 挂车长度修正说明
-		//	m_sVehDimInfo.strVehLengthUpdateReason = si.GetString(L"UpdatedInfo", L"TrailerLengthUpdatedInfo", L"");
-		//	// 挂车宽度修正说明
-		//	m_sVehDimInfo.strVehWidthUpdateReason = si.GetString(L"UpdatedInfo", L"TrailerWidthUpdatedInfo", L"");
-		//	// 挂车高度修正说明
-		//	m_sVehDimInfo.strVehHeightUpdateReason = si.GetString(L"UpdatedInfo", L"TrailerHeightUpdatedInfo", L"");
-		//}
+			m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
+			m_sVehDimInfo.bVehHeightJudge = true;
+
+		}
 	}
 	else//普通车
 	{
@@ -1963,67 +1963,26 @@ bool CMDODimDlg_NH::ImportData(void)
 		// 车箱长度判断
 		m_sVehDimInfo.bCompartmentLengthJudge = _wtoi(si.GetString(L"DetResult", L"CompartmentLengthJudge", L""))==1?false:true;
 
-		//if (m_bCFG_UpdateData)
-		//{
-		//	// 整车长度原始值
-		//	m_sVehDimInfo.nVehOrigLength = _wtoi(si.GetString(L"OriginalData", L"VehLengthOriginalData", L""));
-		//	// 整车宽度原始值
-		//	m_sVehDimInfo.nVehOrigWidth = _wtoi(si.GetString(L"OriginalData", L"VehWidthOriginalData", L""));
-		//	// 整车高度原始值
-		//	m_sVehDimInfo.nVehOrigHeight = _wtoi(si.GetString(L"OriginalData", L"VehHeightOriginalData", L""));
+		if (!m_bM2D)
+		{
+			m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
+			m_sVehDimInfo.bVehLengthJudge = true;
+		
+			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			{
+				m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
+			}
+			else
+			{
+				m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+			}
 
-		//	// 挂整车长度修正说明
-		//	m_sVehDimInfo.strVehLengthUpdateReason = si.GetString(L"UpdatedInfo", L"VehLengthUpdatedInfo", L"");
-		//	// 整车宽度修正说明
-		//	m_sVehDimInfo.strVehWidthUpdateReason = si.GetString(L"UpdatedInfo", L"VehWidthUpdatedInfo", L"");
-		//	// 整车高度修正说明
-		//	m_sVehDimInfo.strVehHeightUpdateReason = si.GetString(L"UpdatedInfo", L"VehHeightUpdatedInfo", L"");
-		//}
+			m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
+			m_sVehDimInfo.bVehHeightJudge = true;
+
+		}
 	}
 
-#ifdef NH_ALLOW_DET_WHE_BASE
-	if(CNHCommFunc::IsGooVeh(g_pNWDD->m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(g_pNWDD->m_sHisVehInfo) || CNHCommFunc::IsTrailer(g_pNWDD->m_sHisVehInfo))
-	{
-		m_sVehDimInfo.nWheBase01 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Pinbase", L""));
-		m_sVehDimInfo.bWheBase01Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase01Jud", L""))==1?false:true;
-		m_sVehDimInfo.nWheBase12 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase1", L""));
-		m_sVehDimInfo.nWheBase23 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase2", L""));
-		m_sVehDimInfo.nWheBase34 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase3", L""));
-		m_sVehDimInfo.nWheBase45 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase4", L""));
-		m_sVehDimInfo.nWheBase56 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase5", L""));
-		m_sVehDimInfo.bWheBase12Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase12Jud", L""))==1?false:true;
-		m_sVehDimInfo.bWheBase23Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase23Jud", L""))==1?false:true;
-		m_sVehDimInfo.bWheBase34Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase34Jud", L""))==1?false:true;
-		m_sVehDimInfo.bWheBase45Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase45Jud", L""))==1?false:true;
-		m_sVehDimInfo.bWheBase56Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase56Jud", L""))==1?false:true;
-		m_sVehDimInfo.bWheBaseJud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBaseJud", L""))==1?false:true;
-		m_sVehDimInfo.bWheBaseJud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBaseJud", L""))==1?false:true;
-		if (m_sVehDimInfo.bVehLengthJudge
-			&& m_sVehDimInfo.bVehWidthJudge
-			&& m_sVehDimInfo.bVehHeightJudge
-			&& m_sVehDimInfo.bWheBaseJud)
-		{
-			m_sVehDimInfo.bIsDetPass = true;
-		}
-		else
-		{
-			m_sVehDimInfo.bIsDetPass = false;
-		}
-	}
-	else
-	{
-		if (m_sVehDimInfo.bVehLengthJudge
-			&& m_sVehDimInfo.bVehWidthJudge
-			&& m_sVehDimInfo.bVehHeightJudge)
-		{
-			m_sVehDimInfo.bIsDetPass = true;
-		}
-		else
-		{
-			m_sVehDimInfo.bIsDetPass = false;
-		}
-	}
-#else 
 	if (m_sVehDimInfo.bVehLengthJudge
 		&& m_sVehDimInfo.bVehWidthJudge
 		&& m_sVehDimInfo.bVehHeightJudge)
@@ -2048,7 +2007,82 @@ bool CMDODimDlg_NH::ImportData(void)
 			m_sVehDimInfoSen.bIsDetPass = false;
 		}
 	}
-#endif
+
+	//是否检测铀距
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+	{
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			m_sVehDimInfo.nWheBase01 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Pinbase", L""));
+			m_sVehDimInfo.bWheBase01Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase01Jud", L""))==1?false:true;
+			m_sVehDimInfo.bWheBaseJud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBaseJud", L""))==1?false:true;
+
+			if (!m_bM2D)
+			{
+				m_sVehDimInfo.nWheBase01 = _wtoi(m_sHisVehInfo.strWheBase01.c_str());
+				m_sVehDimInfo.bWheBase01Jud = true;
+				m_sVehDimInfo.bWheBaseJud = true;
+			}
+
+			// 重新比较多一次
+			if (m_sVehDimInfo.bVehLengthJudge
+				&& m_sVehDimInfo.bVehWidthJudge
+				&& m_sVehDimInfo.bVehHeightJudge
+				&& m_sVehDimInfo.bWheBaseJud)
+			{
+				m_sVehDimInfo.bIsDetPass = true;
+			}
+			else
+			{
+				m_sVehDimInfo.bIsDetPass = false;
+			}
+		}
+	}
+	//是否检测铀距
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+	{
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			m_sVehDimInfo.nWheBase12 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase1", L""));
+			m_sVehDimInfo.nWheBase23 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase2", L""));
+			m_sVehDimInfo.nWheBase34 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase3", L""));
+			m_sVehDimInfo.nWheBase45 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase4", L""));
+			m_sVehDimInfo.nWheBase56 = _wtoi(si.GetString(L"WheelbaseDetResult", L"Wheelbase5", L""));
+			m_sVehDimInfo.bWheBase12Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase12Jud", L""))==1?false:true;
+			m_sVehDimInfo.bWheBase23Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase23Jud", L""))==1?false:true;
+			m_sVehDimInfo.bWheBase34Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase34Jud", L""))==1?false:true;
+			m_sVehDimInfo.bWheBase45Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase45Jud", L""))==1?false:true;
+			m_sVehDimInfo.bWheBase56Jud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBase56Jud", L""))==1?false:true;
+			m_sVehDimInfo.bWheBaseJud = _wtoi(si.GetString(L"WheelbaseDetResult", L"WheBaseJud", L""))==1?false:true;
+
+			if (!m_bM2D)
+			{
+				if (!m_sHisVehInfo.strWheBase12.empty()){m_sVehDimInfo.nWheBase12 = _wtoi(m_sHisVehInfo.strWheBase12.c_str()); m_sVehDimInfo.bWheBase12Jud = true;}
+				if (!m_sHisVehInfo.strWheBase23.empty()){m_sVehDimInfo.nWheBase23 = _wtoi(m_sHisVehInfo.strWheBase23.c_str()); m_sVehDimInfo.bWheBase23Jud = true;}
+				if (!m_sHisVehInfo.strWheBase34.empty()){m_sVehDimInfo.nWheBase34 = _wtoi(m_sHisVehInfo.strWheBase34.c_str()); m_sVehDimInfo.bWheBase34Jud = true;}
+				if (!m_sHisVehInfo.strWheBase45.empty()){m_sVehDimInfo.nWheBase45 = _wtoi(m_sHisVehInfo.strWheBase45.c_str()); m_sVehDimInfo.bWheBase45Jud = true;}
+				if (!m_sHisVehInfo.strWheBase56.empty()){m_sVehDimInfo.nWheBase56 = _wtoi(m_sHisVehInfo.strWheBase56.c_str()); m_sVehDimInfo.bWheBase56Jud = true;}
+				m_sVehDimInfo.bWheBaseJud = true;
+			}
+
+			// 重新比较多一次
+			if (m_sVehDimInfo.bVehLengthJudge
+				&& m_sVehDimInfo.bVehWidthJudge
+				&& m_sVehDimInfo.bVehHeightJudge
+				&& m_sVehDimInfo.bWheBaseJud)
+			{
+				m_sVehDimInfo.bIsDetPass = true;
+			}
+			else
+			{
+				m_sVehDimInfo.bIsDetPass = false;
+			}
+		}
+	}
+
+
 	return true;
 }
 
@@ -2415,7 +2449,16 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 		}
 		if (!sVehDimInfo.bVehWidthJudge)
 		{
-			sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfo.nVehWidthUpLimit, m_sVehDimInfo.nVehWidthLoLimit);
+			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			{
+				sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit);
+			}
+			else
+			{
+				sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfo.nVehWidthUpLimit, m_sVehDimInfo.nVehWidthLoLimit);
+			}
+			//
+			
 			sVehDimInfo.bVehWidthJudge = true;
 		}
 		if (!sVehDimInfo.bVehHeightJudge)
@@ -2749,51 +2792,64 @@ void CMDODimDlg_NH::SaveDetData()
 		sDimensionData.strVehHeightUpdateReason = m_sVehDimInfo.strVehHeightUpdateReason;
 	}
 
-#ifdef NH_ALLOW_DET_WHE_BASE
-	if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+	//是否检测铀距
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
 	{
-		// 销轴距
-		str.Format(L"%d", nWheBase01);
-		sDimensionData.strWheBase01 = str;
-		// 12轴距[mm]
-		str.Format(L"%d", nWheBase12);
-		sDimensionData.strWheBase12 = str;
-		// 23轴距[mm]
-		str.Format(L"%d", nWheBase23);
-		sDimensionData.strWheBase23 = str;
-		// 34轴距[mm]
-		str.Format(L"%d", nWheBase34);
-		sDimensionData.strWheBase34 = str;
-		// 45轴距[mm]
-		str.Format(L"%d", nWheBase45);
-		sDimensionData.strWheBase45 = str;
-		// 56轴距[mm]
-		str.Format(L"%d", nWheBase56);
-		sDimensionData.strWheBase56 = str;
-
-		// 销轴距判定
-		str.Format(L"%d", !m_bWheBase01Jud?1:0);
-		sDimensionData.strWheBase01Jud = str;
-		// 12轴距判定
-		str.Format(L"%d", !bWheBase12Jud?1:0);
-		sDimensionData.strWheBase12Jud = str;
-		// 23轴距判定
-		str.Format(L"%d", !bWheBase23Jud?1:0);
-		sDimensionData.strWheBase23Jud = str;
-		// 34轴距判定
-		str.Format(L"%d", !bWheBase34Jud?1:0);
-		sDimensionData.strWheBase34Jud = str;
-		// 45轴距判定
-		str.Format(L"%d", !bWheBase45Jud?1:0);
-		sDimensionData.strWheBase45Jud = str;
-		// 56轴距判定
-		str.Format(L"%d", !bWheBase56Jud?1:0);
-		sDimensionData.strWheBase56Jud = str;
-		// 轴距（含销轴距）判定 
-		str.Format(L"%d", !bWheBaseJud?1:0);
-		sDimensionData.strWheBaseJud = str;
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			// 销轴距
+			str.Format(L"%d", m_sVehDimInfo.nWheBase01);
+			sDimensionData.strWheBase01 = str;
+			// 销轴距判定
+			str.Format(L"%d", !m_sVehDimInfo.bWheBase01Jud?1:0);
+			sDimensionData.strWheBase01Jud = str;
+			// 轴距（含销轴距）判定 
+			str.Format(L"%d", !m_sVehDimInfo.bWheBaseJud?1:0);
+			sDimensionData.strWheBaseJud = str;
+		}
 	}
-#endif
+	//是否检测铀距
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+	{
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			// 12轴距[mm]
+			str.Format(L"%d", m_sVehDimInfo.nWheBase12);
+			sDimensionData.strWheBase12 = str;
+			// 23轴距[mm]
+			str.Format(L"%d", m_sVehDimInfo.nWheBase23);
+			sDimensionData.strWheBase23 = str;
+			// 34轴距[mm]
+			str.Format(L"%d", m_sVehDimInfo.nWheBase34);
+			sDimensionData.strWheBase34 = str;
+			// 45轴距[mm]
+			str.Format(L"%d", m_sVehDimInfo.nWheBase45);
+			sDimensionData.strWheBase45 = str;
+			// 56轴距[mm]
+			str.Format(L"%d", m_sVehDimInfo.nWheBase56);
+			sDimensionData.strWheBase56 = str;
+			// 12轴距判定
+			str.Format(L"%d", !m_sVehDimInfo.bWheBase12Jud?1:0);
+			sDimensionData.strWheBase12Jud = str;
+			// 23轴距判定
+			str.Format(L"%d", !m_sVehDimInfo.bWheBase23Jud?1:0);
+			sDimensionData.strWheBase23Jud = str;
+			// 34轴距判定
+			str.Format(L"%d", !m_sVehDimInfo.bWheBase34Jud?1:0);
+			sDimensionData.strWheBase34Jud = str;
+			// 45轴距判定
+			str.Format(L"%d", !m_sVehDimInfo.bWheBase45Jud?1:0);
+			sDimensionData.strWheBase45Jud = str;
+			// 56轴距判定
+			str.Format(L"%d", !m_sVehDimInfo.bWheBase56Jud?1:0);
+			sDimensionData.strWheBase56Jud = str;
+			// 轴距（含销轴距）判定 
+			str.Format(L"%d", !m_sVehDimInfo.bWheBaseJud?1:0);
+			sDimensionData.strWheBaseJud = str;
+		}
+	}
 
 	sDimensionData.strJudge =m_sVehDimInfo.bIsDetPass?L"0":L"1";
 
@@ -2973,51 +3029,64 @@ void CMDODimDlg_NH::SaveSecVehDetData()
 		sDimensionData.strVehHeightUpdateReason = m_sVehDimInfoSen.strVehHeightUpdateReason;
 	}
 
-#ifdef NH_ALLOW_DET_WHE_BASE
-	if(CNHCommFunc::IsGooVeh(m_sHisVehInfoSen) || CNHCommFunc::IsSpeVeh(m_sHisVehInfoSen) || CNHCommFunc::IsTrailer(m_sHisVehInfoSen))
+	//是否检测铀距
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
 	{
-		// 销轴距
-		str.Format(L"%d", m_sVehDimInfoSen.nWheBase01);
-		sDimensionData.strWheBase01 = str;
-		// 12轴距[mm]
-		str.Format(L"%d", m_sVehDimInfoSen.nWheBase12);
-		sDimensionData.strWheBase12 = str;
-		// 23轴距[mm]
-		str.Format(L"%d", m_sVehDimInfoSen.nWheBase23);
-		sDimensionData.strWheBase23 = str;
-		// 34轴距[mm]
-		str.Format(L"%d", m_sVehDimInfoSen.nWheBase34);
-		sDimensionData.strWheBase34 = str;
-		// 45轴距[mm]
-		str.Format(L"%d", m_sVehDimInfoSen.nWheBase45);
-		sDimensionData.strWheBase45 = str;
-		// 56轴距[mm]
-		str.Format(L"%d", m_sVehDimInfoSen.nWheBase56);
-		sDimensionData.strWheBase56 = str;
-
-		// 销轴距判定
-		str.Format(L"%d", !m_sVehDimInfoSen.m_bWheBase01Jud?1:0);
-		sDimensionData.strWheBase01Jud = str;
-		// 12轴距判定
-		str.Format(L"%d", !m_sVehDimInfoSen.bWheBase12Jud?1:0);
-		sDimensionData.strWheBase12Jud = str;
-		// 23轴距判定
-		str.Format(L"%d", !m_sVehDimInfoSen.bWheBase23Jud?1:0);
-		sDimensionData.strWheBase23Jud = str;
-		// 34轴距判定
-		str.Format(L"%d", !m_sVehDimInfoSen.bWheBase34Jud?1:0);
-		sDimensionData.strWheBase34Jud = str;
-		// 45轴距判定
-		str.Format(L"%d", !m_sVehDimInfoSen.bWheBase45Jud?1:0);
-		sDimensionData.strWheBase45Jud = str;
-		// 56轴距判定
-		str.Format(L"%d", !m_sVehDimInfoSen.bWheBase56Jud?1:0);
-		sDimensionData.strWheBase56Jud = str;
-		// 轴距（含销轴距）判定 
-		str.Format(L"%d", !m_sVehDimInfoSen.bWheBaseJud?1:0);
-		sDimensionData.strWheBaseJud = str;
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			// 销轴距
+			str.Format(L"%d", m_sVehDimInfoSen.nWheBase01);
+			sDimensionData.strWheBase01 = str;
+			// 销轴距判定
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBase01Jud?1:0);
+			sDimensionData.strWheBase01Jud = str;
+			// 轴距（含销轴距）判定 
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBaseJud?1:0);
+			sDimensionData.strWheBaseJud = str;
+		}
 	}
-#endif
+	//是否检测铀距
+	if (m_bWheelBase 
+		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+	{
+		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+		{
+			// 12轴距[mm]
+			str.Format(L"%d", m_sVehDimInfoSen.nWheBase12);
+			sDimensionData.strWheBase12 = str;
+			// 23轴距[mm]
+			str.Format(L"%d", m_sVehDimInfoSen.nWheBase23);
+			sDimensionData.strWheBase23 = str;
+			// 34轴距[mm]
+			str.Format(L"%d", m_sVehDimInfoSen.nWheBase34);
+			sDimensionData.strWheBase34 = str;
+			// 45轴距[mm]
+			str.Format(L"%d", m_sVehDimInfoSen.nWheBase45);
+			sDimensionData.strWheBase45 = str;
+			// 56轴距[mm]
+			str.Format(L"%d", m_sVehDimInfoSen.nWheBase56);
+			sDimensionData.strWheBase56 = str;
+			// 12轴距判定
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBase12Jud?1:0);
+			sDimensionData.strWheBase12Jud = str;
+			// 23轴距判定
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBase23Jud?1:0);
+			sDimensionData.strWheBase23Jud = str;
+			// 34轴距判定
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBase34Jud?1:0);
+			sDimensionData.strWheBase34Jud = str;
+			// 45轴距判定
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBase45Jud?1:0);
+			sDimensionData.strWheBase45Jud = str;
+			// 56轴距判定
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBase56Jud?1:0);
+			sDimensionData.strWheBase56Jud = str;
+			// 轴距（含销轴距）判定 
+			str.Format(L"%d", !m_sVehDimInfoSen.bWheBaseJud?1:0);
+			sDimensionData.strWheBaseJud = str;
+		}
+	}
 
 	sDimensionData.strJudge =m_sVehDimInfoSen.bIsDetPass?L"0":L"1";
 
