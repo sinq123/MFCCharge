@@ -6,15 +6,13 @@
 #include "MDODimDlg_NH.h"
 #include "afxdialogex.h"
 
-#include <gdiplus.h>             //GDI+声明，可以GDI/GDI+混合使用
-#pragma comment(lib, "gdiplus.lib")
-using namespace Gdiplus;
+
 
 // CMDODimDlg_NH 对话框
 
 IMPLEMENT_DYNAMIC(CMDODimDlg_NH, CDialogEx)
 
-CMDODimDlg_NH::CMDODimDlg_NH(CWnd* pParent /*=NULL*/)
+	CMDODimDlg_NH::CMDODimDlg_NH(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CMDODimDlg_NH::IDD, pParent)
 	, m_pConnection(NULL)
 {
@@ -38,6 +36,8 @@ CMDODimDlg_NH::CMDODimDlg_NH(CWnd* pParent /*=NULL*/)
 		DEFAULT_PITCH|FF_MODERN,
 		L"宋体");
 
+	GdiplusStartup(&m_pGdiToken,&m_gdiplusStartupInput,NULL);
+
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
 
@@ -48,6 +48,8 @@ CMDODimDlg_NH::~CMDODimDlg_NH()
 		CloseDB();
 	}
 	m_fontDlgFont.DeleteObject();
+
+	GdiplusShutdown(m_pGdiToken);
 }
 
 void CMDODimDlg_NH::DoDataExchange(CDataExchange* pDX)
@@ -127,7 +129,9 @@ BOOL CMDODimDlg_NH::OnInitDialog()
 	m_bPinbase = CGAWebServiceLibAPI::GetInstance().GetPinbase();
 	m_bPinbaseNew = CGAWebServiceLibAPI::GetInstance().GetPinbaseNew();
 	m_bM2D = CGAWebServiceLibAPI::GetInstance().GetM2D();
-
+	m_bCorCoor = CGAWebServiceLibAPI::GetInstance().GetCorrectionCoordinates();
+	m_bHeightHandle = CGAWebServiceLibAPI::GetInstance().GetIsHeightHandle();
+	m_bDimVideo = CGAWebServiceLibAPI::GetInstance().GetDimVideo();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
@@ -265,6 +269,10 @@ void CMDODimDlg_NH::OnBnClickedBtnStartDet()
 			// 视频开始
 			CGAVideoSnapLibAPI::GetInstance().TakeStartDimensionFrontVideo(m_strRunningNumber, COleDateTime::GetCurrentTime(), L"");
 			CGAVideoSnapLibAPI::GetInstance().TakeStartDimensionSideVideo(m_strRunningNumber, COleDateTime::GetCurrentTime(), L"");
+			if (m_bDimVideo)
+			{
+				CGAVideoSnapLibAPI::GetInstance().TakeStartDimensionLEDVideo(m_strRunningNumber, COleDateTime::GetCurrentTime(), L"");
+			}
 		}
 		// 四川星盾
 		if (m_nNetPlatform == 8)
@@ -295,6 +303,10 @@ void CMDODimDlg_NH::OnBnClickedBtnStartDet()
 			// 视频开始
 			CGAVideoSnapLibAPI::GetInstance().TakeStartDimensionFrontVideo(m_strRunningNumberSen, COleDateTime::GetCurrentTime(), L"");
 			CGAVideoSnapLibAPI::GetInstance().TakeStartDimensionSideVideo(m_strRunningNumberSen, COleDateTime::GetCurrentTime(), L"");
+			if (m_bDimVideo)
+			{
+				CGAVideoSnapLibAPI::GetInstance().TakeStartDimensionLEDVideo(m_strRunningNumberSen, COleDateTime::GetCurrentTime(), L"");
+			}
 		}
 		// 四川星盾
 		if (m_nNetPlatform == 8)
@@ -304,7 +316,7 @@ void CMDODimDlg_NH::OnBnClickedBtnStartDet()
 		}
 	}
 
-	
+
 	// 联网开始流程结束
 	LoadConfig();
 	// 屏蔽开始按钮，不可点击
@@ -329,8 +341,8 @@ void CMDODimDlg_NH::OnBnClickedBtnStartDet()
 		// 刷新检测信息和判断是否可以结束
 		SetTimer(4, 500, NULL);
 	}
-	
-	
+
+
 }
 
 
@@ -341,7 +353,7 @@ void CMDODimDlg_NH::OnBnClickedBtnPhotoDet()
 	//SGABusinessNum sGABusinessNum;
 	//CGAWebServiceLibAPI::GetInstance().HCDim2DPhoto(SDetLog(), SHisVehInfo(), SDetTimes(), L"0962", m_strBodyPhotoPath, sGABusinessNum, sMsg);
 	//CGAWebServiceLibAPI::GetInstance().HCDim2DPhoto(SDetLog(), SHisVehInfo(), SDetTimes(), L"0963", m_strTopPhotoPath, sGABusinessNum, sMsg);
-	
+
 	SavePhoto();
 }
 
@@ -538,6 +550,11 @@ void CMDODimDlg_NH::OnTimer(UINT_PTR nIDEvent)
 		}
 		break;
 
+	case 6:
+		{
+		}
+		break;
+
 	}
 
 	CDialogEx::OnTimer(nIDEvent);
@@ -577,6 +594,12 @@ void CMDODimDlg_NH::InitCtrls(void)
 	//m_chkIsUseStaGB1589.SetAlign(CButtonST::ST_ALIGN_HORIZ_RIGHT);
 	m_chkIsUseStaGB1589.SetCheck(TRUE);
 	m_bIsUseGB1589 = true;
+
+	BMPTOJPG(L"C:\\Users\\Administrator\\Desktop\\新建文件夹\\VehBody.bmp"
+		, L"C:\\Users\\Administrator\\Desktop\\新建文件夹\\VehBody.jpg");
+
+	AddWatermark(L"C:\\Users\\Administrator\\Desktop\\新建文件夹\\VehBody.jpg", 
+		L"VehBody.jpg");
 
 }
 
@@ -622,7 +645,7 @@ void CMDODimDlg_NH::InitGuide(void)
 		for (citer=lsEmployeeInfo.begin(); citer!=lsEmployeeInfo.end(); ++citer)
 		{
 			m_cbDriver.AddString(citer->strName.c_str());
-			
+
 		}
 	}
 
@@ -634,11 +657,11 @@ void CMDODimDlg_NH::InitGuide(void)
 		for (citer=lsEmployeeInfo.begin(); citer!=lsEmployeeInfo.end(); ++citer)
 		{
 			m_cbExternalInspector.AddString(citer->strName.c_str());
-			
+
 		}
 	}
 
-	
+
 }
 
 void CMDODimDlg_NH::LoadConfig(void)
@@ -646,41 +669,56 @@ void CMDODimDlg_NH::LoadConfig(void)
 	wchar_t wchFilePath[MAX_PATH] = {L'\0'};
 	ZeroMemory(wchFilePath, sizeof(wchFilePath));
 
-	if (0x00 != CNHCommonAPI::GetHLDFilePath(L"Config",L"NHPCS.ini", wchFilePath))
+	if (0x00 == CNHCommonAPI::GetHLDFilePath(L"Config",L"NHPCS.ini", wchFilePath))
 	{
-	}
-	CSimpleIni si(wchFilePath);
+		CSimpleIni si(wchFilePath);
+		m_strDEFolderPath = si.GetString(L"DimensionParams", L"DataPath", L"D:\\Share");
+		if (m_strDEFolderPath.IsEmpty())
+		{
+			m_strDEFolderPath = L"D:\\Share";
+		}
 
-	m_strDEFolderPath = si.GetString(L"DimensionParams", L"DataPath", L"D:\\Share");
-	if (m_strDEFolderPath.IsEmpty())
+		// 厂家信息
+		m_strDimEqu = si.GetString(L"DimensionParams", L"DimEqu", L"0");
+
+		if (m_strDimEqu == L"0") // 南华
+		{
+			// 是否读取检测过程提示信息
+			m_bCFG_ReadDetInfo = si.GetString(L"DimensionParams", L"IsReadDetInfo", L"0")==L"1"?true:false;
+
+			m_strBegIniPath.Format(L"%s\\BegCTDet.ini", m_strDEFolderPath);
+			m_strEndIniPath.Format(L"%s\\EndCTDet.ini", m_strDEFolderPath);
+			m_strDisplayTxtPath.Format(L"%s\\Display.txt", m_strDEFolderPath);
+		}
+		else if (m_strDimEqu == L"1") // 广泰
+		{
+			// 是否读取检测过程提示信息
+			m_bCFG_ReadDetInfo = si.GetString(L"DimensionParams", L"IsReadDetInfo", L"0")==L"1"?true:false;
+
+			// 车辆信息 开始检测
+			m_strBegIniPath.Format(L"%s\\carinfo.ini", m_strDEFolderPath);
+			//m_strEndIniPath.Format(L"%s\\EndCTDet.ini", m_strDEFolderPath);
+			// 外廓状态
+			m_strDisplayTxtPath.Format(L"%s\\statusConfig.ini", m_strDEFolderPath);
+		}
+	}
+
+	ZeroMemory(wchFilePath, sizeof(wchFilePath));
+	if (0x00 == CNHCommonAPI::GetHLDFilePath(L"Config",L"GAVideoSnapLib.ini", wchFilePath))
 	{
-		m_strDEFolderPath = L"D:\\Share";
+		CSimpleIni si(wchFilePath);
+
+		m_strPhotoSaveFolder = si.GetString(L"General", L"RepPhotoSaveFolder", L"");
+
+		if (L"" == m_strPhotoSaveFolder)
+		{
+			// 用默认路径
+			wchar_t wchLogFileFolderPath[MAX_PATH] = {0};
+			CNHCommonAPI::GetHLDFilePath(L"Photo", L"", wchLogFileFolderPath, true);
+			m_strPhotoSaveFolder = wchLogFileFolderPath;
+		}
+
 	}
-
-	// 厂家信息
-	m_strDimEqu = si.GetString(L"DimensionParams", L"DimEqu", L"0");
-
-	if (m_strDimEqu == L"0") // 南华
-	{
-		// 是否读取检测过程提示信息
-		m_bCFG_ReadDetInfo = si.GetString(L"DimensionParams", L"IsReadDetInfo", L"0")==L"1"?true:false;
-
-		m_strBegIniPath.Format(L"%s\\BegCTDet.ini", m_strDEFolderPath);
-		m_strEndIniPath.Format(L"%s\\EndCTDet.ini", m_strDEFolderPath);
-		m_strDisplayTxtPath.Format(L"%s\\Display.txt", m_strDEFolderPath);
-	}
-	else if (m_strDimEqu == L"1") // 广泰
-	{
-		// 是否读取检测过程提示信息
-		m_bCFG_ReadDetInfo = si.GetString(L"DimensionParams", L"IsReadDetInfo", L"0")==L"1"?true:false;
-
-		// 车辆信息 开始检测
-		m_strBegIniPath.Format(L"%s\\carinfo.ini", m_strDEFolderPath);
-		//m_strEndIniPath.Format(L"%s\\EndCTDet.ini", m_strDEFolderPath);
-		// 外廓状态
-		m_strDisplayTxtPath.Format(L"%s\\statusConfig.ini", m_strDEFolderPath);
-	}
-
 }
 
 void CMDODimDlg_NH::OpenDB(void)
@@ -960,7 +998,13 @@ void CMDODimDlg_NH::GetVehInfoAndStandard(POSITION pos)
 
 		const int nDimAE = _wtoi(m_sDetStandard.strApp_DimAE.c_str());
 		const int nDimRE = _wtoi(m_sDetStandard.strApp_DimRE.c_str());
-		const int nDimLen_UPLim = _wtoi(m_sDetStandard.strApp_DimLen_UpperLimit.c_str());
+
+		int nDimLen_UPLim_H(_wtoi(m_sDetStandard.strApp_DimLen_UpperLimit.c_str()));
+		if (m_sHisVehInfo.strPlateTypeCode == L"02")// 轻型车，强制最大车厂为6m
+		{
+			nDimLen_UPLim_H = 6000;
+		}
+		const int nDimLen_UPLim = nDimLen_UPLim_H;
 		const int nDimWid_UPLim = _wtoi(m_sDetStandard.strApp_DimWid_UpperLimit.c_str());
 		const int nDimHei_UPLim = _wtoi(m_sDetStandard.strApp_DimHei_UpperLimit.c_str());
 
@@ -1501,8 +1545,13 @@ void CMDODimDlg_NH::ExportData(const bool bIsRemDet/* = false*/)
 		//是否使用人工修正
 		strBegIni.AppendFormat(L"\r\nIsUpdateData=%s", L"1");
 	}
-	
-		
+	else
+	{
+		//是否使用人工修正
+		strBegIni.AppendFormat(L"\r\nIsUpdateData=%s", L"0");
+	}
+
+
 	if(!m_strRunningNumberSen.IsEmpty()) // 牵挂同检
 	{
 		// 检测信息
@@ -1866,41 +1915,49 @@ bool CMDODimDlg_NH::ImportData(void)
 		m_sVehDimInfoSen.bBoxHeightJudge = _wtoi(si.GetString(L"DetResult", L"TrailerBoxHeightJudge", L""))==1?false:true;
 
 
+
+
 		if (!m_bM2D)
 		{
-			m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
-			m_sVehDimInfo.bVehLengthJudge = true;
-		
-			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			if (m_sVehDimInfo.nVehHeight < 4000 || m_bHeightHandle)
 			{
-				m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
-			}
-			else
-			{
-				m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
-			}
+				m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
+				m_sVehDimInfo.bVehLengthJudge = true;
 
-			m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
-			m_sVehDimInfo.bVehHeightJudge = true;
+				if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+				{
+					m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
+				}
+				else
+				{
+					m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfo.nVehWidthUpLimit-1, m_sVehDimInfo.nVehWidthLoLimit+1);
+				}
+				m_sVehDimInfo.bVehWidthJudge = true;
 
-
-			// 第二车
-			m_sVehDimInfoSen.nVehLength = AnalogData(m_sVehDimInfoSen.nVehLengthUpLimit-1, m_sVehDimInfoSen.nVehLengthLoLimit+1);
-			m_sVehDimInfoSen.bVehLengthJudge = true;
-		
-			if (m_sVehDimInfoSen.nVehWidthUpLimit >= 2550)
-			{
-				m_sVehDimInfoSen.nVehWidth = AnalogData(2549, m_sVehDimInfoSen.nVehWidthLoLimit+1);
-			}
-			else
-			{
-				m_sVehDimInfoSen.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+				m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
+				m_sVehDimInfo.bVehHeightJudge = true;
 			}
 
-			m_sVehDimInfoSen.nVehHeight = AnalogData(m_sVehDimInfoSen.nVehHeightUpLimit-1, m_sVehDimInfoSen.nVehHeightLoLimit+1);
-			m_sVehDimInfoSen.bVehHeightJudge = true;
+			if (m_sVehDimInfoSen.nVehHeight < 4000 || m_bHeightHandle)
+			{
+				// 第二车
+				m_sVehDimInfoSen.nVehLength = AnalogData(m_sVehDimInfoSen.nVehLengthUpLimit-1, m_sVehDimInfoSen.nVehLengthLoLimit+1);
+				m_sVehDimInfoSen.bVehLengthJudge = true;
+
+				if (m_sVehDimInfoSen.nVehWidthUpLimit >= 2550)
+				{
+					m_sVehDimInfoSen.nVehWidth = AnalogData(2549, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+				}
+				else
+				{
+					m_sVehDimInfoSen.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
+				}
+				m_sVehDimInfoSen.bVehWidthJudge = true;
+
+				m_sVehDimInfoSen.nVehHeight = AnalogData(m_sVehDimInfoSen.nVehHeightUpLimit-1, m_sVehDimInfoSen.nVehHeightLoLimit+1);
+				m_sVehDimInfoSen.bVehHeightJudge = true;
+			}
 		}
-
 	}
 	else if(strIsTrailerMeasure == L"3")//测挂车
 	{
@@ -1921,24 +1978,29 @@ bool CMDODimDlg_NH::ImportData(void)
 		// 挂车栏板高度判断
 		m_sVehDimInfo.bBoxHeightJudge = _wtoi(si.GetString(L"DetResult", L"TrailerBoxHeightJudge", L""))==1?false:true;
 
+
 		if (!m_bM2D)
 		{
-			m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
-			m_sVehDimInfo.bVehLengthJudge = true;
-		
-			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			if (m_sVehDimInfo.nVehHeight < 4000 || m_bHeightHandle)
 			{
-				m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
-			}
-			else
-			{
-				m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
-			}
+				m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
+				m_sVehDimInfo.bVehLengthJudge = true;
 
-			m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
-			m_sVehDimInfo.bVehHeightJudge = true;
+				if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+				{
+					m_sVehDimInfo.nVehWidth = AnalogData(2550-1, m_sVehDimInfo.nVehWidthLoLimit+1);
+				}
+				else
+				{
+					m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfo.nVehWidthUpLimit-1, m_sVehDimInfo.nVehWidthLoLimit+1);
+				}
+				m_sVehDimInfo.bVehWidthJudge = true;
 
+				m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
+				m_sVehDimInfo.bVehHeightJudge = true;
+			}
 		}
+
 	}
 	else//普通车
 	{
@@ -1965,21 +2027,24 @@ bool CMDODimDlg_NH::ImportData(void)
 
 		if (!m_bM2D)
 		{
-			m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
-			m_sVehDimInfo.bVehLengthJudge = true;
-		
-			if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+			if (m_sVehDimInfo.nVehHeight < 4000 || m_bHeightHandle)
 			{
-				m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
-			}
-			else
-			{
-				m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfoSen.nVehWidthUpLimit-1, m_sVehDimInfoSen.nVehWidthLoLimit+1);
-			}
+				m_sVehDimInfo.nVehLength = AnalogData(m_sVehDimInfo.nVehLengthUpLimit-1, m_sVehDimInfo.nVehLengthLoLimit+1);
+				m_sVehDimInfo.bVehLengthJudge = true;
 
-			m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
-			m_sVehDimInfo.bVehHeightJudge = true;
+				if (m_sVehDimInfo.nVehWidthUpLimit >= 2550)
+				{
+					m_sVehDimInfo.nVehWidth = AnalogData(2549, m_sVehDimInfo.nVehWidthLoLimit+1);
+				}
+				else
+				{
+					m_sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfo.nVehWidthUpLimit-1, m_sVehDimInfo.nVehWidthLoLimit+1);
+				}
+				m_sVehDimInfo.bVehWidthJudge = true;
 
+				m_sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit-1, m_sVehDimInfo.nVehHeightLoLimit+1);
+				m_sVehDimInfo.bVehHeightJudge = true;
+			}
 		}
 	}
 
@@ -1997,8 +2062,8 @@ bool CMDODimDlg_NH::ImportData(void)
 	if (!m_strRunningNumberSen.IsEmpty())
 	{
 		if (m_sVehDimInfoSen.bVehLengthJudge
-		&& m_sVehDimInfoSen.bVehWidthJudge
-		&& m_sVehDimInfoSen.bVehHeightJudge)
+			&& m_sVehDimInfoSen.bVehWidthJudge
+			&& m_sVehDimInfoSen.bVehHeightJudge)
 		{
 			m_sVehDimInfoSen.bIsDetPass = true;
 		}
@@ -2009,8 +2074,8 @@ bool CMDODimDlg_NH::ImportData(void)
 	}
 
 	//是否检测铀距
-	if (m_bWheelBase 
-		|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+	if (m_bPinbase 
+		|| (m_bPinbaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
 	{
 		if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsSpeVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
 		{
@@ -2020,9 +2085,12 @@ bool CMDODimDlg_NH::ImportData(void)
 
 			if (!m_bM2D)
 			{
-				m_sVehDimInfo.nWheBase01 = _wtoi(m_sHisVehInfo.strWheBase01.c_str());
-				m_sVehDimInfo.bWheBase01Jud = true;
-				m_sVehDimInfo.bWheBaseJud = true;
+				if (m_sVehDimInfo.nVehHeight < 4000 || m_bHeightHandle)
+				{
+					m_sVehDimInfo.nWheBase01 = _wtoi(m_sHisVehInfo.strWheBase01.c_str());
+					m_sVehDimInfo.bWheBase01Jud = true;
+					m_sVehDimInfo.bWheBaseJud = true;
+				}
 			}
 
 			// 重新比较多一次
@@ -2059,12 +2127,15 @@ bool CMDODimDlg_NH::ImportData(void)
 
 			if (!m_bM2D)
 			{
-				if (!m_sHisVehInfo.strWheBase12.empty()){m_sVehDimInfo.nWheBase12 = _wtoi(m_sHisVehInfo.strWheBase12.c_str()); m_sVehDimInfo.bWheBase12Jud = true;}
-				if (!m_sHisVehInfo.strWheBase23.empty()){m_sVehDimInfo.nWheBase23 = _wtoi(m_sHisVehInfo.strWheBase23.c_str()); m_sVehDimInfo.bWheBase23Jud = true;}
-				if (!m_sHisVehInfo.strWheBase34.empty()){m_sVehDimInfo.nWheBase34 = _wtoi(m_sHisVehInfo.strWheBase34.c_str()); m_sVehDimInfo.bWheBase34Jud = true;}
-				if (!m_sHisVehInfo.strWheBase45.empty()){m_sVehDimInfo.nWheBase45 = _wtoi(m_sHisVehInfo.strWheBase45.c_str()); m_sVehDimInfo.bWheBase45Jud = true;}
-				if (!m_sHisVehInfo.strWheBase56.empty()){m_sVehDimInfo.nWheBase56 = _wtoi(m_sHisVehInfo.strWheBase56.c_str()); m_sVehDimInfo.bWheBase56Jud = true;}
-				m_sVehDimInfo.bWheBaseJud = true;
+				if (m_sVehDimInfo.nVehHeight < 4000 || m_bHeightHandle)
+				{
+					if (!m_sHisVehInfo.strWheBase12.empty()){m_sVehDimInfo.nWheBase12 = _wtoi(m_sHisVehInfo.strWheBase12.c_str()); m_sVehDimInfo.bWheBase12Jud = true;}
+					if (!m_sHisVehInfo.strWheBase23.empty()){m_sVehDimInfo.nWheBase23 = _wtoi(m_sHisVehInfo.strWheBase23.c_str()); m_sVehDimInfo.bWheBase23Jud = true;}
+					if (!m_sHisVehInfo.strWheBase34.empty()){m_sVehDimInfo.nWheBase34 = _wtoi(m_sHisVehInfo.strWheBase34.c_str()); m_sVehDimInfo.bWheBase34Jud = true;}
+					if (!m_sHisVehInfo.strWheBase45.empty()){m_sVehDimInfo.nWheBase45 = _wtoi(m_sHisVehInfo.strWheBase45.c_str()); m_sVehDimInfo.bWheBase45Jud = true;}
+					if (!m_sHisVehInfo.strWheBase56.empty()){m_sVehDimInfo.nWheBase56 = _wtoi(m_sHisVehInfo.strWheBase56.c_str()); m_sVehDimInfo.bWheBase56Jud = true;}
+					m_sVehDimInfo.bWheBaseJud = true;
+				}
 			}
 
 			// 重新比较多一次
@@ -2131,7 +2202,22 @@ void CMDODimDlg_NH::CarInfoData(void)
 		//是否检测栏板高度
 		strBegIni.AppendFormat(L"\r\n是否检测栏板高度=%s", L"N");
 		//是否检测轴距
-		strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"N");
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+		{
+			if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+			{
+				strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"Y");
+			}
+			else
+			{
+				strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"N");
+			}
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"N");
+		}
 		//是否检测整备质量
 		strBegIni.AppendFormat(L"\r\n是否检测整备质量=%s", L"N");
 		//是否检测货箱
@@ -2151,13 +2237,41 @@ void CMDODimDlg_NH::CarInfoData(void)
 		//货箱高度
 		strBegIni.AppendFormat(L"\r\n货箱高度=%s", L"18017892");
 		//轴距1
-		strBegIni.AppendFormat(L"\r\n轴距1=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase12.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距1=%d", _wtoi(m_sHisVehInfo.strWheBase12.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距1=%s", L"18017892");
+		}
 		//轴距2
-		strBegIni.AppendFormat(L"\r\n轴距2=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase23.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距2=%d", _wtoi(m_sHisVehInfo.strWheBase23.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距2=%s", L"18017892");
+		}
 		//轴距3
-		strBegIni.AppendFormat(L"\r\n轴距3=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase34.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距3=%d", _wtoi(m_sHisVehInfo.strWheBase34.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距3=%s", L"18017892");
+		}
 		//轴距4
-		strBegIni.AppendFormat(L"\r\n轴距4=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase45.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距4=%d", _wtoi(m_sHisVehInfo.strWheBase45.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距4=%s", L"18017892");
+		}
 		//整备质量
 		strBegIni.AppendFormat(L"\r\n整备质量=%s", L"");
 		//实测整备质量
@@ -2209,7 +2323,22 @@ void CMDODimDlg_NH::CarInfoData(void)
 		//是否检测栏板高度
 		strBegIni.AppendFormat(L"\r\n是否检测栏板高度=%s", L"N");
 		//是否检测轴距
-		strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"N");
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+		{
+			if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+			{
+				strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"Y");
+			}
+			else
+			{
+				strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"N");
+			}
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n是否检测轴距=%s", L"N");
+		}
 		//是否检测整备质量
 		strBegIni.AppendFormat(L"\r\n是否检测整备质量=%s", L"N");
 		//是否检测货箱
@@ -2227,13 +2356,41 @@ void CMDODimDlg_NH::CarInfoData(void)
 		//货箱高度
 		strBegIni.AppendFormat(L"\r\n货箱高度=%s", L"18017892");
 		//轴距1
-		strBegIni.AppendFormat(L"\r\n轴距1=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase12.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距1=%d", _wtoi(m_sHisVehInfo.strWheBase12.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距1=%s", L"18017892");
+		}
 		//轴距2
-		strBegIni.AppendFormat(L"\r\n轴距2=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase23.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距2=%d", _wtoi(m_sHisVehInfo.strWheBase23.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距2=%s", L"18017892");
+		}
 		//轴距3
-		strBegIni.AppendFormat(L"\r\n轴距3=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase34.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距3=%d", _wtoi(m_sHisVehInfo.strWheBase34.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距3=%s", L"18017892");
+		}
 		//轴距4
-		strBegIni.AppendFormat(L"\r\n轴距4=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfo.strWheBase45.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n轴距4=%d", _wtoi(m_sHisVehInfo.strWheBase45.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n轴距4=%s", L"18017892");
+		}
 		//挂车长
 		strBegIni.AppendFormat(L"\r\n挂车长=%s", m_sHisVehInfoSen.strVehLength.c_str(), m_sDetStandardSen.strApp_DimLen_UpperLimit.c_str());
 		//挂车宽
@@ -2241,13 +2398,41 @@ void CMDODimDlg_NH::CarInfoData(void)
 		//挂车高
 		strBegIni.AppendFormat(L"\r\n挂车高=%s", m_sHisVehInfoSen.strVehHeight.c_str(), m_sDetStandardSen.strApp_DimHei_UpperLimit.c_str());
 		//挂车轴距1
-		strBegIni.AppendFormat(L"\r\n挂车轴距1=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfoSen.strWheBase12.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距1=%d", _wtoi(m_sHisVehInfoSen.strWheBase12.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距1=%s", L"18017892");
+		}
 		//挂车轴距2
-		strBegIni.AppendFormat(L"\r\n挂车轴距2=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfoSen.strWheBase23.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距2=%d", _wtoi(m_sHisVehInfoSen.strWheBase23.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距2=%s", L"18017892");
+		}
 		//挂车轴距3
-		strBegIni.AppendFormat(L"\r\n挂车轴距3=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfoSen.strWheBase34.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距3=%d", _wtoi(m_sHisVehInfoSen.strWheBase34.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距3=%s", L"18017892");
+		}
 		//挂车轴距4
-		strBegIni.AppendFormat(L"\r\n挂车轴距4=%s", L"18017892");
+		if (_wtoi(m_sHisVehInfoSen.strWheBase45.c_str()) > 10)
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距4=%d", _wtoi(m_sHisVehInfoSen.strWheBase45.c_str()));
+		}
+		else
+		{
+			strBegIni.AppendFormat(L"\r\n挂车轴距4=%s", L"18017892");
+		}
 		//整备质量
 		strBegIni.AppendFormat(L"\r\n整备质量=%s", L"");
 		//实测整备质量
@@ -2440,6 +2625,8 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 	//检测时间
 	(si.GetString(L"结果数据", L"检测时间", L""));
 
+	sVehDimInfo.bWheBaseJud = true;
+
 	if (!bSen)
 	{
 		if (!sVehDimInfo.bVehLengthJudge)
@@ -2458,13 +2645,28 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 				sVehDimInfo.nVehWidth = AnalogData(m_sVehDimInfo.nVehWidthUpLimit, m_sVehDimInfo.nVehWidthLoLimit);
 			}
 			//
-			
+
 			sVehDimInfo.bVehWidthJudge = true;
 		}
 		if (!sVehDimInfo.bVehHeightJudge)
 		{
 			sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfo.nVehHeightUpLimit, m_sVehDimInfo.nVehHeightLoLimit);
 			sVehDimInfo.bVehHeightJudge = true;
+		}
+
+		//是否检测铀距
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+		{
+			if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+			{
+				if (!m_sHisVehInfo.strWheBase12.empty()){sVehDimInfo.nWheBase12 = _wtoi(m_sHisVehInfo.strWheBase12.c_str()); sVehDimInfo.bWheBase12Jud = true;}
+				if (!m_sHisVehInfo.strWheBase23.empty()){sVehDimInfo.nWheBase23 = _wtoi(m_sHisVehInfo.strWheBase23.c_str()); sVehDimInfo.bWheBase23Jud = true;}
+				if (!m_sHisVehInfo.strWheBase34.empty()){sVehDimInfo.nWheBase34 = _wtoi(m_sHisVehInfo.strWheBase34.c_str()); sVehDimInfo.bWheBase34Jud = true;}
+				if (!m_sHisVehInfo.strWheBase45.empty()){sVehDimInfo.nWheBase45 = _wtoi(m_sHisVehInfo.strWheBase45.c_str()); sVehDimInfo.bWheBase45Jud = true;}
+				if (!m_sHisVehInfo.strWheBase56.empty()){sVehDimInfo.nWheBase56 = _wtoi(m_sHisVehInfo.strWheBase56.c_str()); sVehDimInfo.bWheBase56Jud = true;}
+				sVehDimInfo.bWheBaseJud = true;
+			}
 		}
 	}
 	else
@@ -2484,11 +2686,28 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 			sVehDimInfo.nVehHeight = AnalogData(m_sVehDimInfoSen.nVehHeightUpLimit, m_sVehDimInfoSen.nVehHeightLoLimit);
 			sVehDimInfo.bVehHeightJudge = true;
 		}
+
+		//是否检测铀距
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLogSen.strDetType.find(L"注册") != -1)))
+		{
+			if(CNHCommFunc::IsGooVeh(m_sHisVehInfoSen) || CNHCommFunc::IsTrailer(m_sHisVehInfoSen))
+			{
+				if (!m_sHisVehInfoSen.strWheBase12.empty()){sVehDimInfo.nWheBase12 = _wtoi(m_sHisVehInfoSen.strWheBase12.c_str()); sVehDimInfo.bWheBase12Jud = true;}
+				if (!m_sHisVehInfoSen.strWheBase23.empty()){sVehDimInfo.nWheBase23 = _wtoi(m_sHisVehInfoSen.strWheBase23.c_str()); sVehDimInfo.bWheBase23Jud = true;}
+				if (!m_sHisVehInfoSen.strWheBase34.empty()){sVehDimInfo.nWheBase34 = _wtoi(m_sHisVehInfoSen.strWheBase34.c_str()); sVehDimInfo.bWheBase34Jud = true;}
+				if (!m_sHisVehInfoSen.strWheBase45.empty()){sVehDimInfo.nWheBase45 = _wtoi(m_sHisVehInfoSen.strWheBase45.c_str()); sVehDimInfo.bWheBase45Jud = true;}
+				if (!m_sHisVehInfoSen.strWheBase56.empty()){sVehDimInfo.nWheBase56 = _wtoi(m_sHisVehInfoSen.strWheBase56.c_str()); sVehDimInfo.bWheBase56Jud = true;}
+				sVehDimInfo.bWheBaseJud = true;
+			}
+		}
 	}
 
 	if (sVehDimInfo.bVehLengthJudge
 		&& sVehDimInfo.bVehWidthJudge
-		&& sVehDimInfo.bVehHeightJudge)
+		&& sVehDimInfo.bVehHeightJudge
+		&& sVehDimInfo.bWheBaseJud
+		)
 	{
 		sVehDimInfo.bIsDetPass = true;
 	}
@@ -2508,6 +2727,15 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 		m_sVehDimInfo.bVehHeightJudge = sVehDimInfo.bVehHeightJudge;
 		m_sVehDimInfo.bIsDetPass = sVehDimInfo.bIsDetPass;
 
+		//是否检测铀距
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLog.strDetType.find(L"注册") != -1)))
+		{
+			if(CNHCommFunc::IsGooVeh(m_sHisVehInfo) || CNHCommFunc::IsTrailer(m_sHisVehInfo))
+			{
+				m_sVehDimInfo.bWheBaseJud = sVehDimInfo.bWheBaseJud;
+			}
+		}
 		strLogMsg.AppendFormat(L"保存主车数据%d, %d, %d", m_sVehDimInfo.nVehLength, m_sVehDimInfo.nVehWidth, m_sVehDimInfo.nVehHeight);
 		//CNHLogAPI::WriteLog(LOG_MSG, strLogMsg, L"");
 	}
@@ -2520,8 +2748,26 @@ void CMDODimDlg_NH::GZImportData(const CStringW& strPath, const bool& bSen/*=fal
 		m_sVehDimInfoSen.nVehHeight = sVehDimInfo.nVehHeight;
 		m_sVehDimInfoSen.bVehHeightJudge = sVehDimInfo.bVehHeightJudge;
 		m_sVehDimInfoSen.bIsDetPass = sVehDimInfo.bIsDetPass;
+
+		//是否检测铀距
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLogSen.strDetType.find(L"注册") != -1)))
+		{
+			if(CNHCommFunc::IsGooVeh(m_sHisVehInfoSen) || CNHCommFunc::IsTrailer(m_sHisVehInfoSen))
+			{
+				m_sVehDimInfoSen.bWheBaseJud = sVehDimInfo.bWheBaseJud;
+			}
+		}
+
 		strLogMsg.AppendFormat(L"保存挂车数据%d, %d, %d", m_sVehDimInfoSen.nVehLength, m_sVehDimInfoSen.nVehWidth, m_sVehDimInfoSen.nVehHeight);
 		//CNHLogAPI::WriteLog(LOG_MSG, strLogMsg, L"");
+
+		//是否检测铀距
+		if (m_bWheelBase 
+			|| (m_bWheelBaseNew && (m_sDetLogSen.strDetType.find(L"注册") != -1)))
+		{
+
+		}
 	}
 
 	DeleteFile(strPath);
@@ -2538,120 +2784,304 @@ void CMDODimDlg_NH::SavePhoto()
 
 	if (m_strDimEqu == L"0") // 南华
 	{
+
+		CString strJpg, strBmp;
+		// bmp转jpg
+		strBmp.Format(L"%s\\VehBody.bmp", m_strDEFolderPath);
+		strJpg.Format(L"%s\\VehBody.jpg", m_strDEFolderPath);
+		m_strBodyPhotoPath = strJpg;
+
+		if (m_bCorCoor)
+		{
+			// 图片处理
+			BMPTOJPG(strBmp, strJpg);
+			AddWatermark(strJpg, L"VehBody.jpg", m_sVehDimInfo.nVehLength-0.0f, m_sVehDimInfo.nVehWidth-0.0f, 0.0f);
+			JPGTOBMP(strJpg, strBmp);
+			DeleteFile(strJpg);
+		}
+
+		// 增加水印
+		BMPTOJPG(strBmp, strJpg);
+
+		AddWatermark(strJpg, L"VehBody.jpg");
+
 		//保存车身照片
 		sSDetPhoto.strPhoto23SN = L"23";
 		sSDetPhoto.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-		CString str, strJpg, strBmp;
-		str.Format(L"%s\\VehBody.bmp", m_strDEFolderPath);
-		sSDetPhoto.LoadPhoto23FromFile(str);
-		// bmp转jpg
-		strBmp.Format(L"%s\\VehBody.bmp", m_strDEFolderPath);;
-		strJpg.Format(L"%s\\VehBody.jpg", m_strDEFolderPath);
-		m_strBodyPhotoPath = strJpg;
-		BMPTOJPG(strBmp, strJpg);
-		// 增加水印
-		AddWatermark(strJpg, L"VehBody.jpg");
+		sSDetPhoto.LoadPhoto23FromFile(strBmp);
+		if (!sSDetPhotoSen.strRunningNumber.empty())
+		{
+			sSDetPhotoSen.strPhoto23SN = L"23";
+			sSDetPhotoSen.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			sSDetPhotoSen.LoadPhoto23FromFile(strBmp);
+		}
 
-		//保存车顶照片
-		sSDetPhoto.strPhoto24SN = L"24";
-		sSDetPhoto.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-		str.Format(L"%s\\VehRoof.bmp", m_strDEFolderPath);
-		sSDetPhoto.LoadPhoto24FromFile(str);
 		// bmp转jpg
 		strBmp.Format(L"%s\\VehRoof.bmp", m_strDEFolderPath);
 		strJpg.Format(L"%s\\VehRoof.jpg", m_strDEFolderPath);
 		m_strTopPhotoPath = strJpg;
-		BMPTOJPG(strBmp, strJpg);
+
+		if (m_bCorCoor)
+		{
+			// 图片处理
+			BMPTOJPG(strBmp, strJpg);
+			AddWatermark(strJpg, L"VehRoof.jpg", m_sVehDimInfo.nVehLength-0.0f, 0.0f, m_sVehDimInfo.nVehHeight-0.0f);
+			JPGTOBMP(strJpg, strBmp);
+			DeleteFile(strJpg);
+		}
+
 		// 增加水印
+		BMPTOJPG(strBmp, strJpg);
 		AddWatermark(strJpg, L"VehRoof.jpg");
-	
-	}
-	else if (m_strDimEqu == L"1")
-	{
-		CString str, strJpg, strBmp;
-
-		// 四张图片都保存在数据库21-24
-		sSDetPhoto.strPhoto21SN = L"21";
-		sSDetPhoto.strPhoto21Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-		strJpg.Format(L"%s\\%sfront.jpg", m_strDEFolderPath, m_strRunningNumber);
-		strBmp.Format(L"%s\\%sfront.bmp", m_strDEFolderPath, m_strRunningNumber);
-		CNHLogAPI::WriteLog(LOG_MSG, L"21", strJpg);
-		CNHLogAPI::WriteLog(LOG_MSG, L"21", strBmp);
-		JPGTOBMP(strJpg, strBmp);
-		sSDetPhoto.LoadPhoto21FromFile(strBmp);
-
-		//保存车顶照片
-		sSDetPhoto.strPhoto22SN = L"22";
-		sSDetPhoto.strPhoto22Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-		strJpg.Format(L"%s\\%sback.jpg", m_strDEFolderPath, m_strRunningNumber);
-		strBmp.Format(L"%s\\%sback.bmp", m_strDEFolderPath, m_strRunningNumber);
-		CNHLogAPI::WriteLog(LOG_MSG, L"22", strJpg);
-		CNHLogAPI::WriteLog(LOG_MSG, L"22", strBmp);
-		JPGTOBMP(strJpg, strBmp);
-		sSDetPhoto.LoadPhoto22FromFile(strBmp);
-
-		sSDetPhoto.strPhoto23SN = L"23";
-		sSDetPhoto.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-		strJpg.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, m_strRunningNumber);
-		strBmp.Format(L"%s\\%slaserFront.bmp", m_strDEFolderPath, m_strRunningNumber);
-		CNHLogAPI::WriteLog(LOG_MSG, L"23", strJpg);
-		CNHLogAPI::WriteLog(LOG_MSG, L"23", strBmp);
-		JPGTOBMP(strJpg, strBmp);
-		sSDetPhoto.LoadPhoto23FromFile(strBmp);
 
 		//保存车顶照片
 		sSDetPhoto.strPhoto24SN = L"24";
 		sSDetPhoto.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-		strJpg.Format(L"%s\\%slaserTop.jpg", m_strDEFolderPath, m_strRunningNumber);
-		strBmp.Format(L"%s\\%slaserTop.bmp", m_strDEFolderPath, m_strRunningNumber);
-		CNHLogAPI::WriteLog(LOG_MSG, L"24", strJpg);
-		CNHLogAPI::WriteLog(LOG_MSG, L"24", strBmp);
-		JPGTOBMP(strJpg, strBmp);
 		sSDetPhoto.LoadPhoto24FromFile(strBmp);
-
-		if (!m_strRunningNumberSen.IsEmpty())
+		if (!sSDetPhotoSen.strRunningNumber.empty())
 		{
-			sSDetPhotoSen.strPhoto21SN = L"21";
-			sSDetPhotoSen.strPhoto21Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-			strJpg.Format(L"%s\\%sfront.jpg", m_strDEFolderPath, m_strRunningNumberSen);
-			strBmp.Format(L"%s\\%sfront.bmp", m_strDEFolderPath, m_strRunningNumberSen);
-			CNHLogAPI::WriteLog(LOG_MSG, L"21", strJpg);
-			CNHLogAPI::WriteLog(LOG_MSG, L"21", strBmp);
-			JPGTOBMP(strJpg, strBmp);
-			sSDetPhotoSen.LoadPhoto21FromFile(strBmp);
-
-			//保存车顶照片
-			sSDetPhotoSen.strPhoto22SN = L"22";
-			sSDetPhotoSen.strPhoto22Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-			strJpg.Format(L"%s\\%sback.jpg", m_strDEFolderPath, m_strRunningNumberSen);
-			strBmp.Format(L"%s\\%sback.bmp", m_strDEFolderPath, m_strRunningNumberSen);
-			CNHLogAPI::WriteLog(LOG_MSG, L"22", strJpg);
-			CNHLogAPI::WriteLog(LOG_MSG, L"22", strBmp);
-			JPGTOBMP(strJpg, strBmp);
-			sSDetPhotoSen.LoadPhoto22FromFile(strBmp);
-
-			sSDetPhotoSen.strPhoto23SN = L"23";
-			sSDetPhotoSen.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-			strJpg.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, m_strRunningNumberSen);
-			strBmp.Format(L"%s\\%slaserFront.bmp", m_strDEFolderPath, m_strRunningNumberSen);
-			CNHLogAPI::WriteLog(LOG_MSG, L"23", strJpg);
-			CNHLogAPI::WriteLog(LOG_MSG, L"23", strBmp);
-			JPGTOBMP(strJpg, strBmp);
-			sSDetPhotoSen.LoadPhoto23FromFile(strBmp);
-
-			//保存车顶照片
 			sSDetPhotoSen.strPhoto24SN = L"24";
 			sSDetPhotoSen.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
-			strJpg.Format(L"%s\\%slaserTop.jpg", m_strDEFolderPath, m_strRunningNumberSen);
-			strBmp.Format(L"%s\\%slaserTop.bmp", m_strDEFolderPath, m_strRunningNumberSen);
-			CNHLogAPI::WriteLog(LOG_MSG, L"24", strJpg);
-			CNHLogAPI::WriteLog(LOG_MSG, L"24", strBmp);
-			JPGTOBMP(strJpg, strBmp);
 			sSDetPhotoSen.LoadPhoto24FromFile(strBmp);
 		}
 	}
+	else if (m_strDimEqu == L"1")
+	{
+		CString str, strJpg, strBmp;
+		CString strPath;
+		// 四张图片都保存在数据库21-24
+		//sSDetPhoto.strPhoto21SN = L"21";
+		//sSDetPhoto.strPhoto21Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		//strJpg.Format(L"%s\\%sfront.jpg", m_strDEFolderPath, m_strRunningNumber);
+		//strBmp.Format(L"%s\\%sfront.bmp", m_strDEFolderPath, m_strRunningNumber);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"21", strJpg);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"21", strBmp);
+		//JPGTOBMP(strJpg, strBmp);
+		//sSDetPhoto.LoadPhoto21FromFile(strBmp);
+
+		sSDetPhoto.strPhoto21SN = L"21";
+		sSDetPhoto.strPhoto21Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		strJpg.Format(L"%s\\%sfront.jpg", m_strDEFolderPath, m_strRunningNumber); // 获取原图片位置
+		strPath.Format(L"%s\\%s_M1F.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+		BOOL BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+		if (BOK)
+		{
+			// 复制成功
+			str.Format(L"%s 复制成功", strPath);
+		}
+		else
+		{
+			// 复制失败
+			str.Format(L"%s 复制失败", strPath);
+		}
+		CNHLogAPI::WriteLog(LOG_MSG, L"21", str);
+		//MoveFile(strJpg, strPath); // 移动文件
+		sSDetPhoto.strPhotoPath[21] = strPath.GetString();
+
+		//保存车顶照片
+		//sSDetPhoto.strPhoto22SN = L"22";
+		//sSDetPhoto.strPhoto22Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		//strJpg.Format(L"%s\\%sback.jpg", m_strDEFolderPath, m_strRunningNumber);
+		//strBmp.Format(L"%s\\%sback.bmp", m_strDEFolderPath, m_strRunningNumber);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"22", strJpg);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"22", strBmp);
+		//JPGTOBMP(strJpg, strBmp);
+		//sSDetPhoto.LoadPhoto22FromFile(strBmp);
+
+		sSDetPhoto.strPhoto22SN = L"22";
+		sSDetPhoto.strPhoto22Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		strJpg.Format(L"%s\\%sback.jpg", m_strDEFolderPath, m_strRunningNumber);// 获取原图片位置
+		strPath.Format(L"%s\\%s_M1S.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+		BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+		if (BOK)
+		{
+			// 复制成功
+			str.Format(L"%s 复制成功", strPath);
+		}
+		else
+		{
+			// 复制失败
+			str.Format(L"%s 复制失败", strPath);
+		}
+		CNHLogAPI::WriteLog(LOG_MSG, L"22", str);
+		//MoveFile(strJpg, strPath); // 移动文件
+		sSDetPhoto.strPhotoPath[22] = strPath.GetString();
+
+		//sSDetPhoto.strPhoto23SN = L"23";
+		//sSDetPhoto.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		//strJpg.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, m_strRunningNumber);
+		//strBmp.Format(L"%s\\%slaserFront.bmp", m_strDEFolderPath, m_strRunningNumber);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"23", strJpg);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"23", strBmp);
+		//JPGTOBMP(strJpg, strBmp);
+		//sSDetPhoto.LoadPhoto23FromFile(strBmp);
+
+		sSDetPhoto.strPhoto23SN = L"23";
+		sSDetPhoto.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		strJpg.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, m_strRunningNumber);// 获取原图片位置
+		strPath.Format(L"%s\\%s_M1F2.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+		BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+		if (BOK)
+		{
+			// 复制成功
+			str.Format(L"%s 复制成功", strPath);
+		}
+		else
+		{
+			// 复制失败
+			str.Format(L"%s 复制失败", strPath);
+		}
+		CNHLogAPI::WriteLog(LOG_MSG, L"23", str);
+		//MoveFile(strJpg, strPath); // 移动文件
+		sSDetPhoto.strPhotoPath[23] = strPath.GetString();
+
+		//保存车顶照片
+		//sSDetPhoto.strPhoto24SN = L"24";
+		//sSDetPhoto.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		//strJpg.Format(L"%s\\%slaserTop.jpg", m_strDEFolderPath, m_strRunningNumber);
+		//strBmp.Format(L"%s\\%slaserTop.bmp", m_strDEFolderPath, m_strRunningNumber);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"24", strJpg);
+		//CNHLogAPI::WriteLog(LOG_MSG, L"24", strBmp);
+		//JPGTOBMP(strJpg, strBmp);
+		//sSDetPhoto.LoadPhoto24FromFile(strBmp);
+
+		sSDetPhoto.strPhoto24SN = L"24";
+		sSDetPhoto.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+		strJpg.Format(L"%s\\%slaserTop.jpg", m_strDEFolderPath, m_strRunningNumber);// 获取原图片位置
+		strPath.Format(L"%s\\%s_M1S2.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+		BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+		if (BOK)
+		{
+			// 复制成功
+			str.Format(L"%s 复制成功", strPath);
+		}
+		else
+		{
+			// 复制失败
+			str.Format(L"%s 复制失败", strPath);
+		}
+		CNHLogAPI::WriteLog(LOG_MSG, L"24", str);
+		//MoveFile(strJpg, strPath); // 移动文件
+		sSDetPhoto.strPhotoPath[24] = strPath.GetString();
 
 
+		if (!m_strRunningNumberSen.IsEmpty())
+		{
+			//sSDetPhotoSen.strPhoto21SN = L"21";
+			//sSDetPhotoSen.strPhoto21Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			//strJpg.Format(L"%s\\%sfront.jpg", m_strDEFolderPath, m_strRunningNumberSen);
+			//strBmp.Format(L"%s\\%sfront.bmp", m_strDEFolderPath, m_strRunningNumberSen);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"21", strJpg);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"21", strBmp);
+			//JPGTOBMP(strJpg, strBmp);
+			//sSDetPhotoSen.LoadPhoto21FromFile(strBmp);
+
+			sSDetPhotoSen.strPhoto21SN = L"21";
+			sSDetPhotoSen.strPhoto21Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			strJpg.Format(L"%s\\%sfront.jpg", m_strDEFolderPath, m_strRunningNumber); // 获取原图片位置
+			strPath.Format(L"%s\\%s_M1F.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+			BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+			if (BOK)
+			{
+				// 复制成功
+				str.Format(L"%s 复制成功", strPath);
+			}
+			else
+			{
+				// 复制失败
+				str.Format(L"%s 复制失败", strPath);
+			}
+			CNHLogAPI::WriteLog(LOG_MSG, L"21", str);
+			//MoveFile(strJpg, strPath); // 移动文件
+			sSDetPhotoSen.strPhotoPath[21] = strPath.GetString();
+
+			//保存车顶照片
+			//sSDetPhotoSen.strPhoto22SN = L"22";
+			//sSDetPhotoSen.strPhoto22Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			//strJpg.Format(L"%s\\%sback.jpg", m_strDEFolderPath, m_strRunningNumberSen);
+			//strBmp.Format(L"%s\\%sback.bmp", m_strDEFolderPath, m_strRunningNumberSen);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"22", strJpg);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"22", strBmp);
+			//JPGTOBMP(strJpg, strBmp);
+			//sSDetPhotoSen.LoadPhoto22FromFile(strBmp);
+
+			sSDetPhotoSen.strPhoto22SN = L"22";
+			sSDetPhotoSen.strPhoto22Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			strJpg.Format(L"%s\\%sback.jpg", m_strDEFolderPath, m_strRunningNumber);// 获取原图片位置
+			strPath.Format(L"%s\\%s_M1S.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+			BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+			if (BOK)
+			{
+				// 复制成功
+				str.Format(L"%s 复制成功", strPath);
+			}
+			else
+			{
+				// 复制失败
+				str.Format(L"%s 复制失败", strPath);
+			}
+			CNHLogAPI::WriteLog(LOG_MSG, L"22", str);
+			//MoveFile(strJpg, strPath); // 移动文件
+			sSDetPhotoSen.strPhotoPath[22] = strPath.GetString();
+
+			//sSDetPhotoSen.strPhoto23SN = L"23";
+			//sSDetPhotoSen.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			//strJpg.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, m_strRunningNumberSen);
+			//strBmp.Format(L"%s\\%slaserFront.bmp", m_strDEFolderPath, m_strRunningNumberSen);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"23", strJpg);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"23", strBmp);
+			//JPGTOBMP(strJpg, strBmp);
+			//sSDetPhotoSen.LoadPhoto23FromFile(strBmp);
+
+			sSDetPhotoSen.strPhoto23SN = L"23";
+			sSDetPhotoSen.strPhoto23Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			strJpg.Format(L"%s\\%slaserFront.jpg", m_strDEFolderPath, m_strRunningNumber);// 获取原图片位置
+			strPath.Format(L"%s\\%s_M1F2.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+			BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+			if (BOK)
+			{
+				// 复制成功
+				str.Format(L"%s 复制成功", strPath);
+			}
+			else
+			{
+				// 复制失败
+				str.Format(L"%s 复制失败", strPath);
+			}
+			CNHLogAPI::WriteLog(LOG_MSG, L"23", str);
+			//MoveFile(strJpg, strPath); // 移动文件
+			sSDetPhotoSen.strPhotoPath[23] = strPath.GetString();
+
+			//保存车顶照片
+			//sSDetPhotoSen.strPhoto24SN = L"24";
+			//sSDetPhotoSen.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			//strJpg.Format(L"%s\\%slaserTop.jpg", m_strDEFolderPath, m_strRunningNumberSen);
+			//strBmp.Format(L"%s\\%slaserTop.bmp", m_strDEFolderPath, m_strRunningNumberSen);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"24", strJpg);
+			//CNHLogAPI::WriteLog(LOG_MSG, L"24", strBmp);
+			//JPGTOBMP(strJpg, strBmp);
+			//sSDetPhotoSen.LoadPhoto24FromFile(strBmp);
+
+			sSDetPhotoSen.strPhoto24SN = L"24";
+			sSDetPhotoSen.strPhoto24Time = COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S");
+			strJpg.Format(L"%s\\%slaserTop.jpg", m_strDEFolderPath, m_strRunningNumber);// 获取原图片位置
+			strPath.Format(L"%s\\%s_M1S2.jpg",m_strPhotoSaveFolder, m_strRunningNumber);// 移动的位置
+			BOK = CopyFile(strJpg, strPath, FALSE);// 复制文件
+			if (BOK)
+			{
+				// 复制成功
+				str.Format(L"%s 复制成功", strPath);
+			}
+			else
+			{
+				// 复制失败
+				str.Format(L"%s 复制失败", strPath);
+			}
+			CNHLogAPI::WriteLog(LOG_MSG, L"24", str);
+			//MoveFile(strJpg, strPath); // 移动文件
+			sSDetPhotoSen.strPhotoPath[24] = strPath.GetString();
+		}
+	}
 
 	if (m_strDimEqu == L"0")
 	{
@@ -2682,19 +3112,19 @@ void CMDODimDlg_NH::SavePhoto()
 			CGAVideoSnapLibAPI::GetInstance().TakeDimensionSidePhoto(m_strRunningNumberSen);
 		}
 	}
-	
-	if (m_strDimEqu == L"0")
-	{
-		// 保存结果数据
-		CDetPhotoService::SetDetPhoto_NonEmpty(m_pConnection, sSDetPhoto);
-		// 保存第二辆车数据
-		if (!m_strRunningNumberSen.IsEmpty())
-		{
-			sSDetPhoto.strRunningNumber = m_strRunningNumberSen;
-			CDetPhotoService::SetDetPhoto_NonEmpty(m_pConnection, sSDetPhoto);
-		}
-	}
-	else if (m_strDimEqu == L"1")
+
+	//if (m_strDimEqu == L"0")
+	//{
+	//	// 保存结果数据
+	//	CDetPhotoService::SetDetPhoto_NonEmpty(m_pConnection, sSDetPhoto);
+	//	// 保存第二辆车数据
+	//	if (!m_strRunningNumberSen.IsEmpty())
+	//	{
+	//		sSDetPhoto.strRunningNumber = m_strRunningNumberSen;
+	//		CDetPhotoService::SetDetPhoto_NonEmpty(m_pConnection, sSDetPhoto);
+	//	}
+	//}
+	//else if (m_strDimEqu == L"1")
 	{
 		// 保存结果数据
 		CDetPhotoService::SetDetPhoto_NonEmpty(m_pConnection, sSDetPhoto);
@@ -2885,6 +3315,10 @@ void CMDODimDlg_NH::SaveDetData()
 	{
 		CGAVideoSnapLibAPI::GetInstance().TakeEndDimensionFrontVideo(m_strRunningNumber, COleDateTime::GetCurrentTime(), L"");
 		CGAVideoSnapLibAPI::GetInstance().TakeEndDimensionSideVideo(m_strRunningNumber, COleDateTime::GetCurrentTime(), L"");
+		if (m_bDimVideo)
+		{
+			CGAVideoSnapLibAPI::GetInstance().TakeEndDimensionLEDVideo(m_strRunningNumber, COleDateTime::GetCurrentTime(), L"");
+		}
 	}
 	else if (m_nNetPlatform == 2)
 	{
@@ -3123,6 +3557,10 @@ void CMDODimDlg_NH::SaveSecVehDetData()
 	{
 		CGAVideoSnapLibAPI::GetInstance().TakeEndDimensionFrontVideo(m_strRunningNumberSen, COleDateTime::GetCurrentTime(), L"");
 		CGAVideoSnapLibAPI::GetInstance().TakeEndDimensionSideVideo(m_strRunningNumberSen, COleDateTime::GetCurrentTime(), L"");
+		if (m_bDimVideo)
+		{
+			CGAVideoSnapLibAPI::GetInstance().TakeEndDimensionLEDVideo(m_strRunningNumberSen, COleDateTime::GetCurrentTime(), L"");
+		}
 	}
 	else if (m_nNetPlatform == 2)
 	{
@@ -3205,9 +3643,9 @@ bool CMDODimDlg_NH::BMPTOJPG(const CString& srtBmpPath, const CString& strJpgPat
 	im.Load(srtBmpPath);	// 载入bmp图片
 
 	// 调用Save方法，图片格式选用GDI+的JPEG格式
-	 im.Save(strJpgPath,Gdiplus::ImageFormatJPEG);
+	im.Save(strJpgPath,Gdiplus::ImageFormatJPEG);
 
-	 return true;
+	return true;
 }
 
 bool CMDODimDlg_NH::JPGTOBMP( const CString& strJpgPath, const CString& srtBmpPath)
@@ -3217,9 +3655,9 @@ bool CMDODimDlg_NH::JPGTOBMP( const CString& strJpgPath, const CString& srtBmpPa
 	im.Load(strJpgPath);	// 载入jpg图片
 
 	// 调用Save方法，图片格式选用GDI+的bmp格式
-	 im.Save(srtBmpPath,Gdiplus::ImageFormatBMP);
+	im.Save(srtBmpPath,Gdiplus::ImageFormatBMP);
 
-	 return true;
+	return true;
 }
 
 void CMDODimDlg_NH::AddWatermark(const CString& strJpgPath, const CString& strFildName)
@@ -3297,7 +3735,6 @@ int CMDODimDlg_NH::GetEncoderClsid(const WCHAR* format, CLSID* pClsid)
 	return -1;
 }
 
-
 //
 void CMDODimDlg_NH::StatusConfig(void)
 {
@@ -3337,10 +3774,8 @@ void CMDODimDlg_NH::StatusConfig(void)
 	strTemp.Empty();
 	strTemp = si.GetString(L"检测设备", L"时间", L"");
 	m_sGTStatus.strTimes = strTemp.GetString();
-	
+
 }
-
-
 
 int CMDODimDlg_NH::AnalogData(const int& nUpLimit, const int& nDownLimit)
 {
@@ -3354,4 +3789,120 @@ int CMDODimDlg_NH::AnalogData(const int& nUpLimit, const int& nDownLimit)
 	nRet = (rand()%(nUpLimit - nDownLimit + 1)) + nDownLimit;
 
 	return nRet;
+}
+
+void CMDODimDlg_NH::AddWatermark(const CString& strJpgPath, const CString& strFildName, 
+	const float& fLength, const float& fWidth/*=0.00*/, const float& fHeight/*=0.00*/)
+{
+	// 照片所在文件夹路径
+	wchar_t wchFileFolderTmp[MAX_PATH] = {0};
+	// 用默认路径
+	CNHCommonAPI::GetHLDFilePath(L"Photo_Tmp", L"", wchFileFolderTmp, true);
+	wcscat_s(wchFileFolderTmp, _countof(wchFileFolderTmp), strFildName);
+
+	CString strPhotoTmp = wchFileFolderTmp;
+	CStringW strPhotoPath = strJpgPath;
+
+	// 复制图片到备份文件夹
+	CopyFile(strPhotoPath, strPhotoTmp, false);
+
+	DrawWatermark(strPhotoTmp.GetString(), strPhotoPath.GetString(), fLength, fWidth, fHeight);
+
+	// 删除临时文件
+	DeleteFile(strPhotoTmp);
+}
+
+Gdiplus::Bitmap* CMDODimDlg_NH::LoadImageFromID(UINT uImageID, LPCTSTR pResourceType, HINSTANCE m_hResource/*=NULL*/)
+{
+	if (m_hResource == NULL) 
+	{
+		//m_hResource = AfxGetApp()->m_hInstance;
+		m_hResource = AfxGetResourceHandle();
+	}
+
+	if (0 == wcscmp(pResourceType, _T("Bitmap")))
+	{
+		return Gdiplus::Bitmap::FromResource(m_hResource, (WCHAR*)MAKEINTRESOURCE(uImageID));
+	}
+	else if (0 == wcscmp(pResourceType, _T("Icon")))
+	{
+		HICON hIcon = ::LoadIcon(m_hResource, MAKEINTRESOURCE(uImageID));
+		return Gdiplus::Bitmap::FromHICON(hIcon);
+	}
+	else
+	{
+		Gdiplus::Bitmap* pBmp = NULL;
+		HRSRC hResource = ::FindResource(m_hResource, MAKEINTRESOURCE(uImageID), pResourceType);
+		DWORD imageSize = ::SizeofResource(m_hResource, hResource);
+		const void* pResourceData = ::LockResource(::LoadResource(m_hResource, hResource));
+		HGLOBAL m_hBuffer = ::GlobalAlloc(GMEM_MOVEABLE, imageSize);
+		if (m_hBuffer)
+		{
+			void* pBuffer = ::GlobalLock(m_hBuffer);
+			if (pBuffer)
+			{
+				CopyMemory(pBuffer, pResourceData, imageSize);
+
+				IStream* pStream = NULL;
+				if (::CreateStreamOnHGlobal(m_hBuffer, FALSE, &pStream) == S_OK)
+				{
+					pBmp = Gdiplus::Bitmap::FromStream(pStream);
+					pStream->Release();					
+				}
+				::GlobalUnlock(m_hBuffer);
+			}
+			::GlobalFree(m_hBuffer);
+			m_hBuffer = NULL;
+		}
+		return pBmp;
+	}
+}
+
+void CMDODimDlg_NH::DrawWatermark(const CString& strJpgPath, const std::wstring& strTarget, const float& fLength, 
+	const float& fWidth/*=0.00*/, const float& fHeight/*=0.00*/)
+{
+	int nPicWidth = 0;
+	int nPicHeight = 0;
+
+	Image image(strJpgPath.GetString());
+	Graphics imageGraphics(&image);              //通过Image对象创建一个绘图句柄，使用这个句柄对图片进行操作 
+	imageGraphics.SetTextRenderingHint(TextRenderingHintAntiAlias);
+
+
+	Bitmap* oWatermark = LoadImageFromID(IDB_BITMAP_WHITE, L"Bitmap");;
+
+	// 遮挡尺寸
+	imageGraphics.DrawImage(oWatermark, 580, 150, 40, 200); // 垂直方向
+	imageGraphics.DrawImage(oWatermark, 200, 460, 200, 30); // 水平方向
+
+	// 显示字体
+	FontFamily fontFamily(L"宋体"); 
+	Gdiplus::Font myFont(&fontFamily, 10, FontStyleBold, UnitPoint); //第二个是字体大小
+	SolidBrush blackBrush(Color(255, 0, 0, 0));  //半透明+文字RGB颜色
+	// 水平方向
+	PointF school_site((REAL)280, (REAL)460);//文字放置的像素坐标
+	StringFormat strformat;
+	strformat.SetAlignment(StringAlignmentNear);
+	CString strText;
+	strText.Format(L"%.2f", fLength);
+	imageGraphics.DrawString(strText.GetString(), wcslen(strText.GetString()), &myFont, school_site, &strformat, &blackBrush );
+	// 垂直方向
+	school_site.X = (REAL)580;
+	school_site.Y = (REAL)180;
+	strformat.SetFormatFlags(StringFormatFlagsDirectionVertical);
+
+	if (fWidth > 2.0f)
+	{
+		strText.Format(L"%.2f", fWidth);
+	}
+	else
+	{
+		strText.Format(L"%.2f", fHeight);
+	}
+	imageGraphics.DrawString(strText.GetString(), wcslen(strText.GetString()), &myFont, school_site, &strformat, &blackBrush );
+
+	CLSID pngClsid; 
+	GetEncoderClsid( L"image/jpeg", &pngClsid); 
+	image.Save(strTarget.c_str(), &pngClsid, NULL );//保存添加了汉字的图像
+
 }

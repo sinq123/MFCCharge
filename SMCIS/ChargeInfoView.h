@@ -83,6 +83,11 @@ private:
 	CButtonST m_btnMiscellaneousCharges;
 	// 删除记录
 	CButtonST m_btnDeleteRecord;
+
+
+	CButtonST m_btnUpData;
+
+
 private:
 	// 通用对话框字体
 	CFont m_fontDlgFont;
@@ -155,11 +160,16 @@ public:
 	afx_msg void OnBnClickedBtnDeleteRecord();
 	bool VerifyEmpPerm(const SToll_Operator& sToll_Operator);
 
+	// 验证查询条件
+	bool VerifyQueryCond(const COleDateTime& odtCondBeginTime, const COleDateTime& odtCondEndTime, CString& strMsg);
+
 private:
 	// 欠款保存
 	// strUnitName 欠款单位
 	// strCharge 欠款(收费)金额
 	bool SaveArrearsToDB(const CString& strUnitName, const CString& strCharge);
+public:
+	afx_msg void OnBnClickedBtnUpData();
 };
 
 

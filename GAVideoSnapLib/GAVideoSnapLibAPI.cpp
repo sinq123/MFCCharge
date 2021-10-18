@@ -1625,6 +1625,30 @@ bool CGAVideoSnapLibAPI::TakeEndDimensionSideVideo(const CStringW& strRunningNum
 	}
 }
 
+bool CGAVideoSnapLibAPI::TakeStartDimensionLEDVideo(const CStringW& strRunningNumber, const COleDateTime& odtVideoStartTime, const CStringW& strLineNumber)
+{
+	if (0x00 == TakeStartVideo(strRunningNumber, odtVideoStartTime, strLineNumber, L"DimensionLED", L"M1LED"))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool CGAVideoSnapLibAPI::TakeEndDimensionLEDVideo(const CStringW& strRunningNumber, const COleDateTime& odtVideoStartTime, const CStringW& strLineNumber)
+{
+	if (0x00 == TakeEndVideo(strRunningNumber, odtVideoStartTime, strLineNumber, L"DimensionLED", L"M1LED"))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool CGAVideoSnapLibAPI::TakeStartUnladenMassFront45Video(const CStringW& strRunningNumber, const COleDateTime& odtVideoStartTime, const CStringW& strLineNumber)
 {
 	if (0x00 == TakeStartVideo(strRunningNumber, odtVideoStartTime, strLineNumber, L"UnladenMassF", L"Z1F45"))

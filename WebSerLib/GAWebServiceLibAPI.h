@@ -63,7 +63,7 @@ public:
 	bool DetItemStart(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool DetItemStart(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SHisVehInfo& sHisVehInfo, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool UploadDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
-	bool UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
+	bool UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, const SHisVehInfo& sHisVehInfo, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	bool UpEndDimensionData(const CStringW& strRunningNumber, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
 	// 18C58-机动车检验项目结束信息
 	bool DetItemEnd(const CStringW& strRunningNumber, const CStringW& strDetItem, SGAMsg& sMsg, _ConnectionPtr pConnection = NULL);
@@ -210,6 +210,18 @@ public:
 	inline bool GetM2D() {
 		return m_bM2D;
 	}
+	// 是否修正坐标
+	inline bool GetCorrectionCoordinates() {
+		return m_bCorCoor;
+	}
+	// 高于4米是否处理
+	inline bool GetIsHeightHandle() {
+		return m_bHeightHandle;
+	}
+	// 是否外廓灯屏录像
+	inline bool GetDimVideo() {
+		return m_bDimVideo;
+	}
 
 private:
 	// 加载配置文件
@@ -258,6 +270,12 @@ private:
 	bool m_bPinbaseNew;
 	// 是否修正二维图
 	bool m_bM2D;
+	// 是否修正坐标
+	bool m_bCorCoor;
+	// 高于4米是否处理
+	bool m_bHeightHandle;
+	// 是否外廓灯屏录像
+	bool m_bDimVideo;
 
 	// 接口版本
 	int m_nNetPlatform;

@@ -65,6 +65,13 @@
 #pragma comment(lib, "..\\Release\\SSIntLib.lib")
 #endif
 
+#include "..\BJSDIntLib\BJSDIntLib.h"
+#ifdef _DEBUG
+#pragma comment(lib, "..\\Debug\\BJSDIntLib_D.lib")
+#else
+#pragma comment(lib, "..\\Release\\BJSDIntLib.lib")
+#endif
+
 #include "..\GAInterfaceLib_V1.0\GAInterfaceLib_V1.0.h"
 #ifdef _DEBUG
 #pragma comment(lib, "..\\Debug\\GAInterfaceLib_V1.0_D.lib")
@@ -376,7 +383,9 @@ bool CGAWebServiceLibAPI::DetItemStart(const SDetLog& sDetLog, const SDetTimes& 
 	strXML.AppendFormat(L"<gwjysbbh>%s</gwjysbbh>", m_strPosEquNum);
 	strXML.AppendFormat(L"<jyxm>%s</jyxm>", strDetItem);
 	strXML.AppendFormat(L"<kssj>%s</kssj>", COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S"));
-	if (m_nNetPlatform == 5)
+	if (m_nNetPlatform == 5 
+		|| m_nNetPlatform == 10
+		)
 	{
 		strXML.AppendFormat(L"<sqip>%s</sqip>", m_strZdbs);
 	}
@@ -401,99 +410,139 @@ bool CGAWebServiceLibAPI::DetItemStart(const SDetLog& sDetLog, const SDetTimes& 
 #ifdef NH_DIRECT_UPLOAD_GA
 	int nRet(0);
 	std::wstring strRequestid(L"");
-	if (m_nNetPlatform == 1)
+
+	switch(m_nNetPlatform)
 	{
-		switch (m_nGAVersion)
+	case 1:
 		{
-		case 1:
+			switch (m_nGAVersion)
 			{
-				nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-			}
-			break;
-		case 2:
-			{
-				nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		case 3:
-			{
-				nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		}
-	}
-	else if (m_nNetPlatform == 2)
-	{
-		nRet = CHYIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else  if (m_nNetPlatform == 3)
-	{
-		nRet = CACInterfaceLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else  if (m_nNetPlatform == 4)
-	{
-		nRet = CHCIntLib_API::WriteObjectOut(m_pchURL, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else if (m_nNetPlatform == 5)
-	{
-		nRet = CCTKJIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else if (m_nNetPlatform == 6)
-	{
-		switch (m_nGAVersion)
-		{
-		case 1:
-			{
-				nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-			}
-			break;
-		case 2:
-			{
-				nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		case 3:
-			{
-				nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		}
-	}
-	else if (m_nNetPlatform == 7)
-	{
-		nRet = CHGBYInterfaceLib_GZ_API::WriteObjectOut_F(m_pchURL_Two, strXtlb, strJkxlh, strJkid, strYhbz, strDwmc, strDwjgdm, strYhxm, strZdbs, strXmlDocDecode, strRetStr);
-		if (nRet == 0)
-		{
-			CXmlReader xmlReader;
-			if (xmlReader.Parse(strRetStr.c_str()))
-			{
-				if (xmlReader.OpenNode(L"root/head/code"))
+			case 1:
 				{
-					xmlReader.GetNodeContent(sMsg.code);
+					nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
 				}
-				if (L"1" == sMsg.code)
+				break;
+			case 2:
 				{
-					if (xmlReader.OpenNode(L"root/head/requestid"))
+					nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			case 3:
+				{
+					nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			}
+		}
+		break;
+	case 2:
+		{
+			nRet = CHYIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 3:
+		{
+			nRet = CACInterfaceLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 4:
+		{
+			nRet = CHCIntLib_API::WriteObjectOut(m_pchURL, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 5:
+		{
+			nRet = CCTKJIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 6:
+		{
+			switch (m_nGAVersion)
+			{
+			case 1:
+				{
+					nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+				}
+				break;
+			case 2:
+				{
+					nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			case 3:
+				{
+					nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			}
+		}
+		break;
+	case 7:
+		{
+			nRet = CHGBYInterfaceLib_GZ_API::WriteObjectOut_F(m_pchURL_Two, strXtlb, strJkxlh, strJkid, strYhbz, strDwmc, strDwjgdm, strYhxm, strZdbs, strXmlDocDecode, strRetStr);
+			if (nRet == 0)
+			{
+				CXmlReader xmlReader;
+				if (xmlReader.Parse(strRetStr.c_str()))
+				{
+					if (xmlReader.OpenNode(L"root/head/code"))
 					{
-						xmlReader.GetNodeContent(strRequestid);
+						xmlReader.GetNodeContent(sMsg.code);
 					}
-					if (!strRequestid.empty())
+					if (L"1" == sMsg.code)
 					{
-						CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"DetItemStart提交", strXmlDoc.c_str());
-						nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+						if (xmlReader.OpenNode(L"root/head/requestid"))
+						{
+							xmlReader.GetNodeContent(strRequestid);
+						}
+						if (!strRequestid.empty())
+						{
+							CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"DetItemStart提交", strXmlDoc.c_str());
+							nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+						}
 					}
 				}
 			}
 		}
-	}
-	else if (m_nNetPlatform == 8)
-	{
-		nRet = CSCXDIniLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else if (m_nNetPlatform == 9)
-	{
-		nRet = CSSIntLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, 
-			strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+		break;
+	case 8:
+		{
+			nRet = CSCXDIniLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 9:
+		{
+			nRet = CSSIntLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, 
+				strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+		}
+		break;
+	case 10:
+		{
+			nRet = CBJSDIntfaceLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	default:
+		{
+			switch (m_nGAVersion)
+			{
+			case 1:
+				{
+					nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+				}
+				break;
+			case 2:
+				{
+					nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			case 3:
+				{
+					nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			}
+		}
+		break;
 	}
 
 	if (nRet == 0)
@@ -639,8 +688,14 @@ bool CGAWebServiceLibAPI::UploadDimensionData(const CStringW& strRunningNumber, 
 	if (0xFFFFFFFF == CDimensionDataService::GetDimensionData(pConnection, strSQL, sDimensionData))
 	{
 	}
+	
+	SHisVehInfo sHisVehInfo;
+	strSQL.Format(L"select * from HisVehInfo where RunningNumber = '%s';", strRunningNumber);
+	if (0xFFFFFFFF == CHisVehInfoService::GetHisVehInfo(pConnection, strSQL, sHisVehInfo))
+	{
+	}
 
-	bSendGA = UploadDimensionData(sDetLog, sDetTimes, sDimensionData, sMsg, pConnection);
+	bSendGA = UploadDimensionData(sDetLog, sDetTimes, sDimensionData, sHisVehInfo, sMsg, pConnection);
 
 #ifdef NH_DIRECT_UPLOAD_GA
 	// 写数据上传状态
@@ -665,7 +720,7 @@ bool CGAWebServiceLibAPI::UploadDimensionData(const CStringW& strRunningNumber, 
 	return bSendGA;
 }
 
-bool CGAWebServiceLibAPI::UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, SGAMsg& sMsg, _ConnectionPtr pConnection/* = NULL*/)
+bool CGAWebServiceLibAPI::UploadDimensionData(const SDetLog& sDetLog, const SDetTimes& sDetTimes, const SDimensionData& sDimensionData, const SHisVehInfo& sHisVehInfo, SGAMsg& sMsg, _ConnectionPtr pConnection/* = NULL*/)
 {
 	CString strXML;
 	strXML += strWriteHead;
@@ -679,7 +734,7 @@ bool CGAWebServiceLibAPI::UploadDimensionData(const SDetLog& sDetLog, const SDet
 	strXML.AppendFormat(L"<cwkk>%s</cwkk>", sDimensionData.strVehWidth.c_str());	
 	strXML.AppendFormat(L"<cwkg>%s</cwkg>", sDimensionData.strVehHeight.c_str());	
 	strXML.AppendFormat(L"<clwkccpd>%s</clwkccpd>", HandleJudge_EmpRetZero(sDimensionData.strJudge.c_str()));
-	if (m_nNetPlatform == 5)
+	if (m_nNetPlatform == 5 )
 	{
 		strXML.AppendFormat(L"<sqip>%s</sqip>", m_strZdbs);
 	}
@@ -689,7 +744,27 @@ bool CGAWebServiceLibAPI::UploadDimensionData(const SDetLog& sDetLog, const SDet
 		strXML.AppendFormat(L"<cwkcrgfc>%s</cwkcrgfc>", L"");
 		strXML.AppendFormat(L"<cwkkrgfc>%s</cwkkrgfc>", L"");
 		strXML.AppendFormat(L"<cwkgrgfc>%s</cwkgrgfc>", L"");
+	}
+	else if (m_nNetPlatform == 10)
+	{
+		strXML.AppendFormat(L"<bzcwkc>%s</bzcwkc>", sHisVehInfo.strVehLength.c_str());	
+		strXML.AppendFormat(L"<bzcwkk>%s</bzcwkk>", sHisVehInfo.strVehWidth.c_str());	
+		strXML.AppendFormat(L"<bzcwkg>%s</bzcwkg>", sHisVehInfo.strVehHeight.c_str());
 
+		strXML.AppendFormat(L"<ccpd>%s</ccpd>", HandleJudge_EmpRetZero(sDimensionData.strVehLengthJudge.c_str()));	
+		strXML.AppendFormat(L"<ckpd>%s</ckpd>", HandleJudge_EmpRetZero(sDimensionData.strVehWidthJudge.c_str()));	
+		strXML.AppendFormat(L"<cgpd>%s</cgpd>", HandleJudge_EmpRetZero(sDimensionData.strVehHeightJudge.c_str()));
+		strXML.AppendFormat(L"<wjr>%s</wjr>", sDetLog.strDriver.c_str());
+		strXML.AppendFormat(L"<sqip>%s</sqip>", m_strZdbs);
+
+		strXML.AppendFormat(L"<hxnbcd>%s</hxnbcd>", L"");	
+		strXML.AppendFormat(L"<hxnbkd>%s</hxnbkd>", L"");	
+		strXML.AppendFormat(L"<hxnbgd>%s</hxnbgd>", L"");
+		strXML.AppendFormat(L"<clzj>%s</clzj>", L"");
+		strXML.AppendFormat(L"<sfjsb>%s</sfjsb>", L"1");
+		strXML.AppendFormat(L"<cwkcrgfc>%s</cwkcrgfc>", L"");
+		strXML.AppendFormat(L"<cwkkrgfc>%s</cwkkrgfc>", L"");
+		strXML.AppendFormat(L"<cwkgrgfc>%s</cwkgrgfc>", L"");
 	}
 	strXML += strWriteTail;
 
@@ -953,7 +1028,7 @@ bool CGAWebServiceLibAPI::UpEndDimensionData(const CStringW& strRunningNumber, S
 	{
 	}
 
-	bool bSendM1 = UploadDimensionData(sDetLog, sDetTimes, sDimensionData, sMsg, pConnection);
+	bool bSendM1 = UploadDimensionData(sDetLog, sDetTimes, sDimensionData, sHisVehInfo, sMsg, pConnection);
 
 #ifdef NH_DIRECT_UPLOAD_GA
 	// 写数据上传状态
@@ -1071,7 +1146,9 @@ bool CGAWebServiceLibAPI::DetItemEnd(const SDetLog& sDetLog, const SDetTimes& sD
 	strXML.AppendFormat(L"<clsbdh>%s</clsbdh>", UrlCodeOrNot(sHisVehInfo.strVIN.c_str()));
 	strXML.AppendFormat(L"<gwjysbbh>%s</gwjysbbh>", m_strPosEquNum);
 	strXML.AppendFormat(L"<jssj>%s</jssj>", COleDateTime::GetCurrentTime().Format(L"%Y-%m-%d %H:%M:%S"));
-	if (m_nNetPlatform == 5)
+	if (m_nNetPlatform == 5 
+		|| m_nNetPlatform == 10
+		)
 	{
 		strXML.AppendFormat(L"<sqip>%s</sqip>", m_strZdbs);
 	}
@@ -1096,99 +1173,139 @@ bool CGAWebServiceLibAPI::DetItemEnd(const SDetLog& sDetLog, const SDetTimes& sD
 #ifdef NH_DIRECT_UPLOAD_GA
 	int nRet(0);
 	std::wstring strRequestid(L"");
-	if (m_nNetPlatform == 1)
+
+	switch(m_nNetPlatform)
 	{
-		switch (m_nGAVersion)
+	case 1:
 		{
-		case 1:
+			switch (m_nGAVersion)
 			{
-				nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-			}
-			break;
-		case 2:
-			{
-				nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		case 3:
-			{
-				nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		}
-	}
-	else if (m_nNetPlatform == 2)
-	{
-		nRet = CHYIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else  if (m_nNetPlatform == 3)
-	{
-		nRet = CACInterfaceLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else  if (m_nNetPlatform == 4)
-	{
-		nRet = CHCIntLib_API::WriteObjectOut(m_pchURL, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else if (m_nNetPlatform == 5)
-	{
-		nRet = CCTKJIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-	else if (m_nNetPlatform == 6)
-	{
-		switch (m_nGAVersion)
-		{
-		case 1:
-			{
-				nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-			}
-			break;
-		case 2:
-			{
-				nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		case 3:
-			{
-				nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
-			}
-			break;
-		}
-	}
-	else if (m_nNetPlatform == 7)
-	{
-		nRet = CHGBYInterfaceLib_GZ_API::WriteObjectOut_F(m_pchURL_Two, strXtlb, strJkxlh, strJkid, strYhbz, strDwmc, strDwjgdm, strYhxm, strZdbs, strXmlDocDecode, strRetStr);
-		if (nRet == 0)
-		{
-			CXmlReader xmlReader;
-			if (xmlReader.Parse(strRetStr.c_str()))
-			{
-				if (xmlReader.OpenNode(L"root/head/code"))
+			case 1:
 				{
-					xmlReader.GetNodeContent(sMsg.code);
+					nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
 				}
-				if (L"1" == sMsg.code)
+				break;
+			case 2:
 				{
-					if (xmlReader.OpenNode(L"root/head/requestid"))
+					nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			case 3:
+				{
+					nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			}
+		}
+		break;
+	case 2:
+		{
+			nRet = CHYIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 3:
+		{
+			nRet = CACInterfaceLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 4:
+		{
+			nRet = CHCIntLib_API::WriteObjectOut(m_pchURL, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 5:
+		{
+			nRet = CCTKJIntLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 6:
+		{
+			switch (m_nGAVersion)
+			{
+			case 1:
+				{
+					nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+				}
+				break;
+			case 2:
+				{
+					nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			case 3:
+				{
+					nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			}
+		}
+		break;
+	case 7:
+		{
+			nRet = CHGBYInterfaceLib_GZ_API::WriteObjectOut_F(m_pchURL_Two, strXtlb, strJkxlh, strJkid, strYhbz, strDwmc, strDwjgdm, strYhxm, strZdbs, strXmlDocDecode, strRetStr);
+			if (nRet == 0)
+			{
+				CXmlReader xmlReader;
+				if (xmlReader.Parse(strRetStr.c_str()))
+				{
+					if (xmlReader.OpenNode(L"root/head/code"))
 					{
-						xmlReader.GetNodeContent(strRequestid);
+						xmlReader.GetNodeContent(sMsg.code);
 					}
-					if (!strRequestid.empty())
+					if (L"1" == sMsg.code)
 					{
-						CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"DetItemEnd提交", strXmlDoc.c_str());
-						nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+						if (xmlReader.OpenNode(L"root/head/requestid"))
+						{
+							xmlReader.GetNodeContent(strRequestid);
+						}
+						if (!strRequestid.empty())
+						{
+							CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"DetItemStart提交", strXmlDoc.c_str());
+							nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+						}
 					}
 				}
 			}
 		}
-	}
-	else if (m_nNetPlatform == 8)
-	{
-		nRet = CSCXDIniLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
-	}
-		else if (m_nNetPlatform == 9)
-	{
-		nRet = CSSIntLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, 
-			strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+		break;
+	case 8:
+		{
+			nRet = CSCXDIniLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	case 9:
+		{
+			nRet = CSSIntLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, 
+				strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+		}
+		break;
+	case 10:
+		{
+			nRet = CBJSDIntfaceLib_API::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+		}
+		break;
+	default:
+		{
+			switch (m_nGAVersion)
+			{
+			case 1:
+				{
+					nRet = CGAInterfaceLib_API_V1_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strXmlDoc, strRetStr);
+				}
+				break;
+			case 2:
+				{
+					nRet = CGAInterfaceLib_API_V2_0::WriteObjectOut(m_pchURL, strXtlb, strJkxlh, strJkid, strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			case 3:
+				{
+					nRet = CGAInterfaceLib_API_V3_0::WriteObjectOutNew(m_pchURL, strXtlb, strJkxlh, strJkid,strCjsqbh, strDwjgdm, strDwmc, strYhbz, strYhxm, strZdbs, strXmlDoc, strRetStr);
+				}
+				break;
+			}
+		}
+		break;
 	}
 
 	if (nRet == 0)
@@ -4101,9 +4218,11 @@ void CGAWebServiceLibAPI::LoadConfig(void)
 
 	CSimpleIni si(wchFilePath);
 
-	// 联网平台：1、直连公安 2、华燕 3、安车 4.海成 5.长通 6.安之畅 7.华工邦元_广州 8.四川星盾 9.太原赛斯
+	// 联网平台：1、直连公安 2、华燕 3、安车 4.海成 5.长通 6.安之畅 7.华工邦元_广州 8.四川星盾 9.太原赛斯 10.北京时代
 	m_nNetPlatform = _wtoi(si.GetString(L"GAWebService", L"NetPlatform_NN", L"3"));
-
+	CString strPa;
+	strPa.Format(L"%d", m_nNetPlatform);
+	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"m_nNetPlatform", strPa);
 	// 公安接口版本
 	m_nGAVersion = _wtoi(si.GetString(L"GAWebService", L"Version", L"1"));
 	if (m_nGAVersion<=0 || m_nGAVersion>3) // 有效值约束
@@ -4189,7 +4308,17 @@ void CGAWebServiceLibAPI::LoadConfig(void)
 	// 是否检测销轴距(新车检测)
 	m_bPinbaseNew = (si.GetString(L"Parameters", L"IsPinbaseNew", L"0") == L"1")? true : false;
 	// 是否修正二维图
-	m_bPinbaseNew = (si.GetString(L"Parameters", L"IsM2D", L"0") == L"1")? true : false;
+	m_bM2D = (si.GetString(L"Parameters", L"IsM2D", L"0") == L"1")? true : false;
+	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"二维图", m_bM2D? L"是": L"否");
+	// 是否修正坐标
+	m_bCorCoor = (si.GetString(L"Parameters", L"CorCoor", L"0") == L"1")? true : false;
+	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"坐标", m_bCorCoor? L"是": L"否");
+	// 高于4米是否处理
+	m_bHeightHandle = (si.GetString(L"Parameters", L"HeightHandle", L"0") == L"1")? true : false;
+	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"HeightHandle", m_bHeightHandle? L"是": L"否");
+	// 是否外廓灯屏录像
+	m_bDimVideo = (si.GetString(L"Parameters", L"DimVideo", L"0") == L"1")? true : false;
+	CNHLogAPI::WriteLogEx(m_strLogFilePath, LOG_MSG, L"DimVideo", m_bDimVideo? L"是": L"否");
 }
 
 void CGAWebServiceLibAPI::GenLogFile(void)
@@ -4599,7 +4728,7 @@ std::string CGAWebServiceLibAPI::ReducedCurveData(LPCSTR szCurveData)
 		{
 			//vBrakeData[i].nNum = nNum++;
 			//m_lsProcessData.push_back(vBrakeData[i]);
-			sprintf(szBuf, "%d#%d$", vBrakeData[i].nLBrake, vBrakeData[i].nRBrake);
+			sprintf_s(szBuf, sizeof(szBuf), "%d#%d$", vBrakeData[i].nLBrake, vBrakeData[i].nRBrake);
 			strCurve += szBuf;
 		}
 		else
@@ -4611,7 +4740,7 @@ std::string CGAWebServiceLibAPI::ReducedCurveData(LPCSTR szCurveData)
 			{
 				//vBrakeData[i].nNum = nNum++;
 				//m_lsProcessData.push_back(vBrakeData[i]);
-				sprintf(szBuf, "%d#%d$", vBrakeData[i].nLBrake, vBrakeData[i].nRBrake);
+				sprintf_s(szBuf, sizeof(szBuf), "%d#%d$", vBrakeData[i].nLBrake, vBrakeData[i].nRBrake);
 				strCurve += szBuf;
 			}
 		}

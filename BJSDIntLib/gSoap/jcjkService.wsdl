@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://192.168.70.254:9380/jcjklw/services/jcjkService" xmlns:intf="http://192.168.70.254:9380/jcjklw/services/jcjkService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_soapenc_string">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:string[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="uploadFileRequest">
+
+      <wsdl:part name="xtlb" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jkxlh" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jkid" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="fileNode" type="soapenc:base64Binary">
+
+      </wsdl:part>
+
+      <wsdl:part name="WriteXmlDoc" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="checkNullResponse">
+
+      <wsdl:part name="checkNullReturn" type="impl:ArrayOf_soapenc_string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="initRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="initResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="uploadWjzpRequest">
+
+      <wsdl:part name="imgStr" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="mainRequest">
+
+      <wsdl:part name="args" type="impl:ArrayOf_soapenc_string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeObjectOutResponse">
+
+      <wsdl:part name="writeObjectOutReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="mainResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="queryObjectOutRequest">
+
+      <wsdl:part name="xtlb" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jkxlh" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jkid" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="QueryXmlDoc" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="checkNullRequest">
+
+      <wsdl:part name="params" type="impl:ArrayOf_soapenc_string">
+
+      </wsdl:part>
+
+      <wsdl:part name="paramNames" type="impl:ArrayOf_soapenc_string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="uploadWjzpResponse">
+
+      <wsdl:part name="uploadWjzpReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="uploadFileResponse">
+
+      <wsdl:part name="uploadFileReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="queryObjectOutResponse">
+
+      <wsdl:part name="queryObjectOutReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="writeObjectOutRequest">
+
+      <wsdl:part name="xtlb" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jkxlh" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jkid" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="WriteXmlDoc" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getZpgwcsRequest">
+
+      <wsdl:part name="jcz" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jcxdm" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="jcxm" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getZpgwcsResponse">
+
+      <wsdl:part name="getZpgwcsReturn" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SuperviseWebService">
+
+      <wsdl:operation name="main" parameterOrder="args">
+
+         <wsdl:input message="impl:mainRequest" name="mainRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:mainResponse" name="mainResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="init">
+
+         <wsdl:input message="impl:initRequest" name="initRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:initResponse" name="initResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="checkNull" parameterOrder="params paramNames">
+
+         <wsdl:input message="impl:checkNullRequest" name="checkNullRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:checkNullResponse" name="checkNullResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeObjectOut" parameterOrder="xtlb jkxlh jkid WriteXmlDoc">
+
+         <wsdl:input message="impl:writeObjectOutRequest" name="writeObjectOutRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:writeObjectOutResponse" name="writeObjectOutResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="uploadFile" parameterOrder="xtlb jkxlh jkid fileNode WriteXmlDoc">
+
+         <wsdl:input message="impl:uploadFileRequest" name="uploadFileRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:uploadFileResponse" name="uploadFileResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getZpgwcs" parameterOrder="jcz jcxdm jcxm">
+
+         <wsdl:input message="impl:getZpgwcsRequest" name="getZpgwcsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getZpgwcsResponse" name="getZpgwcsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="uploadWjzp" parameterOrder="imgStr">
+
+         <wsdl:input message="impl:uploadWjzpRequest" name="uploadWjzpRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:uploadWjzpResponse" name="uploadWjzpResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryObjectOut" parameterOrder="xtlb jkxlh jkid QueryXmlDoc">
+
+         <wsdl:input message="impl:queryObjectOutRequest" name="queryObjectOutRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:queryObjectOutResponse" name="queryObjectOutResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="jcjkServiceSoapBinding" type="impl:SuperviseWebService">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="main">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="mainRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="mainResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="init">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="initRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="initResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="checkNull">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="checkNullRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="checkNullResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="writeObjectOut">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="writeObjectOutRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="writeObjectOutResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="uploadFile">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="uploadFileRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="uploadFileResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getZpgwcs">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getZpgwcsRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getZpgwcsResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="uploadWjzp">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="uploadWjzpRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="uploadWjzpResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="queryObjectOut">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="queryObjectOutRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.basefrm.power.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="queryObjectOutResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://192.168.70.254:9380/jcjklw/services/jcjkService" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SuperviseWebServiceService">
+
+      <wsdl:port binding="impl:jcjkServiceSoapBinding" name="jcjkService">
+
+         <wsdlsoap:address location="http://192.168.70.254:9380/jcjklw/services/jcjkService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -13,39 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="控制南华外廓">
-      <UniqueIdentifier>{3b4ed61c-6205-4678-8557-5e4aab74202c}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="res\MDODim.rc2">
+    <None Include="res\teGDI.rc2">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="res\MDODim.ico">
+    <None Include="res\teGDI.ico">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="res\CheckBoxOff.ico">
+    <None Include="res\Whire.bmp">
       <Filter>资源文件</Filter>
     </None>
-    <None Include="res\CheckBoxOn.ico">
-      <Filter>资源文件</Filter>
-    </None>
-    <None Include="res\icon1.ico">
-      <Filter>资源文件</Filter>
-    </None>
-    <None Include="res\Red.bmp">
+    <None Include="res\White.png">
       <Filter>资源文件</Filter>
     </None>
     <None Include="res\White.bmp">
       <Filter>资源文件</Filter>
     </None>
+    <None Include="res\bitmap1.bmp">
+      <Filter>资源文件</Filter>
+    </None>
+    <None Include="res\Red.bmp">
+      <Filter>资源文件</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MDODim.h">
+    <ClInclude Include="teGDI.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MDODimDlg.h">
+    <ClInclude Include="teGDIDlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -57,26 +54,20 @@
     <ClInclude Include="Resource.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="MDODimDlg_NH.h">
-      <Filter>控制南华外廓</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MDODim.cpp">
+    <ClCompile Include="teGDI.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MDODimDlg.cpp">
+    <ClCompile Include="teGDIDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="MDODimDlg_NH.cpp">
-      <Filter>控制南华外廓</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MDODim.rc">
+    <ResourceCompile Include="teGDI.rc">
       <Filter>资源文件</Filter>
     </ResourceCompile>
   </ItemGroup>

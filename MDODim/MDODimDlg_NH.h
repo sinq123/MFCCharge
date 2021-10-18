@@ -1,5 +1,8 @@
 #pragma once
 
+#include <gdiplus.h>             //GDI+声明，可以GDI/GDI+混合使用
+#pragma comment(lib, "gdiplus.lib")
+using namespace Gdiplus;
 
 // CMDODimDlg_NH 对话框
 
@@ -138,6 +141,12 @@ private:
 	bool m_bPinbaseNew;
 	// 是否修正二维图
 	bool m_bM2D;
+	// 是否修正坐标
+	bool m_bCorCoor;
+	// 高于4米是否处理
+	bool m_bHeightHandle;
+	// 是否外廓灯屏录像
+	bool m_bDimVideo;
 
 	// 
 	CString m_strBodyPhotoPath;
@@ -201,6 +210,8 @@ private:
 	// 厂家类型
 	CStringW m_strDimEqu;
 	SGTStatus m_sGTStatus;
+
+	CStringW m_strPhotoSaveFolder;
 private:
 	// 检测开始时间
 	COleDateTime m_odtBeginTime;
@@ -239,6 +250,10 @@ private:
 	void SaveSecVehDetData(void);
 
 private:
+
+	GdiplusStartupInput m_gdiplusStartupInput;
+	ULONG_PTR m_pGdiToken;
+
 	// bmp转jpg
 	bool BMPTOJPG(const CString& srtBmpPath, const CString& strJpgPath);
 	// jpg转bmp
@@ -250,4 +265,17 @@ private:
 	// 图片添加文字
 	int GetEncoderClsid(const WCHAR* format, CLSID* pClsid);
 
+	// 水印图片
+	// strJpgPath 图片路径
+	// 图片名称
+	// fLength, fWidth, fHeight 长宽高
+	void AddWatermark(const CString& strJpgPath, const CString& strFildName, 
+		const float& fLength, const float& fWidth=0.00, const float& fHeight=0.00);
+	// 添加图片水印
+	// strJpgPath 底图路径
+	// strTarget 加载水印后的路径
+	// 加载的字体
+	void DrawWatermark(const CString& strJpgPath, const std::wstring& strTarget, const float& fLength, const float& fWidth=0.00, const float& fHeight=0.00);
+	// 加载资源图片
+	Gdiplus::Bitmap* LoadImageFromID(UINT uImageID, LPCTSTR pResourceType, HINSTANCE m_hResource=NULL);
 };

@@ -79,6 +79,8 @@ void CChargeInfoView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTN_WRONGANDRETURN, m_btnWrongAndRetturn);
 	DDX_Control(pDX, IDC_BTN_MICELLANEOUS, m_btnMiscellaneousCharges);
 	DDX_Control(pDX, IDC_BTN_DELETE_RECORD, m_btnDeleteRecord);
+
+	DDX_Control(pDX, IDC_BTN_UP_DATA, m_btnUpData);
 }
 
 BEGIN_MESSAGE_MAP(CChargeInfoView, CFormView)
@@ -92,6 +94,7 @@ BEGIN_MESSAGE_MAP(CChargeInfoView, CFormView)
 	ON_NOTIFY(NM_CLICK, IDC_LST_DET_CHARGE, &CChargeInfoView::OnLvnItemchangedLstDetCharge)
 	ON_BN_CLICKED(IDC_BTN_MICELLANEOUS, &CChargeInfoView::OnBnClickedBtnMicellaneous)
 	ON_BN_CLICKED(IDC_BTN_DELETE_RECORD, &CChargeInfoView::OnBnClickedBtnDeleteRecord)
+	ON_BN_CLICKED(IDC_BTN_UP_DATA, &CChargeInfoView::OnBnClickedBtnUpData)
 END_MESSAGE_MAP()
 
 
@@ -341,9 +344,8 @@ void CChargeInfoView::OnBnClickedBtnCharges()
 			{
 				strMsg.AppendFormat(L",保存欠费记录失败");
 			}
-
-			PrintLog(strMsg);
 		}
+		PrintLog(strMsg);
 	}
 	// 操作后置为未选择
 	m_lstDetBsnNoCharge.SetSelectionMark(-1);
@@ -654,6 +656,8 @@ void CChargeInfoView::InitCtrls(void)
 		m_btnModifyChargeAmount.ShowWindow(SW_HIDE);
 		m_btnDeleteCharge.ShowWindow(SW_HIDE);
 	}
+
+	m_btnUpData.SetFlat(FALSE);
 }
 
 void CChargeInfoView::SetDlgFont(void)
@@ -795,9 +799,18 @@ void CChargeInfoView::NoChargeUpdateDetBsnList(void)
 	m_cbNoChargeVehType.GetWindowTextW(strNoChargeVehType);
 	m_dtcNoChargeStartTime.GetTime(odtNoChargeStartTime);
 	m_dtcNoChargeCondEndTime.GetTime(odtNoChargeCondEndTime);
+
+
 	// 选中时不更新列表
 	if (nNoChargeIndex != -1)
 	{
+		return;
+	}
+
+	CString strMsg;
+	if (!VerifyQueryCond(odtNoChargeStartTime, odtNoChargeCondEndTime, strMsg))
+	{
+		MessageBox(strMsg);
 		return;
 	}
 
@@ -830,6 +843,8 @@ void CChargeInfoView::NoChargeUpdateDetBsnList(void)
 	strSql.AppendFormat(L" and (DetLog.EntryTime between '%s 00:00:00' and '%s 23:59:59') ", odtNoChargeStartTime.Format(L"%Y-%m-%d"), 
 		odtNoChargeCondEndTime.Format(L"%Y-%m-%d"));
 	strSql.AppendFormat(L" order by AutoID desc ");
+
+	CNHLogAPI::WriteLogEx(theApp.m_strLogFilePath, LOG_MSG, L"查询未收费列表", strSql);
 
 	_RecordsetPtr pRecordset(NULL);
 	if (0x00 == CNHSQLServerDBO::OpenQuery(theApp.m_pConnection, pRecordset, strSql))
@@ -1049,6 +1064,13 @@ void CChargeInfoView::ChargeUpdateDetBsnList(void)
 		return;
 	}
 
+	CString strMsg;
+	if (!VerifyQueryCond(odtChargeStartTime, odtChargeCondEndTime, strMsg))
+	{
+		MessageBox(strMsg);
+		return;
+	}
+
 	strSql.AppendFormat(L" select Charge.AutoID, Charge.RunningNumber, Charge.PlateNumber , Charge.PlateType, Charge.EntryOperator,Charge.TotalDetTimes, Charge.AmountOfCharges, Charge.ChargingTime,\
 						 Charge.ChargeingStatus, Charge.TollCollector, Charge.Owner, Charge.VehType, Charge.UnladenMass, Charge.MaximumTotalMass, Charge.DetType, Charge.OperationalOfReason ");
 	strSql.AppendFormat(L" from Charge");
@@ -1082,6 +1104,8 @@ void CChargeInfoView::ChargeUpdateDetBsnList(void)
 		strSql.AppendFormat(L" and (Charge.AmountOfCharges like '%%%s%%') ", strChargeChargeAmount);
 	}
 	strSql.AppendFormat(L" order by AutoID desc ");
+
+	CNHLogAPI::WriteLogEx(theApp.m_strLogFilePath, LOG_MSG, L"查询已收费列表", strSql);
 
 	_RecordsetPtr pRecordset(NULL);
 	if (0x00 == CNHSQLServerDBO::OpenQuery(theApp.m_pConnection, pRecordset, strSql))
@@ -1685,4 +1709,42 @@ bool CChargeInfoView::SaveArrearsToDB(const CString& strUnitName, const CString&
 
 
 	return true;
+}
+
+bool CChargeInfoView::VerifyQueryCond(const COleDateTime& odtCondBeginTime, const COleDateTime& odtCondEndTime, CString& strMsg)
+{
+	strMsg = L"";
+	if (odtCondBeginTime > odtCondEndTime)
+	{
+		strMsg = L"[结束日期]不能大于[开始日期]。";
+		OnBnClickedBtnUpData();
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
+void CChargeInfoView::OnBnClickedBtnUpData()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CString str;
+	m_btnUpData.GetWindowTextW(str);
+
+	if (L"停止更新" == str)
+	{
+		KillTimer(1);
+		m_btnUpData.SetWindowTextW(L"自动更新");
+	}
+	else
+	{
+		SetTimer(1, 1500, NULL);
+		m_btnUpData.SetWindowTextW(L"停止更新");
+	}
+
+	// 操作后置为未选择
+	m_lstDetBsnNoCharge.SetSelectionMark(-1);
+	m_lstDetBsnCharge.SetSelectionMark(-1);
+
 }

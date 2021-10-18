@@ -431,7 +431,7 @@ void CMainFrame::LogVehInfoToDetSta(const int& nDetType)
 		// 可以要求待检和完成检测的非收费也要纳入
 		strSql.AppendFormat(L" (DetLog.DetStatus = 'TODET' or DetLog.DetStatus = 'FINDET') ");
 		// 设置只是初检
-		strSql.AppendFormat(L" and DetTimes.TotalDetTimes <= 1 and DetTimes.TotalDetTimes_M <= 1 ");
+		strSql.AppendFormat(L" and DetTimes.TotalDetTimes <= 1 /*and DetTimes.TotalDetTimes_M <= 1*/ ");
 
 		// 收费表没有该条流水号
 		strSql.AppendFormat(L" and (select COUNT(1) as num from DetLog where DetLog.RunningNumber = Charge.RunningNumber /*and Charge.ChargeingStatus <> 'NOCHARGE'*/) = 0 ");

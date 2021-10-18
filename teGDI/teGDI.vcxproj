@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5540052C-4918-4CAE-B90B-D56685B7CA8F}</ProjectGuid>
-    <RootNamespace>MDODim</RootNamespace>
+    <ProjectGuid>{F895E7D2-5620-485D-A791-903D5E533168}</ProjectGuid>
+    <RootNamespace>teGDI</RootNamespace>
     <Keyword>MFCProj</Keyword>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -95,40 +95,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
-    <None Include="res\CheckBoxOff.ico" />
-    <None Include="res\CheckBoxOn.ico" />
-    <None Include="res\icon1.ico" />
-    <None Include="res\MDODim.ico" />
-    <None Include="res\MDODim.rc2" />
+    <None Include="res\bitmap1.bmp" />
     <None Include="res\Red.bmp" />
+    <None Include="res\teGDI.ico" />
+    <None Include="res\teGDI.rc2" />
+    <None Include="res\Whire.bmp" />
     <None Include="res\White.bmp" />
+    <None Include="res\White.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MDODim.h" />
-    <ClInclude Include="MDODimDlg.h" />
-    <ClInclude Include="MDODimDlg_NH.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="teGDI.h" />
+    <ClInclude Include="teGDIDlg.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MDODim.cpp" />
-    <ClCompile Include="MDODimDlg.cpp" />
-    <ClCompile Include="MDODimDlg_NH.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="teGDI.cpp" />
+    <ClCompile Include="teGDIDlg.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="MDODim.rc" />
+    <ResourceCompile Include="teGDI.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties RESOURCE_FILE="MDODim.rc" />
-    </VisualStudio>
-  </ProjectExtensions>
 </Project>
