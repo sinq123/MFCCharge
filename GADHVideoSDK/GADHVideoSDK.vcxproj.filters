@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="DHNetSDK">
+      <UniqueIdentifier>{25932b0f-ae23-4f84-be00-0063aa467abc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DHNetSDK\开发文档">
+      <UniqueIdentifier>{29943b9a-701b-433c-ba53-20e52b5585f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DHNetSDK\Lib">
+      <UniqueIdentifier>{7404c9e6-1a6f-4a34-9acf-fa0cc29837c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DHNetSDK\Include">
+      <UniqueIdentifier>{9a03186c-c2e8-46ae-9ff3-9c09a6b70eff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DHNetSDK\Include\avglobal.h">
+      <Filter>DHNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Include\dhassistant.h">
+      <Filter>DHNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Include\dhconfigsdk.h">
+      <Filter>DHNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Include\dhnetsdk.h">
+      <Filter>DHNetSDK\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Lib\avglobal.h">
+      <Filter>DHNetSDK\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Lib\dhassistant.h">
+      <Filter>DHNetSDK\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Lib\dhconfigsdk.h">
+      <Filter>DHNetSDK\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="DHNetSDK\Lib\dhnetsdk.h">
+      <Filter>DHNetSDK\Lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DHNetSDK\Lib\aacdec.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\amrdec.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\dhconfigsdk.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\dhnetsdk.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\dhplay.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\h264dec.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\IvsDrawer.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\langchn.ini">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\mjpegdec.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\mp3dec.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\mpeg4dec.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\mpeg4enc.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\NetSDKDemo.exe">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+    <None Include="DHNetSDK\Lib\postproc.dll">
+      <Filter>DHNetSDK\Lib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="DHNetSDK\Lib\dhconfigsdk.lib">
+      <Filter>DHNetSDK\Lib</Filter>
+    </Library>
+    <Library Include="DHNetSDK\Lib\dhnetsdk.lib">
+      <Filter>DHNetSDK\Lib</Filter>
+    </Library>
+  </ItemGroup>
+</Project>
